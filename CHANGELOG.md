@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.8
+
+- Added original reflection-backed MCA Reborn and MineColonies resident host
+  adapters using verified public class and method names from pinned upstream
+  source/runtime jars.
+- Hardened reflective method access so relaxed access is best-effort while
+  public upstream methods remain invokable if a classloader rejects it.
+- Added a runtime resident API contract GameTest for the installed MCA and
+  MineColonies surfaces needed by `CIV-058`.
+- Added unit coverage for MCA villager UUID host keys, MineColonies
+  `colony:<id>/citizen:<id>` host keys, entity/data fallback, and
+  unregistered-citizen rejection.
+- No upstream implementation source or assets were copied or adapted.
+
 ## 0.1.0-alpha.6
 
 - Added original host-adapter abstractions:

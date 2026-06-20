@@ -1,6 +1,7 @@
 package com.oblixorprime.immersiveego.civitas;
 
 import com.mojang.logging.LogUtils;
+import com.oblixorprime.immersiveego.civitas.resident.upstream.UpstreamResidentHostAdapters;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -20,6 +21,13 @@ public final class ImmersiveEgoCivitas {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         CivitasRuntimeDependencyGuard.verifyPinnedRuntime(LOGGER);
+        var residentHostAdapters = UpstreamResidentHostAdapters.createRegistry();
+        LOGGER.info(
+                "{} resident host adapters registered: {}",
+                MOD_ID,
+                residentHostAdapters.adapters().stream()
+                        .map(adapter -> adapter.authority().serializedId())
+                        .toList());
         LOGGER.info("{} common setup complete; integration surfaces are intentionally neutral.", MOD_ID);
     }
 }

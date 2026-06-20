@@ -62,7 +62,7 @@ Downloaded jars are kept only in the ignored local cache
   Balm, and Bad Packets integrations. `runGameTestServer` proved Waystones is
   effectively required for this artifact because automatic subscriber scanning
   loads `WaystoneTeleportEvent$Post`; Waystones then requires Balm.
-- Server smoke with CIVITAS `0.1.0-alpha.6` loads Immersive EGO
+- Server smoke with CIVITAS `0.1.0-alpha.8` loads Immersive EGO
   `0.1.0-alpha.27` from the Prism LAB mods directory.
 
 ## Blocking gaps before source adaptation

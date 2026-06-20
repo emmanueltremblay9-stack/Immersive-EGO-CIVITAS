@@ -70,4 +70,11 @@
   `0.1.0-alpha.6`, installed the verified jar into Prism LAB, and verified
   unit tests, clean build, provenance validation, server GameTests, and Prism
   client smoke.
+- Inspected pinned MCA Reborn and MineColonies source/runtime classes for
+  resident identity surfaces, then added original reflection-backed resident
+  host adapters and a runtime API contract GameTest for alpha.8. The MCA
+  adapter identifies `VillagerEntityMCA`/`VillagerLike` hosts by `getUUID()`;
+  the MineColonies adapter identifies `ICitizen`/`ICitizenData` hosts by
+  `getColony().getID()` plus `getId()` and entity fallbacks by
+  `getCitizenColonyHandler().getColonyId()` plus `getCivilianID()`.
 - No upstream implementation source was copied or adapted.

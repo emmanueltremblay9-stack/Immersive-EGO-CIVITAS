@@ -5,6 +5,8 @@ import com.oblixorprime.immersiveego.civitas.resident.CivitasAuthority;
 import com.oblixorprime.immersiveego.civitas.resident.CivitasResidentSavedData;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentHostKey;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRecord;
+import com.oblixorprime.immersiveego.civitas.resident.upstream.UpstreamResidentApiContract;
+import com.oblixorprime.immersiveego.civitas.resident.upstream.UpstreamResidentHostAdapters;
 import java.util.UUID;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
@@ -26,6 +28,21 @@ public final class CivitasGameTests {
                 ImmersiveEgoCivitas.MOD_ID.equals("immersive_ego_civitas"),
                 "mod id must match the registered GameTest namespace"
         );
+        helper.succeed();
+    }
+
+    @GameTest(template = EMPTY, timeoutTicks = 20)
+    public static void upstreamResidentApiContractMatchesInstalledRuntime(GameTestHelper helper) {
+        var missingMembers = UpstreamResidentApiContract.missingMembers(
+                Thread.currentThread().getContextClassLoader());
+
+        helper.assertTrue(
+                missingMembers.isEmpty(),
+                "installed upstream resident API is missing members: " + missingMembers);
+        helper.assertValueEqual(
+                UpstreamResidentHostAdapters.createRegistry().adapters().size(),
+                2,
+                "MCA and MineColonies resident host adapters should be registered");
         helper.succeed();
     }
 

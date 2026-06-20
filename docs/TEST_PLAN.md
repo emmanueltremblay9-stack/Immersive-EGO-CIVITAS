@@ -11,9 +11,12 @@
 - `.\install-mod.ps1 -SkipBuild`
 - `scripts/install-runtime-deps.ps1`
 - Pure Java unit tests for the pinned runtime dependency guard, original
-  resident registry invariants, and neutral host-adapter registry/service.
+  resident registry invariants, neutral host-adapter registry/service, and
+  reflection-backed MCA/MineColonies resident host-key adapters.
 - GameTests for runtime boot, resident SavedData host lookup, and resident NBT
   round-trip.
+- GameTest runtime contract for installed MCA Reborn and MineColonies resident
+  API class/method surfaces.
 
 ## Required future gates
 
