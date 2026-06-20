@@ -33,4 +33,7 @@
   `result=passed` with CIVITAS `0.1.0-alpha.3`, LWJGL, OpenAL, sound engine,
   block atlas, a responsive `Minecraft NeoForge* 1.21.1` window, and no crash
   reports.
+- Advanced CIV-003 by mapping Structurize, BlockUI, Domum Ornamentum,
+  Multi-Piston, Waystones, and Balm runtime artifacts to immutable Git tags and
+  source commits. Modern Companions `2.0` remains source-blocked.
 - No upstream implementation source was copied or adapted.

@@ -9,6 +9,8 @@
   as Modern Companions runtime support jars.
 - Added a reproducible Prism LAB client smoke wrapper and verified CIVITAS
   `0.1.0-alpha.3` reaches a responsive Minecraft client window.
+- Mapped Structurize, BlockUI, Domum Ornamentum, Multi-Piston, Waystones, and
+  Balm runtime artifacts to immutable source tags/commits.
 
 ## 0.1.0-alpha.2
 

@@ -20,7 +20,8 @@
   - Evidence: `docs/DEPENDENCY_AUDIT.md`, `docs/ARTIFACT_AUDIT.md`.
 - [ ] CIV-003 - Map release artifacts to immutable source commits
   - Acceptance: Every mandatory jar maps to source.
-  - Blocker: Modern Companions CurseForge `2.0` artifact is verified, but no checked public `STRHercules/ModernCompanions` branch declares `2.0` and `MajorBonghits/ModernCompanions` returned `404`.
+  - Progress: Structurize, BlockUI, Domum Ornamentum, Multi-Piston, Waystones, and Balm now map to immutable source tags/commits in `docs/ARTIFACT_AUDIT.md`.
+  - Blocker: Modern Companions CurseForge `2.0` artifact is verified, but no checked public `STRHercules/ModernCompanions` branch declares `2.0` and `MajorBonghits/ModernCompanions` returned `404`. Immersive EGO source-to-binary proof is still pending a clean sibling worktree rebuild.
 - [x] CIV-008 - Initialize NeoForge 1.21.1 Java 21 project
   - Acceptance: Project compiles with standard runs.
   - Upstream source/commit: Original CIVITAS harness; no upstream implementation source copied.
@@ -44,6 +45,7 @@
 
 - Modern Companions artifact/source mismatch blocks adaptation and implementation-detail compile usage.
 - Modern Companions GitHub repository license endpoint returns 404; mod metadata states GPL-3.0-only but repository-level license still needs authoritative confirmation.
+- Immersive EGO LAB prerequisite source-to-binary proof remains pending until the sibling source tree can be rebuilt from a clean state.
 - TownTalk remains a scope question: it is not declared by the selected MineColonies artifact metadata or verified release dependency minimums.
 
 ## Completed

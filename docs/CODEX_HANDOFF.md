@@ -33,6 +33,8 @@
   gate with Immersive EGO `0.1.0-alpha.17` from Prism LAB.
 - Added a reproducible Prism LAB client smoke wrapper and verified the client
   reaches a responsive Minecraft window with CIVITAS `0.1.0-alpha.3` loaded.
+- Mapped Structurize, BlockUI, Domum Ornamentum, Multi-Piston, Waystones, and
+  Balm runtime artifacts to immutable Git tags and source commits.
 
 ## Exact commands run
 
@@ -67,6 +69,19 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240
 pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\install-runtime-deps.ps1
+git ls-remote --heads --tags https://github.com/ldtteam/Structurize.git
+git ls-remote --heads --tags https://github.com/ldtteam/BlockUI.git
+git ls-remote --heads --tags https://github.com/ldtteam/Domum-Ornamentum.git
+git ls-remote --heads --tags https://github.com/ldtteam/Piston-Unlimited.git
+git ls-remote --heads --tags https://github.com/TwelveIterationMods/Waystones.git
+git ls-remote --heads --tags https://github.com/TwelveIterationMods/Balm.git
+git ls-remote --heads --tags https://github.com/STRHercules/ModernCompanions.git
+Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/ldtteam/Structurize/16a05cdb3524fae1662d8bab1f48b1d28f580c7a/gradle.properties'
+Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/ldtteam/BlockUI/29c2e55fa09f3d8168dc2677368188d22e2f3688/gradle.properties'
+Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/ldtteam/Domum-Ornamentum/fe16a052f1eca2b8a2cc0a0a0ed3354f404c1d84/gradle.properties'
+Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/ldtteam/Piston-Unlimited/b74560984ea1da1906e59dd2f34286d55ee30449/gradle.properties'
+Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/TwelveIterationMods/Waystones/75f923f36938515571fd71fbe8c30ff8050df417/gradle.properties'
+Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/TwelveIterationMods/Balm/f9af2e38e3a8788d0bddd51de8234ffeb1218ddf/gradle.properties'
 ```
 
 ## Test results
@@ -94,8 +109,11 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\install-runtime-deps.ps1
 - `docs/CODE_ADAPTATION_MANIFEST.csv` added.
 - No active adapted-source rows.
 - Modern Companions adaptation is blocked pending source/artifact and lineage verification.
-- Structurize, BlockUI, Domum Ornamentum, and Multi-Piston source adaptation is
-  blocked pending file-to-source commit mapping.
+- Structurize, BlockUI, Domum Ornamentum, and Multi-Piston source tags are
+  mapped, but no source has been adapted yet.
+- Waystones is mapped for runtime audit but should be treated as runtime-only
+  because jar metadata says `All Rights Reserved` and GitHub license detection
+  is `NOASSERTION`.
 
 ## Known blockers
 
@@ -103,10 +121,10 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\install-runtime-deps.ps1
   mapped to an immutable source commit.
 - Modern Companions repository-level license file is not exposed by the GitHub API.
 - Human Companions and Basic Weapons lineage audits are required before adapting Modern Companions files.
-- Structurize, BlockUI, Domum Ornamentum, and Multi-Piston source commits are
-  not mapped from their selected CurseForge files yet.
 - TownTalk is not part of the selected runtime set unless a later requirement
   proves it mandatory.
+- Immersive EGO source-to-binary proof still needs a clean rebuild from the
+  sibling source worktree.
 
 ## Risks changed
 
@@ -115,5 +133,6 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\install-runtime-deps.ps1
 
 ## Next exact task
 
-Continue CIV-003 source mapping before adapting Modern Companions or LDT
-dependency code.
+Resolve Modern Companions `2.0` source provenance or obtain a maintainer source
+archive, then rebuild Immersive EGO from a clean sibling worktree for
+source-to-binary proof.

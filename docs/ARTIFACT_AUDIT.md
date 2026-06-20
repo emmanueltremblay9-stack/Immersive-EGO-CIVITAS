@@ -31,13 +31,13 @@ Downloaded jars are kept only in the ignored local cache
 | MCA Reborn | Release tag `7.7.11+1.21.1` maps to commit `802ab602a7e2aea6284853722ffde88f23cd6840`. |
 | Immersive EGO | Local repository HEAD is `6a2f87ce56a35e78f3231daf3b03c43c9b2ca60a`; LAB smoke used `0.1.0-alpha.17`, but source-to-binary proof remains conditional because that external worktree has uncommitted changes. |
 | NeoForge | Maven artifacts and hashes are pinned; no CIVITAS source is adapted from NeoForge. |
-| Structurize | GitHub repository `ldtteam/Structurize` exists and reports GPL-3.0, but GitHub API returned no releases or tags for file `7643353`; exact source commit mapping is still pending. |
-| BlockUI | GitHub repository `ldtteam/BlockUI` exists and reports GPL-3.0, but GitHub API returned no releases or tags for file `6367809`; exact source commit mapping is still pending. |
-| Domum Ornamentum | GitHub repository `ldtteam/Domum-Ornamentum` exists and reports GPL-3.0, but GitHub API returned no releases or tags for file `7231908`; exact source commit mapping is still pending. |
-| Multi-Piston | Correct source repository is `ldtteam/Piston-Unlimited`, GPL-3.0. GitHub API returned no releases or tags for file `5783614`; exact source commit mapping is still pending. |
+| Structurize | Tag `v1.21.1-1.0.810-snapshot` maps to commit `16a05cdb3524fae1662d8bab1f48b1d28f580c7a`; raw `gradle.properties` at that commit declares Minecraft `1.21.1`, BlockUI `1.0.191-1.21.1-snapshot`, and Domum Ornamentum `1.0.203-1.21.1-snapshot`. |
+| BlockUI | Tag `v1.21.1-1.0.199` maps to commit `29c2e55fa09f3d8168dc2677368188d22e2f3688`; raw `gradle.properties` at that commit declares Minecraft `1.21.1` and NeoForge `21.1.113`. |
+| Domum Ornamentum | Tag `v1.21.1-1.0.223` maps to commit `fe16a052f1eca2b8a2cc0a0a0ed3354f404c1d84`; raw `gradle.properties` at that commit declares Minecraft `1.21.1`. The jar still uses placeholder metadata version `${file.jarVersion}`. |
+| Multi-Piston | Correct source repository is `ldtteam/Piston-Unlimited`, GPL-3.0. Tag `v1.21.1-1.2.51` maps to commit `b74560984ea1da1906e59dd2f34286d55ee30449`; raw `gradle.properties` at that commit declares Minecraft `1.21.1`, BlockUI `1.0.188-1.21.1-snapshot`, and Structurize `1.0.751-1.21.1-snapshot`. |
 | Modern Companions 2.0 | CurseForge source link points to `STRHercules/ModernCompanions`, but all public branches checked declare versions below `2.0`; the jar issue tracker points to non-public or missing `MajorBonghits/ModernCompanions`. Exact source commit mapping remains blocked. |
-| Waystones | Runtime support artifact is pinned by CurseForge file `7750240`; exact source commit mapping is pending. |
-| Balm | Runtime support artifact is pinned by CurseForge file `7420963`; exact source commit mapping is pending. |
+| Waystones | Tag `v21.1.29` maps to annotated tag object `17c30448b26bfd81f7af33e4404677dfc4997b86` and peeled source commit `75f923f36938515571fd71fbe8c30ff8050df417`; raw `gradle.properties` at that commit declares version `21.1.29` and Minecraft `1.21.1`. Runtime-only unless license permission changes; jar metadata says `All Rights Reserved` and GitHub license detection is `NOASSERTION`. |
+| Balm | Tag `v21.0.56` maps to annotated tag object `25b904eb951811c98fc90ec2a7760f92ff38c5dc` and peeled source commit `f9af2e38e3a8788d0bddd51de8234ffeb1218ddf`; raw `gradle.properties` at that commit declares version `21.0.56` and Minecraft `1.21.1`. GitHub license detection reports Apache-2.0. |
 
 ## Dependency observations
 
@@ -64,11 +64,7 @@ Downloaded jars are kept only in the ignored local cache
 
 1. Map Modern Companions `2.0` to an immutable public source commit, or get an
    explicit source archive from the maintainer.
-2. Map Structurize, BlockUI, Domum Ornamentum, and Multi-Piston CurseForge file
-   IDs to immutable source commits before adapting code from those projects.
-3. Resolve whether TownTalk remains a CIVITAS requirement even though it is not
+2. Resolve whether TownTalk remains a CIVITAS requirement even though it is not
    declared by the selected MineColonies runtime artifact.
-4. Rebuild Immersive EGO from a clean source state before treating its local jar
+3. Rebuild Immersive EGO from a clean source state before treating its local jar
    as a reproducible binary prerequisite.
-5. Map Waystones and Balm runtime support artifacts to immutable source commits
-   before adapting any code from those projects.
