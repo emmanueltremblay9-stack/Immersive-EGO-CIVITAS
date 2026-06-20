@@ -3,7 +3,8 @@
 Audit date: 2026-06-20
 
 This is the first P0 audit snapshot. It records verified evidence and blocks
-implementation where source or artifact mapping is incomplete.
+implementation where source mapping is incomplete. Artifact hashes and jar
+metadata are recorded in `docs/ARTIFACT_AUDIT.md`.
 
 ## Selected baseline
 
@@ -12,15 +13,15 @@ implementation where source or artifact mapping is incomplete.
 | Minecraft | `1.21.1` | Mojang runtime, external | Pinned target |
 | Java | `21` | OpenJDK-compatible runtime | Pinned target |
 | NeoForge | `21.1.233` observed in Maven metadata | `neoforged/NeoForge`, 1.21.x active | Candidate loader pin |
-| Immersive EGO | `0.1.0-alpha.7` local repo | `6a2f87ce56a35e78f3231daf3b03c43c9b2ca60a` | Local prerequisite |
+| Immersive EGO | `0.1.0-alpha.7` local repo/jar | `6a2f87ce56a35e78f3231daf3b03c43c9b2ca60a`; local source-to-binary proof pending clean rebuild | Local prerequisite |
 | MineColonies | `1.1.1319` for Minecraft 1.21.1 | `35bd7ad7448c562c84d11dc9dff5b067e8f131e5` | Stable audit target |
 | Structurize | `1.0.810-1.21.1-snapshot` or above | Required by MineColonies release | Minimum recorded |
 | Multi-Piston | `1.2.51-1.21.1-snapshot` or above | Required by MineColonies release | Minimum recorded |
 | BlockUI | `1.0.199-1.21.1-snapshot` or above | Required by MineColonies release | Minimum recorded |
 | Domum Ornamentum | `1.0.223-snapshot` or above | Required by MineColonies release | Minimum recorded |
-| TownTalk | Exact 1.21.1 build not yet verified | Not listed in MineColonies 1.1.1319 release dependency minimums | Audit gap |
+| TownTalk | Not selected | Not declared by selected MineColonies jar metadata or verified release dependency minimums | Scope question |
 | MCA Reborn | `7.7.11+1.21.1` | tag commit `802ab602a7e2aea6284853722ffde88f23cd6840` | Source/release mapped |
-| Modern Companions | CurseForge `2.0`; GitHub release `v1.2.0` | `v1.2.0` tag commit `9ff82224ccc5709b429e9a68ccdbf35345e59c0a` | Blocked mismatch |
+| Modern Companions | CurseForge `2.0` artifact verified | Public source branches do not declare `2.0`; `v1.2.0` tag commit `9ff82224ccc5709b429e9a68ccdbf35345e59c0a` maps only the older artifact | Source mapping blocked |
 
 ## Evidence
 
@@ -32,14 +33,24 @@ implementation where source or artifact mapping is incomplete.
   minimums for Structurize, Multi-Piston, BlockUI, and Domum Ornamentum.
 - MCA Reborn release `7.7.11+1.21.1` has a NeoForge jar asset and tag commit
   `802ab602...`.
+- MCA Reborn GitHub asset digest for `mca-neoforge-7.7.11+1.21.1.jar`
+  matches the local SHA-256 in `docs/ARTIFACT_AUDIT.md`.
 - Local Immersive EGO checkout is at commit `6a2f87ce...`, with
   `mod_version=0.1.0-alpha.7`, `mod_license=MIT`, `minecraft_version=1.21.1`,
   and `neo_version=21.1.233`.
-- Modern Companions GitHub `v1.2.0` declares `version=1.2.0`,
-  `mod_id=modern_companions`, `minecraft_version=1.21.1`, and
-  `neo_version=21.1.1`. Its mod metadata declares `license = "GPL-3.0-only"`.
-  The GitHub repository license endpoint returns `404`, and the repository
-  release line does not resolve the CurseForge `2.0` runtime artifact.
+- Modern Companions CurseForge file `7902593` downloads as
+  `ModernCompanions-1.21.1-2.0-NeoForge.jar` and its metadata declares
+  `version = "2.0"`, `license = "GPL-3.0-only"`, required NeoForge
+  `21.1.215`, and required Minecraft `1.21.1`.
+- CurseForge's Modern Companions source link points to
+  `STRHercules/ModernCompanions`, but public branches checked there declare
+  versions `0.1.91`, `1.1.5`, `1.2.0`, `1.2.5`, `1.2.12`, or `1.2.37`, not
+  `2.0`. The jar issue tracker URL points to `MajorBonghits/ModernCompanions`,
+  which returned `404` through the GitHub API.
+- Structurize, BlockUI, Domum Ornamentum, and Multi-Piston artifacts were
+  downloaded from CurseForge and hashed. Their source repositories report
+  GPL-3.0, but GitHub API release/tag lookups did not provide file-to-commit
+  mappings.
 
 ## Blockers
 
@@ -48,8 +59,10 @@ implementation where source or artifact mapping is incomplete.
    repository-level license record.
 3. Audit Human Companions and Basic Weapons lineage before using Modern
    Companions implementation details.
-4. Verify exact TownTalk 1.21.1 artifact and source commit if it remains a
-   required runtime dependency for the selected MineColonies set.
+4. Map Structurize, BlockUI, Domum Ornamentum, and Multi-Piston CurseForge
+   files to immutable source commits before adapting code from those projects.
+5. Resolve whether TownTalk remains a required CIVITAS dependency despite not
+   being declared by the selected MineColonies runtime artifact.
 
 ## Source links
 
@@ -57,7 +70,11 @@ implementation where source or artifact mapping is incomplete.
 - NeoForge repository: https://github.com/neoforged/NeoForge
 - MineColonies 1.1.1319 release: https://github.com/ldtteam/minecolonies/releases/tag/v1.21.1-1.1.1319
 - MineColonies source branch: https://github.com/ldtteam/minecolonies/tree/version/1.21
+- Structurize repository: https://github.com/ldtteam/Structurize
+- BlockUI repository: https://github.com/ldtteam/BlockUI
+- Domum Ornamentum repository: https://github.com/ldtteam/Domum-Ornamentum
+- Multi-Piston source repository: https://github.com/ldtteam/Piston-Unlimited
 - MCA Reborn 7.7.11 release: https://github.com/Luke100000/minecraft-comes-alive/releases/tag/7.7.11%2B1.21.1
 - Modern Companions repository: https://github.com/STRHercules/ModernCompanions
-- Modern Companions CurseForge: https://www.curseforge.com/minecraft/mc-mods/modern-companions
+- Modern Companions CurseForge: https://www.curseforge.com/minecraft/mc-mods/modern-companions/files/7902593
 - Immersive EGO repository: https://github.com/emmanueltremblay9-stack/Immersive-EGO

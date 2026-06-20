@@ -1,0 +1,13 @@
+.gradle/
+build/
+out/
+
+*.log
+*.tmp
+
+# Local editor and OS metadata
+.idea/
+.vscode/
+*.iml
+Thumbs.db
+Desktop.ini

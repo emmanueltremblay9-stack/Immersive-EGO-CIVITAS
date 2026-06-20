@@ -5,15 +5,15 @@ upstream evidence before any binary release.
 
 | Project | Role | License status | Runtime packaging | Source mapping status |
 |---|---|---|---|---|
-| NeoForge | Loader/API | LGPL-2.1-only from upstream repository | External | Maven metadata audited |
-| Immersive EGO | Physiology/psychology dependency | MIT in local repository | External | Local Git commit recorded |
+| NeoForge | Loader/API | LGPL-2.1-only from upstream repository | External | Maven artifacts hashed |
+| Immersive EGO | Physiology/psychology dependency | MIT in local repository | External | Local Git commit and jar hash recorded; clean rebuild pending |
 | MineColonies | Colony/jobs/logistics/raids | GPL-3.0 from upstream repository | External plus possible adapted source | Release tag mapped |
-| BlockUI | MineColonies dependency | Pending exact-version audit | External | Minimum version recorded from MineColonies release |
-| Domum Ornamentum | MineColonies dependency | Pending exact-version audit | External | Minimum version recorded from MineColonies release |
-| Multi-Piston | MineColonies dependency | Pending exact-version audit | External | Minimum version recorded from MineColonies release |
-| Structurize | MineColonies dependency | Pending exact-version audit | External | Minimum version recorded from MineColonies release |
-| TownTalk | MineColonies speech dependency | Pending exact-version audit | External | Not present in MineColonies 1.1.1319 required-dependency list; still needs audit |
+| BlockUI | MineColonies dependency | GPL3 in jar metadata; GPL-3.0 from source repo API | External | Artifact hashed; source commit pending |
+| Domum Ornamentum | MineColonies dependency | GPL3 in jar metadata; GPL-3.0 from source repo API | External | Artifact hashed; source commit pending |
+| Multi-Piston | MineColonies dependency | GPL3 in jar metadata; GPL-3.0 from source repo API | External | Artifact hashed; source commit pending |
+| Structurize | MineColonies dependency | GPL 3.0 in jar metadata; GPL-3.0 from source repo API | External | Artifact hashed; source commit pending |
+| TownTalk | Possible MineColonies speech dependency | Not selected in current runtime set | External only if later required | Not present in selected MineColonies metadata or verified release dependency minimums |
 | MCA Reborn | Identity/family/relationships/dialogue | GPL-3.0 from upstream repository | External plus possible adapted source | Release tag mapped |
-| Modern Companions | Military roles/orders/equipment/XP | Artifact states GPLv3; repo root license missing | External plus possible adapted source after lineage audit | Blocked by artifact/source version mismatch |
+| Modern Companions | Military roles/orders/equipment/XP | Artifact states GPL-3.0-only; CurseForge page says GPLv3; repo root license missing | External plus possible adapted source after lineage audit | 2.0 artifact hashed; source commit blocked |
 
 No upstream assets are approved for copying.

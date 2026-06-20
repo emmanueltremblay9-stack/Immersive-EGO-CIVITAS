@@ -4,7 +4,8 @@
 
 - Branch: `main`
 - Baseline commit before this session: `7b98d412c246ccdc659dfb461b801d8411bb4250`
-- State: planning pack plus P0 governance/provenance skeleton.
+- State: planning pack plus P0 governance/provenance skeleton and artifact
+  audit.
 - No NeoForge build harness exists yet.
 
 ## Implemented this session
@@ -15,6 +16,9 @@
 - Added dependency, license, source provenance, compatibility, asset, config, test, performance, and EGO API requirement docs.
 - Added `scripts/validate-provenance.ps1` and `.github/workflows/provenance.yml`.
 - Updated `TASKS.md` with CIV-001 completion and current P0 blockers.
+- Downloaded selected runtime artifacts into ignored `build/audit-artifacts/`,
+  extracted mod metadata, and recorded file IDs, sizes, hashes, compatibility,
+  and source mapping gaps in `docs/ARTIFACT_AUDIT.md`.
 
 ## Exact commands run
 
@@ -38,6 +42,10 @@ git rev-parse --show-toplevel
 git status --short --branch
 git rev-parse HEAD
 git ls-remote --heads origin main
+Invoke-RestMethod -Uri 'https://www.curseforge.com/api/v1/mods/1391597/files/7902593'
+Invoke-WebRequest -UseBasicParsing -Uri 'https://www.curseforge.com/api/v1/mods/1391597/files/7902593/download' -OutFile build\audit-artifacts\ModernCompanions-1.21.1-2.0-NeoForge.jar
+Get-FileHash -Algorithm SHA256 -LiteralPath build\audit-artifacts\ModernCompanions-1.21.1-2.0-NeoForge.jar
+Invoke-RestMethod -Uri 'https://api.github.com/repos/STRHercules/ModernCompanions/branches?per_page=100'
 ```
 
 ## Test results
@@ -58,10 +66,14 @@ git ls-remote --heads origin main
 
 ## Known blockers
 
-- Modern Companions CurseForge `2.0` artifact must be mapped to an immutable source commit.
+- Modern Companions CurseForge `2.0` artifact is hashed, but must still be
+  mapped to an immutable source commit.
 - Modern Companions repository-level license file is not exposed by the GitHub API.
 - Human Companions and Basic Weapons lineage audits are required before adapting Modern Companions files.
-- TownTalk exact 1.21.1 artifact/source mapping remains unverified.
+- Structurize, BlockUI, Domum Ornamentum, and Multi-Piston source commits are
+  not mapped from their selected CurseForge files yet.
+- TownTalk is not part of the selected runtime set unless a later requirement
+  proves it mandatory.
 
 ## Risks changed
 
@@ -70,6 +82,6 @@ git ls-remote --heads origin main
 
 ## Next exact task
 
-Finish CIV-002/CIV-003 by downloading or otherwise verifying mandatory runtime
-artifacts, extracting mod metadata, and mapping every selected jar to a source
-commit before initializing the NeoForge harness.
+Finish CIV-003 by mapping Modern Companions `2.0` and the selected LDT
+dependency jars to immutable source commits before initializing the NeoForge
+harness.
