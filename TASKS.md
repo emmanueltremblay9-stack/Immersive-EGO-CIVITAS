@@ -51,7 +51,6 @@
 
 - Modern Companions artifact/source mismatch blocks adaptation and implementation-detail compile usage.
 - Modern Companions GitHub repository license endpoint returns 404; mod metadata states GPL-3.0-only but repository-level license still needs authoritative confirmation.
-- TownTalk remains a scope question: it is not declared by the selected MineColonies artifact metadata or verified release dependency minimums.
 
 ## Completed
 

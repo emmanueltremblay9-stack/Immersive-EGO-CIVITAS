@@ -19,7 +19,7 @@ metadata are recorded in `docs/ARTIFACT_AUDIT.md`.
 | Multi-Piston | `1.2.51-1.21.1-snapshot` | tag `v1.21.1-1.2.51` commit `b74560984ea1da1906e59dd2f34286d55ee30449` | Source/release mapped |
 | BlockUI | `1.0.199-1.21.1-snapshot` | tag `v1.21.1-1.0.199` commit `29c2e55fa09f3d8168dc2677368188d22e2f3688` | Source/release mapped |
 | Domum Ornamentum | `1.0.223-snapshot` | tag `v1.21.1-1.0.223` commit `fe16a052f1eca2b8a2cc0a0a0ed3354f404c1d84` | Source/release mapped |
-| TownTalk | Not selected | Not declared by selected MineColonies jar metadata or verified release dependency minimums | Scope question |
+| TownTalk | Optional `1.2.0` speech add-on | `ldtteam/TownTalk` branch `version/1.21` commit `6443c5d420ea1006257a4e17ab50934fbd221d93`; CurseForge file `5653504` | Not selected for current release gate |
 | MCA Reborn | `7.7.11+1.21.1` | tag commit `802ab602a7e2aea6284853722ffde88f23cd6840` | Source/release mapped |
 | Modern Companions | CurseForge `2.0` artifact verified | Public source branches do not declare `2.0`; `v1.2.0` tag commit `9ff82224ccc5709b429e9a68ccdbf35345e59c0a` maps only the older artifact | Source mapping blocked |
 | Waystones | `21.1.29` | tag `v21.1.29` peeled commit `75f923f36938515571fd71fbe8c30ff8050df417` | Runtime source mapped; do not adapt without license permission |
@@ -57,6 +57,14 @@ metadata are recorded in `docs/ARTIFACT_AUDIT.md`.
   Structurize `v1.21.1-1.0.810-snapshot`, BlockUI `v1.21.1-1.0.199`, Domum
   Ornamentum `v1.21.1-1.0.223`, Multi-Piston `v1.21.1-1.2.51`, Waystones
   `v21.1.29`, and Balm `v21.0.56`.
+- TownTalk `towntalk-1.2.0.jar` is available as CurseForge project `900364`,
+  file `5653504`, size `52301863`, for 1.21.1 NeoForge. It is All Rights
+  Reserved / GitHub `NOASSERTION`, its 1.21 branch source declares
+  `mod_version=1.2.0`, and its MineColonies dependency block is commented out.
+  Because the project AGENTS lists the required pillars as Immersive EGO,
+  MineColonies, MCA Reborn, and Modern Companions, and the selected
+  MineColonies jar does not declare TownTalk, TownTalk is optional/non-selected
+  for the current CIVITAS release gate.
 - Raw `gradle.properties` reads at those commits confirmed the selected
   Minecraft/version lines for the mapped artifacts, except LDT CI still
   injects release artifact versions while some `gradle.properties` files keep
@@ -72,8 +80,6 @@ metadata are recorded in `docs/ARTIFACT_AUDIT.md`.
    repository-level license record.
 3. Audit Human Companions and Basic Weapons lineage before using Modern
    Companions implementation details.
-4. Resolve whether TownTalk remains a required CIVITAS dependency despite not
-   being declared by the selected MineColonies runtime artifact.
 
 ## Source links
 
@@ -89,5 +95,7 @@ metadata are recorded in `docs/ARTIFACT_AUDIT.md`.
 - Modern Companions repository: https://github.com/STRHercules/ModernCompanions
 - Modern Companions CurseForge: https://www.curseforge.com/minecraft/mc-mods/modern-companions/files/7902593
 - Immersive EGO repository: https://github.com/emmanueltremblay9-stack/Immersive-EGO
+- TownTalk repository: https://github.com/ldtteam/TownTalk
+- TownTalk CurseForge: https://www.curseforge.com/minecraft/mc-mods/towntalk/files/5653504
 - Waystones repository: https://github.com/TwelveIterationMods/Waystones
 - Balm repository: https://github.com/TwelveIterationMods/Balm

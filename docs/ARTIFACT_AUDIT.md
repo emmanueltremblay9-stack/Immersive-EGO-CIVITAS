@@ -47,10 +47,15 @@ Downloaded jars are kept only in the ignored local cache
 - MineColonies jar metadata requires Structurize, BlockUI, and Domum
   Ornamentum. Its release text also lists Multi-Piston as a required minimum,
   but the jar metadata does not declare a `multipiston` dependency.
-- TownTalk is not declared by the selected MineColonies jar metadata and was
-  not listed in the verified MineColonies `1.1.1319` dependency minimums.
-  Treat TownTalk as a scope question, not part of this selected runtime set,
-  until an upstream requirement proves otherwise.
+- TownTalk is an optional MineColonies speech add-on, not part of the selected
+  four-pillar runtime set. CurseForge project `900364`, file `5653504`,
+  `towntalk-1.2.0.jar` is a 1.21.1 NeoForge artifact with size `52301863`;
+  `ldtteam/TownTalk` branch `version/1.21` commit
+  `6443c5d420ea1006257a4e17ab50934fbd221d93` declares `mod_version=1.2.0`
+  and `mod_license=All Rights Reserved`. The TownTalk metadata does not
+  declare an active MineColonies dependency, and the selected MineColonies jar
+  does not declare TownTalk, so TownTalk is not a current CIVITAS release
+  blocker. Revisit only if scope changes to bundled speech/audio integration.
 - Modern Companions `2.0` raises its required NeoForge floor to `21.1.215`.
   The selected NeoForge `21.1.233` satisfies that floor.
 - Modern Companions `2.0` metadata declares optional Curios, Waystones, WTHIT,
@@ -64,5 +69,3 @@ Downloaded jars are kept only in the ignored local cache
 
 1. Map Modern Companions `2.0` to an immutable public source commit, or get an
    explicit source archive from the maintainer.
-2. Resolve whether TownTalk remains a CIVITAS requirement even though it is not
-   declared by the selected MineColonies runtime artifact.

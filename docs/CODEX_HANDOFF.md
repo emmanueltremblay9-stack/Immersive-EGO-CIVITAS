@@ -134,8 +134,8 @@ Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/Twelv
   mapped to an immutable source commit.
 - Modern Companions repository-level license file is not exposed by the GitHub API.
 - Human Companions and Basic Weapons lineage audits are required before adapting Modern Companions files.
-- TownTalk is not part of the selected runtime set unless a later requirement
-  proves it mandatory.
+- TownTalk is documented as an optional, non-selected speech add-on for the
+  current release gate; do not bundle or adapt it unless scope changes.
 
 ## Risks changed
 

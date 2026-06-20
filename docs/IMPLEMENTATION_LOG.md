@@ -50,4 +50,8 @@
   the selected `2.0` CurseForge artifact still has no matching public source
   tag/release/branch, while official GitHub and Modrinth releases stop at
   `v1.2.0`.
+- Resolved the TownTalk scope question for the current release gate: TownTalk
+  `1.2.0` is an optional All Rights Reserved / GitHub `NOASSERTION` speech
+  add-on, not declared by selected MineColonies metadata and not one of the
+  four required CIVITAS pillars, so it is documented as non-selected.
 - No upstream implementation source was copied or adapted.

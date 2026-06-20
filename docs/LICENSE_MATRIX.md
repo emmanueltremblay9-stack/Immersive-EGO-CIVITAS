@@ -12,7 +12,7 @@ Audit date: 2026-06-20
 | Domum Ornamentum | GPL3 in jar metadata; GPL-3.0 from repository API | Not copied | No by default | No | External dependency |
 | Multi-Piston | GPL3 in jar metadata; GPL-3.0 from `ldtteam/Piston-Unlimited` API | Not copied | No by default | No | External dependency |
 | Structurize | GPL 3.0 in jar metadata; GPL-3.0 from repository API | Not copied | No by default | No | External dependency |
-| TownTalk | Not selected in current runtime set | Not copied | No by default | No | Resolve whether still required |
+| TownTalk | Optional speech add-on, not selected in current runtime set | Not copied | No by default | No | All Rights Reserved / GitHub NOASSERTION; do not bundle or adapt unless scope changes |
 | MCA Reborn | GPL-3.0 | Assets require separate audit | Yes, with provenance | No by default | Preserve family/social authority |
 | Modern Companions | GPL-3.0-only in 2.0 mod metadata; CurseForge page says GPLv3; repository license endpoint missing | Mixed lineage; not approved | Blocked until lineage verified | No | Resolve source/artifact mismatch |
 | Human Companions | GPL-3.0 reported upstream | Assets not approved | Only through Modern Companions lineage audit | No | Audit before adaptation |

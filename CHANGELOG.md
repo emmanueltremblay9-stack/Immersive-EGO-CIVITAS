@@ -15,6 +15,8 @@
 - Replaced the Immersive EGO dirty-worktree blocker with commit
   `789238c475ecabc19808b9ac7d99df7f457670b8` after a clean sibling rebuild
   reproduced the installed alpha.27 jar hash.
+- Resolved TownTalk as an optional, non-selected MineColonies speech add-on for
+  the current release gate.
 
 ## 0.1.0-alpha.3
 

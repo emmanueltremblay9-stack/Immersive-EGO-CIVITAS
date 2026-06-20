@@ -12,7 +12,7 @@ upstream evidence before any binary release.
 | Domum Ornamentum | MineColonies dependency | GPL3 in jar metadata; GPL-3.0 from source repo API | External | Artifact hashed; source commit pending |
 | Multi-Piston | MineColonies dependency | GPL3 in jar metadata; GPL-3.0 from source repo API | External | Artifact hashed; source commit pending |
 | Structurize | MineColonies dependency | GPL 3.0 in jar metadata; GPL-3.0 from source repo API | External | Artifact hashed; source commit pending |
-| TownTalk | Possible MineColonies speech dependency | Not selected in current runtime set | External only if later required | Not present in selected MineColonies metadata or verified release dependency minimums |
+| TownTalk | Optional MineColonies speech add-on | Not selected in current runtime set | External only if later required | All Rights Reserved / GitHub NOASSERTION; not present in selected MineColonies metadata or active release dependency minimums |
 | MCA Reborn | Identity/family/relationships/dialogue | GPL-3.0 from upstream repository | External plus possible adapted source | Release tag mapped |
 | Modern Companions | Military roles/orders/equipment/XP | Artifact states GPL-3.0-only; CurseForge page says GPLv3; repo root license missing | External plus possible adapted source after lineage audit | 2.0 artifact hashed; source commit blocked |
 
