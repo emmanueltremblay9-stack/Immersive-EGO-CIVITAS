@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.0-alpha.5
+
+- Added the first original CIVITAS resident identity core:
+  `CivitasAuthority`, `ResidentHostKey`, `ResidentRecord`, `ResidentRegistry`,
+  and `CivitasResidentSavedData`.
+- Added unit coverage for canonical resident host indexing and reassignment
+  guards.
+- Added GameTests for resident SavedData lookup and NBT round-trip behavior.
+- Hardened the Prism client smoke script against transient `latest.log`
+  creation/rotation during launch.
+- Rebuilt and installed `immersive_ego_civitas-0.1.0-alpha.5.jar`; server and
+  Prism client smoke gates passed with the pinned runtime guard.
+- Deep-checked Modern Companions public source evidence again. Public GitHub
+  branch heads still predate the April 10, 2026 CurseForge `2.0` upload and
+  public tags stop at `v1.2.0`, so source mapping remains blocked.
+
 ## 0.1.0-alpha.4
 
 - Added an original pinned runtime dependency guard that verifies the audited

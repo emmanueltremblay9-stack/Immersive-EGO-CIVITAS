@@ -54,4 +54,15 @@
   `1.2.0` is an optional All Rights Reserved / GitHub `NOASSERTION` speech
   add-on, not declared by selected MineColonies metadata and not one of the
   four required CIVITAS pillars, so it is documented as non-selected.
+- Re-checked Modern Companions public provenance after the TownTalk decision:
+  public branch heads are no later than 2026-01-01, public tags stop at
+  `v1.2.0`, and the selected CurseForge `2.0` artifact was uploaded on
+  2026-04-10, so Modern Companions remains the only source-adaptation blocker.
+- Added the first original resident identity scaffold: canonical resident
+  records, host authority keys, reverse host lookup, collision protection, and
+  `SavedData` persistence.
+- Advanced CIVITAS to `0.1.0-alpha.5`, hardened the Prism client smoke log
+  reader against launch-time `latest.log` rotation, installed the verified jar
+  into Prism LAB, and verified unit tests, clean build, provenance validation,
+  server GameTests, and Prism client smoke.
 - No upstream implementation source was copied or adapted.

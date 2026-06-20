@@ -28,9 +28,10 @@ Summary: <short summary of changes>
 
 ## Current status
 
-Only original CIVITAS bootstrap source exists. Modern Companions adaptation is
-blocked until the CurseForge `2.0` artifact maps to an immutable public source
-commit and the Human Companions / Basic Weapons lineage questions are resolved.
+Only original CIVITAS bootstrap, runtime guard, resident registry, and SavedData
+source exists. Modern Companions adaptation is blocked until the CurseForge
+`2.0` artifact maps to an immutable public source commit and the Human
+Companions / Basic Weapons lineage questions are resolved.
 Structurize, BlockUI, Domum Ornamentum, and Multi-Piston now have immutable
 source tag mappings recorded in `docs/ARTIFACT_AUDIT.md`; no source from those
 projects has been copied or adapted. Waystones and Balm are mapped for runtime

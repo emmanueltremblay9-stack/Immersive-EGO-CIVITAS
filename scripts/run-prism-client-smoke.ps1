@@ -39,9 +39,20 @@ function Read-SharedTextSince {
         return ""
     }
 
-    $item = Get-Item -LiteralPath $Path
+    try {
+        $item = Get-Item -LiteralPath $Path -ErrorAction Stop
+    }
+    catch {
+        return ""
+    }
+
     $start = if ($item.Length -ge $Offset) { $Offset } else { 0 }
-    $stream = [System.IO.File]::Open($Path, [System.IO.FileMode]::Open, [System.IO.FileAccess]::Read, [System.IO.FileShare]::ReadWrite)
+    try {
+        $stream = [System.IO.File]::Open($Path, [System.IO.FileMode]::Open, [System.IO.FileAccess]::Read, [System.IO.FileShare]::ReadWrite)
+    }
+    catch {
+        return ""
+    }
     try {
         [void]$stream.Seek($start, [System.IO.SeekOrigin]::Begin)
         $reader = [System.IO.StreamReader]::new($stream)

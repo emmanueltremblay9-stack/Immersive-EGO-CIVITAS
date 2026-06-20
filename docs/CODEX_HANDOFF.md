@@ -7,7 +7,7 @@
 - State: planning pack plus P0 governance/provenance skeleton, artifact audit,
   and initial NeoForge harness.
 - NeoForge build harness exists for `immersive_ego_civitas` version
-  `0.1.0-alpha.4`.
+  `0.1.0-alpha.5`.
 
 ## Implemented this session
 
@@ -41,6 +41,18 @@
   `789238c475ecabc19808b9ac7d99df7f457670b8`; the rebuilt
   `immersive_ego-0.1.0-alpha.27.jar` SHA-256 matched the installed Prism LAB
   prerequisite hash `f76dd02414a960a23bb627d59307b9e54f05da1f725adebd2ae3e0ebd8c11329`.
+- Added the first original CIVITAS resident identity scaffold:
+  `CivitasAuthority`, `ResidentHostKey`, `ResidentRecord`, `ResidentRegistry`,
+  and `CivitasResidentSavedData`.
+- Added unit tests for resident registry invariants and GameTests for resident
+  SavedData lookup and NBT round-trip.
+- Hardened the Prism client smoke script against a launch-time `latest.log`
+  creation/rotation race.
+- Built and installed `immersive_ego_civitas-0.1.0-alpha.5.jar` into the Prism
+  LAB `minecraft\mods` folder with SHA-256 match.
+- Deep-checked Modern Companions public source evidence again: public branch
+  heads are no later than 2026-01-01, public tags stop at `v1.2.0`, and the
+  selected CurseForge `2.0` artifact was uploaded on 2026-04-10.
 
 ## Exact commands run
 
@@ -88,15 +100,26 @@ Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/ldtte
 Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/ldtteam/Piston-Unlimited/b74560984ea1da1906e59dd2f34286d55ee30449/gradle.properties'
 Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/TwelveIterationMods/Waystones/75f923f36938515571fd71fbe8c30ff8050df417/gradle.properties'
 Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/TwelveIterationMods/Balm/f9af2e38e3a8788d0bddd51de8234ffeb1218ddf/gradle.properties'
+Invoke-RestMethod -Uri 'https://api.github.com/repos/STRHercules/ModernCompanions/branches?per_page=100'
+Invoke-RestMethod -Uri 'https://api.github.com/repos/STRHercules/ModernCompanions/tags?per_page=100'
+Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/STRHercules/ModernCompanions/main/gradle.properties'
+.\gradlew.bat --no-daemon test
+.\gradlew.bat --no-daemon clean build
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-provenance.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240
+jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.1 TesT LaB\minecraft\mods\immersive_ego_civitas-0.1.0-alpha.5.jar"
 ```
 
 ## Test results
 
 - `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-provenance.ps1` passed.
 - Output: `Provenance validation passed. Active adapted-source rows: 0`.
+- `.\gradlew.bat --no-daemon test` passed.
 - `.\gradlew.bat --no-daemon clean build` passed.
 - `scripts\run-gametest-smoke.ps1` passed and `build\gametest-smoke.log`
-  contains `All 1 required tests passed :)` and
+  contains `All 3 required tests passed :)` and
   `pinned runtime dependency check passed`.
 - `scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240` passed and
   `build\client-smoke-report.json` contains `result=passed`, all CIVITAS and
@@ -104,7 +127,9 @@ Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/Twelv
   no failure markers, and no crash reports since launch.
 - `.\install-mod.ps1 -SkipBuild` produced `build/install-report.json` with
   `hashMatch=true`, `remainingInstalledJarCount=1`, and installed SHA-256
-  `b23553ab12d650c5d90486433bcabcf4e24944bc5d0c13ae02e8eeafc9f129d0`.
+  `bdf07f1ddb5276883e7a3cc9d2a0ac03af58ed45be9c10f00f0f569ad501909e`.
+- The installed alpha.5 jar contains the new `resident` classes and
+  `CivitasGameTests.class`.
 - `scripts\install-runtime-deps.ps1` produced `build/runtime-deps-report.json`
   with `allHashesMatch=true` and `allSingleInstalled=true`.
 - Sibling Immersive EGO `.\gradlew.bat --no-daemon clean build` passed and
@@ -115,7 +140,8 @@ Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/Twelv
 
 ## Upstream files adapted
 
-- None. Only original CIVITAS bootstrap source has been added.
+- None. Only original CIVITAS bootstrap, runtime guard, resident registry,
+  SavedData, and test source has been added.
 
 ## Provenance status
 
@@ -130,8 +156,8 @@ Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/Twelv
 
 ## Known blockers
 
-- Modern Companions CurseForge `2.0` artifact is hashed, but must still be
-  mapped to an immutable source commit.
+- Modern Companions CurseForge `2.0` artifact is hashed, but still does not map
+  to an immutable public source commit.
 - Modern Companions repository-level license file is not exposed by the GitHub API.
 - Human Companions and Basic Weapons lineage audits are required before adapting Modern Companions files.
 - TownTalk is documented as an optional, non-selected speech add-on for the
@@ -144,6 +170,7 @@ Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/Twelv
 
 ## Next exact task
 
-Resolve Modern Companions `2.0` source provenance or obtain a maintainer source
-archive, then audit Human Companions and Basic Weapons lineage before adapting
-Modern Companions implementation details.
+Obtain Modern Companions `2.0` source from the maintainer or switch to a
+source-mapped Modern Companions version and rerun compatibility tests. Until
+then, continue only original CIVITAS-owned work that does not compile against or
+adapt Modern Companions implementation details.

@@ -35,7 +35,7 @@ Downloaded jars are kept only in the ignored local cache
 | BlockUI | Tag `v1.21.1-1.0.199` maps to commit `29c2e55fa09f3d8168dc2677368188d22e2f3688`; raw `gradle.properties` at that commit declares Minecraft `1.21.1` and NeoForge `21.1.113`. |
 | Domum Ornamentum | Tag `v1.21.1-1.0.223` maps to commit `fe16a052f1eca2b8a2cc0a0a0ed3354f404c1d84`; raw `gradle.properties` at that commit declares Minecraft `1.21.1`. The jar still uses placeholder metadata version `${file.jarVersion}`. |
 | Multi-Piston | Correct source repository is `ldtteam/Piston-Unlimited`, GPL-3.0. Tag `v1.21.1-1.2.51` maps to commit `b74560984ea1da1906e59dd2f34286d55ee30449`; raw `gradle.properties` at that commit declares Minecraft `1.21.1`, BlockUI `1.0.188-1.21.1-snapshot`, and Structurize `1.0.751-1.21.1-snapshot`. |
-| Modern Companions 2.0 | CurseForge source link points to `STRHercules/ModernCompanions`, but all public branches checked declare versions below `2.0`; official GitHub and Modrinth releases stop at `v1.2.0`; the jar issue tracker points to non-public or missing `MajorBonghits/ModernCompanions`. Exact source commit mapping remains blocked. |
+| Modern Companions 2.0 | CurseForge source link points to `STRHercules/ModernCompanions`, but all public branches checked declare versions below `2.0`; public branch heads are dated no later than 2026-01-01, before the April 10, 2026 CurseForge `2.0` upload; public GitHub tags stop at `v1.2.0`; official GitHub and Modrinth releases stop at `v1.2.0`; the jar issue tracker points to non-public or missing `MajorBonghits/ModernCompanions`. Exact source commit mapping remains blocked. |
 | Waystones | Tag `v21.1.29` maps to annotated tag object `17c30448b26bfd81f7af33e4404677dfc4997b86` and peeled source commit `75f923f36938515571fd71fbe8c30ff8050df417`; raw `gradle.properties` at that commit declares version `21.1.29` and Minecraft `1.21.1`. Runtime-only unless license permission changes; jar metadata says `All Rights Reserved` and GitHub license detection is `NOASSERTION`. |
 | Balm | Tag `v21.0.56` maps to annotated tag object `25b904eb951811c98fc90ec2a7760f92ff38c5dc` and peeled source commit `f9af2e38e3a8788d0bddd51de8234ffeb1218ddf`; raw `gradle.properties` at that commit declares version `21.0.56` and Minecraft `1.21.1`. GitHub license detection reports Apache-2.0. |
 
@@ -62,7 +62,7 @@ Downloaded jars are kept only in the ignored local cache
   Balm, and Bad Packets integrations. `runGameTestServer` proved Waystones is
   effectively required for this artifact because automatic subscriber scanning
   loads `WaystoneTeleportEvent$Post`; Waystones then requires Balm.
-- Server smoke with CIVITAS `0.1.0-alpha.4` loads Immersive EGO
+- Server smoke with CIVITAS `0.1.0-alpha.5` loads Immersive EGO
   `0.1.0-alpha.27` from the Prism LAB mods directory.
 
 ## Blocking gaps before source adaptation

@@ -4,7 +4,7 @@ Audit date: 2026-06-20
 
 | Component | Minecraft | Loader | Version | Compatibility status |
 |---|---|---|---|---|
-| CIVITAS | 1.21.1 | NeoForge | 0.1.0-alpha.4 | Harness builds, installs, and passes server/client smoke with pinned runtime guard |
+| CIVITAS | 1.21.1 | NeoForge | 0.1.0-alpha.5 | Harness builds, installs, and passes server/client smoke with pinned runtime guard and resident SavedData GameTests |
 | Immersive EGO | 1.21.1 | NeoForge | 0.1.0-alpha.27 | LAB prerequisite loaded in server/client smoke; commit `789238c475ecabc19808b9ac7d99df7f457670b8` rebuild reproduces installed jar hash |
 | NeoForge | 1.21.1 | NeoForge | 21.1.233 candidate | Maven metadata verified |
 | MineColonies | 1.21.1 | NeoForge/Forge-family release | 1.1.1319 | Stable source tag mapped |

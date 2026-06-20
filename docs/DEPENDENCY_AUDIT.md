@@ -49,8 +49,10 @@ metadata are recorded in `docs/ARTIFACT_AUDIT.md`.
 - CurseForge's Modern Companions source link points to
   `STRHercules/ModernCompanions`, but public branches checked there declare
   versions `0.1.91`, `1.1.5`, `1.2.0`, `1.2.5`, `1.2.12`, or `1.2.37`, not
-  `2.0`. GitHub and Modrinth official release APIs list no release beyond
-  `v1.2.0`. The jar issue tracker URL points to
+  `2.0`. Branch head commits are dated no later than 2026-01-01, while the
+  selected CurseForge `2.0` file was uploaded on 2026-04-10. Public GitHub tags
+  stop at `v1.2.0`, and GitHub/Modrinth official release surfaces list no
+  release beyond `v1.2.0`. The jar issue tracker URL points to
   `MajorBonghits/ModernCompanions`, which returned `404` through the GitHub
   API.
 - `git ls-remote --heads --tags` resolved matching source tags for

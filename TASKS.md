@@ -21,7 +21,7 @@
 - [ ] CIV-003 - Map release artifacts to immutable source commits
   - Acceptance: Every mandatory jar maps to source.
   - Progress: Immersive EGO, Structurize, BlockUI, Domum Ornamentum, Multi-Piston, Waystones, and Balm now map to immutable source commits/tags in `docs/ARTIFACT_AUDIT.md`.
-  - Blocker: Modern Companions CurseForge `2.0` artifact is verified, but no checked public `STRHercules/ModernCompanions` branch declares `2.0`, official GitHub/Modrinth releases stop at `v1.2.0`, and `MajorBonghits/ModernCompanions` returned `404`.
+  - Blocker: Modern Companions CurseForge `2.0` artifact is verified, but no checked public `STRHercules/ModernCompanions` branch declares `2.0`, public branch heads predate the April 10, 2026 CurseForge upload, public tags stop at `v1.2.0`, GitHub/Modrinth public releases stop at `v1.2.0`, and `MajorBonghits/ModernCompanions` returned `404`.
 - [x] CIV-008 - Initialize NeoForge 1.21.1 Java 21 project
   - Acceptance: Project compiles with standard runs.
   - Upstream source/commit: Original CIVITAS harness; no upstream implementation source copied.
@@ -46,6 +46,13 @@
   - Provenance manifest ID: N/A, original source only.
   - Tests: `.\gradlew.bat --no-daemon clean build`; `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1`; `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240`.
   - Evidence: Server and client smoke reports both found `pinned runtime dependency check passed` with Immersive EGO `0.1.0-alpha.27`, MineColonies `1.1.1319-1.21.1`, Structurize `1.0.810-1.21.1-snapshot`, BlockUI `1.0.199-1.21.1-snapshot`, Domum Ornamentum `1.0.223-snapshot`, Multi-Piston `1.2.51-1.21.1-snapshot`, MCA `7.7.11+1.21.1`, Modern Companions `2.0`, Waystones `21.1.29`, and Balm `21.0.56`.
+- [ ] CIV-058 - Recruit MCA villager into MineColonies colony
+  - Acceptance: One resident record; MCA identity preserved.
+  - Progress: Original CIVITAS canonical resident identity scaffold is complete: one resident per external host key, reverse host index, cross-resident host collision guard, and `SavedData` persistence. Actual MCA/MineColonies host adapters are still pending and must not invent upstream APIs.
+  - Upstream source/commit: Original CIVITAS source only; no upstream implementation source copied.
+  - Provenance manifest ID: N/A, original source only.
+  - Tests: `.\gradlew.bat --no-daemon test`; `.\gradlew.bat --no-daemon clean build`; `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-provenance.ps1`; `pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild`; `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1`; `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240`.
+  - Evidence: `build\gametest-smoke.log` reported `All 3 required tests passed :)`; `build\install-report.json` installed `immersive_ego_civitas-0.1.0-alpha.5.jar` with SHA-256 `bdf07f1ddb5276883e7a3cc9d2a0ac03af58ed45be9c10f00f0f569ad501909e`; `build\client-smoke-report.json` reported `result=passed`.
 
 ## Blockers
 

@@ -10,7 +10,10 @@
 - `.\gradlew.bat --no-daemon runGameTestServer`
 - `.\install-mod.ps1 -SkipBuild`
 - `scripts/install-runtime-deps.ps1`
-- Pure Java unit tests for the pinned runtime dependency guard.
+- Pure Java unit tests for the pinned runtime dependency guard and original
+  resident registry invariants.
+- GameTests for runtime boot, resident SavedData host lookup, and resident NBT
+  round-trip.
 
 ## Required future gates
 
