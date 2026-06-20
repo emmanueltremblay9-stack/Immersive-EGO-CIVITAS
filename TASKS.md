@@ -33,9 +33,12 @@
   - Provenance manifest ID: N/A, original source only.
   - Tests: `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1`.
   - Evidence: `build\gametest-smoke.log` reported `All 1 required tests passed :)` with CIVITAS `0.1.0-alpha.3`, Immersive EGO `0.1.0-alpha.17`, MineColonies, MCA, Modern Companions, Waystones, and Balm loaded.
-- [ ] CIV-010 - Run client smoke boot
-  - Acceptance: Prism LAB client reaches title screen or produces an actionable crash report with CIVITAS `0.1.0-alpha.3` installed.
-  - Blocker: Needs interactive client launch or a reliable headless client check.
+- [x] CIV-010 - Run client smoke boot
+  - Acceptance: Prism LAB client reaches a responsive Minecraft client window with CIVITAS `0.1.0-alpha.3` installed and no crash markers.
+  - Upstream source/commit: Original CIVITAS smoke tooling; no upstream implementation source copied.
+  - Provenance manifest ID: N/A, original script only.
+  - Tests: `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240`.
+  - Evidence: `build\client-smoke-report.json` reported `result=passed`; Prism launched `1.21.1 TesT LaB`; log markers found `immersive_ego_civitas-0.1.0-alpha.3.jar`, CIVITAS bootstrap/common setup, LWJGL, OpenAL, sound engine, and block atlas; client window title was `Minecraft NeoForge* 1.21.1`; no failure markers or crash reports were created.
 
 ## Blockers
 
@@ -49,3 +52,4 @@
 - CIV-002 - Exact selected runtime artifacts and NeoForge intersection audit.
 - CIV-008 - Initial NeoForge harness, build, and LAB install.
 - CIV-009 - Server GameTest smoke gate with local LAB dependency staging.
+- CIV-010 - Prism LAB client smoke gate.

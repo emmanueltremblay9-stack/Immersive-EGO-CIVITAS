@@ -26,4 +26,11 @@
   jars.
 - Added `data/immersive_ego_civitas/structure/empty.nbt` and verified
   `runGameTestServer` reports `All 1 required tests passed :)`.
+- Added a Prism LAB client smoke wrapper that launches `1.21.1 TesT LaB`
+  with quoted Prism CLI arguments, checks timestamped client log markers, and
+  cleans up only the launched LAB client process.
+- Verified `scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240` reported
+  `result=passed` with CIVITAS `0.1.0-alpha.3`, LWJGL, OpenAL, sound engine,
+  block atlas, a responsive `Minecraft NeoForge* 1.21.1` window, and no crash
+  reports.
 - No upstream implementation source was copied or adapted.

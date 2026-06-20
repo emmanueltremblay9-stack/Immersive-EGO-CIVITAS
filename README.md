@@ -61,10 +61,12 @@ A desert MineColonies settlement recruits an MCA villager, assigns family-aware 
 .\gradlew.bat --no-daemon clean build
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-provenance.ps1
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240
 pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\install-runtime-deps.ps1
 ```
 
 The current harness build produces `immersive_ego_civitas-0.1.0-alpha.3.jar`.
 The installer writes `build/install-report.json`; runtime dependency install
-proof is written to `build/runtime-deps-report.json`.
+proof is written to `build/runtime-deps-report.json`; client smoke proof is
+written to `build/client-smoke-report.json`.

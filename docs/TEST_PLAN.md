@@ -5,6 +5,7 @@
 - `scripts/validate-provenance.ps1`
 - `scripts/stage-local-runtime-deps.ps1`
 - `scripts/run-gametest-smoke.ps1`
+- `scripts/run-prism-client-smoke.ps1`
 - `.\gradlew.bat --no-daemon clean build`
 - `.\gradlew.bat --no-daemon runGameTestServer`
 - `.\install-mod.ps1 -SkipBuild`
@@ -12,7 +13,6 @@
 
 ## Required future gates
 
-- Client smoke boot.
 - Pure Java tests for codecs, migrations, resident repair, order arbitration,
   transaction state, reputation, economy, crisis, config validation, and
   simulation tiers.

@@ -7,6 +7,8 @@
   LAB dependency stack.
 - Added a crash-marker-aware GameTest smoke wrapper and pinned Waystones/Balm
   as Modern Companions runtime support jars.
+- Added a reproducible Prism LAB client smoke wrapper and verified CIVITAS
+  `0.1.0-alpha.3` reaches a responsive Minecraft client window.
 
 ## 0.1.0-alpha.2
 

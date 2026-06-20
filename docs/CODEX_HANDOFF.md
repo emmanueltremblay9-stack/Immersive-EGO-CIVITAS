@@ -31,6 +31,8 @@
 - Added local runtime staging and a crash-marker-aware GameTest smoke wrapper.
 - Generated the CIVITAS empty GameTest structure and verified the server smoke
   gate with Immersive EGO `0.1.0-alpha.17` from Prism LAB.
+- Added a reproducible Prism LAB client smoke wrapper and verified the client
+  reaches a responsive Minecraft window with CIVITAS `0.1.0-alpha.3` loaded.
 
 ## Exact commands run
 
@@ -62,6 +64,7 @@ Invoke-RestMethod -Uri 'https://api.github.com/repos/STRHercules/ModernCompanion
 .\gradlew.bat --no-daemon clean build
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-provenance.ps1
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240
 pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\install-runtime-deps.ps1
 ```
@@ -73,6 +76,10 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\install-runtime-deps.ps1
 - `.\gradlew.bat --no-daemon clean build` passed.
 - `scripts\run-gametest-smoke.ps1` passed and `build\gametest-smoke.log`
   contains `All 1 required tests passed :)`.
+- `scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240` passed and
+  `build\client-smoke-report.json` contains `result=passed`, all CIVITAS and
+  client render/audio success markers, no failure markers, and no crash
+  reports since launch.
 - `.\install-mod.ps1 -SkipBuild` produced `build/install-report.json` with
   `hashMatch=true` and `remainingInstalledJarCount=1`.
 - `scripts\install-runtime-deps.ps1` produced `build/runtime-deps-report.json`
@@ -108,5 +115,5 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\install-runtime-deps.ps1
 
 ## Next exact task
 
-Run a Prism LAB client smoke boot, then continue CIV-003 source mapping before
-adapting Modern Companions or LDT dependency code.
+Continue CIV-003 source mapping before adapting Modern Companions or LDT
+dependency code.
