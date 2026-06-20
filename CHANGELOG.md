@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.0-alpha.25
+
+- Added persisted recruitment support through original `ResidentStore`
+  abstraction so runtime linking can safely mutate `CivitasResidentSavedData`.
+- Added citizen-only MineColonies lookup with `MineColoniesCitizenTarget` and
+  `MineColoniesAssignmentTargetResolver#resolveCitizen`.
+- Added operator-only server command:
+  `/civitas link_mca_minecolonies <mcaVillager> <colonyId> <citizenId>`.
+  The command resolves a real MineColonies citizen, identifies the selected MCA
+  villager through the verified MCA host adapter, and links both host keys into
+  one persisted CIVITAS resident before assignment commands run.
+- Added a server GameTest proving recruitment writes both MCA and MineColonies
+  host links into saved data.
+- Refreshed the exact runtime guard and metadata floor for the current Prism
+  LAB Immersive EGO prerequisite, `0.1.0-alpha.38`.
+- Rebuilt and installed `immersive_ego_civitas-0.1.0-alpha.25.jar`; unit tests,
+  clean build, provenance validation, server GameTests, and Prism client smoke
+  passed.
+- The installed CIVITAS jar SHA-256 is
+  `062fade276cbe5467a8032a0e42e19d444874c0ae2f5e2363528e206b668b171`.
+- No upstream implementation source or assets were copied or adapted.
+
 ## 0.1.0-alpha.23
 
 - Added an operator-only server command surface:

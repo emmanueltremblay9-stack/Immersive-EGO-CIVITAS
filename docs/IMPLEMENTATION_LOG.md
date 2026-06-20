@@ -158,4 +158,21 @@
   LAB, and verified unit tests, clean build, provenance validation, server
   GameTests, and Prism client smoke. The installed jar SHA-256 is
   `4f809300c073f0bd66bbfa9cffa256adc870e945379463c756f461a95beb34ff`.
+- Added original alpha.25 persisted link command wiring:
+  `/civitas link_mca_minecolonies <mcaVillager> <colonyId> <citizenId>`.
+  The command resolves a real MineColonies citizen, identifies the selected MCA
+  villager through the existing public host adapter, and links both hosts into
+  persisted `CivitasResidentSavedData` before assignment commands run.
+- Added `ResidentStore` so the existing recruitment logic can operate on
+  runtime saved data, and added `MineColoniesCitizenTarget` for citizen-only
+  MineColonies lookup.
+- Refreshed the exact runtime dependency guard to the current Prism LAB
+  Immersive EGO prerequisite `0.1.0-alpha.38`. The sibling
+  `immersive_ego-0.1.0-alpha.38.jar` build artifact hash matches the installed
+  jar, but the sibling source checkout is dirty, so immutable source mapping is
+  blocked.
+- Advanced CIVITAS to `0.1.0-alpha.25`, installed the verified jar into Prism
+  LAB, and verified unit tests, clean build, provenance validation, server
+  GameTests, and Prism client smoke. The installed jar SHA-256 is
+  `062fade276cbe5467a8032a0e42e19d444874c0ae2f5e2363528e206b668b171`.
 - No upstream implementation source was copied or adapted.

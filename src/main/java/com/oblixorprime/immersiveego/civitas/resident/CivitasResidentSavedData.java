@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.EnumMap;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Supplier;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -12,7 +13,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 
-public final class CivitasResidentSavedData extends SavedData implements ResidentDirectory {
+public final class CivitasResidentSavedData extends SavedData implements ResidentStore {
     public static final String FILE_ID = ImmersiveEgoCivitas.MOD_ID + "_residents";
 
     private static final String TAG_SCHEMA = "schema";
@@ -44,11 +45,20 @@ public final class CivitasResidentSavedData extends SavedData implements Residen
     }
 
     public ResidentRecord getOrCreate(ResidentHostKey hostKey, long gameTime) {
-        ResidentRecord record = registry.getOrCreate(hostKey, gameTime, UUID::randomUUID);
+        return getOrCreate(hostKey, gameTime, UUID::randomUUID);
+    }
+
+    @Override
+    public ResidentRecord getOrCreate(
+            ResidentHostKey hostKey,
+            long gameTime,
+            Supplier<UUID> residentIdSupplier) {
+        ResidentRecord record = registry.getOrCreate(hostKey, gameTime, residentIdSupplier);
         setDirty();
         return record;
     }
 
+    @Override
     public ResidentRecord linkHost(UUID residentId, ResidentHostKey hostKey, long gameTime) {
         ResidentRecord record = registry.linkHost(residentId, hostKey, gameTime);
         setDirty();

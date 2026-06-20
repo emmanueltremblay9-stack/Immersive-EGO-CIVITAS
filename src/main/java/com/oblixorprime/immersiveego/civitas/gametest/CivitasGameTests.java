@@ -7,7 +7,10 @@ import com.oblixorprime.immersiveego.civitas.resident.LinkedResidentAssignmentSe
 import com.oblixorprime.immersiveego.civitas.resident.ResidentHostAdapter;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentHostAdapterRegistry;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentHostKey;
+import com.oblixorprime.immersiveego.civitas.resident.ResidentIdentityService;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRecord;
+import com.oblixorprime.immersiveego.civitas.resident.ResidentRecruitmentResult;
+import com.oblixorprime.immersiveego.civitas.resident.ResidentRecruitmentService;
 import com.oblixorprime.immersiveego.civitas.resident.upstream.MineColoniesAssignmentApiContract;
 import com.oblixorprime.immersiveego.civitas.resident.upstream.MineColoniesAssignmentGateway;
 import com.oblixorprime.immersiveego.civitas.resident.upstream.MineColoniesAssignmentModuleLocator;
@@ -114,6 +117,34 @@ public final class CivitasGameTests {
     }
 
     @GameTest(template = EMPTY, timeoutTicks = 20)
+    public static void residentRecruitmentLinksPersistedSavedDataHosts(GameTestHelper helper) {
+        ResidentHostAdapterRegistry adapters = new ResidentHostAdapterRegistry();
+        adapters.register(new GameTestMcaAdapter());
+        adapters.register(new GameTestMineColoniesAdapter());
+        CivitasResidentSavedData savedData = new CivitasResidentSavedData();
+        ResidentRecruitmentService recruitment = new ResidentRecruitmentService(
+                new ResidentIdentityService(savedData, adapters));
+        GameTestMcaVillager mcaVillager = new GameTestMcaVillager("villager_entity:gametest");
+        GameTestMineColoniesCitizen citizen = new GameTestMineColoniesCitizen("colony:17/citizen:42");
+
+        ResidentRecruitmentResult result = recruitment.recruitMcaIntoColony(
+                mcaVillager,
+                citizen,
+                helper.getLevel().getGameTime(),
+                () -> UUID.fromString("520b378d-6fb7-43cf-b1ab-329ec14c1c3e"));
+
+        helper.assertValueEqual(
+                savedData.find(result.mcaHost()).orElseThrow().residentId(),
+                result.resident().residentId(),
+                "MCA host should resolve to the recruited persisted resident");
+        helper.assertValueEqual(
+                savedData.find(result.mineColoniesHost()).orElseThrow().residentId(),
+                result.resident().residentId(),
+                "MineColonies host should resolve to the recruited persisted resident");
+        helper.succeed();
+    }
+
+    @GameTest(template = EMPTY, timeoutTicks = 20)
     public static void linkedResidentAssignmentRequiresLinkedResident(GameTestHelper helper) {
         ResidentHostAdapterRegistry adapters = new ResidentHostAdapterRegistry();
         adapters.register(new GameTestMineColoniesAdapter());
@@ -148,7 +179,28 @@ public final class CivitasGameTests {
         helper.succeed();
     }
 
+    private record GameTestMcaVillager(String hostId) {
+    }
+
     private record GameTestMineColoniesCitizen(String hostId) {
+    }
+
+    private static final class GameTestMcaAdapter
+            implements ResidentHostAdapter<GameTestMcaVillager> {
+        @Override
+        public CivitasAuthority authority() {
+            return CivitasAuthority.MCA_REBORN;
+        }
+
+        @Override
+        public Class<GameTestMcaVillager> hostType() {
+            return GameTestMcaVillager.class;
+        }
+
+        @Override
+        public Optional<ResidentHostKey> identify(GameTestMcaVillager host) {
+            return Optional.of(new ResidentHostKey(authority(), host.hostId()));
+        }
     }
 
     private static final class GameTestMineColoniesAdapter

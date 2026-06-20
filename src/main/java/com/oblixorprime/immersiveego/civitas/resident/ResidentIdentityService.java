@@ -11,18 +11,18 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 public final class ResidentIdentityService {
-    private final ResidentRegistry registry;
+    private final ResidentStore store;
     private final ResidentHostAdapterRegistry adapters;
 
-    public ResidentIdentityService(ResidentRegistry registry, ResidentHostAdapterRegistry adapters) {
-        this.registry = registry;
+    public ResidentIdentityService(ResidentStore store, ResidentHostAdapterRegistry adapters) {
+        this.store = store;
         this.adapters = adapters;
     }
 
     public Optional<ResidentRecord> find(Object host) {
         List<ResidentHostKey> hostKeys = requireHostKeys(host);
         return hostKeys.stream()
-                .map(registry::find)
+                .map(store::find)
                 .flatMap(Optional::stream)
                 .findFirst();
     }
@@ -78,11 +78,11 @@ public final class ResidentIdentityService {
             long gameTime,
             Supplier<UUID> residentIdSupplier) {
         ResidentRecord resident = resolveExistingResident(hostKeys)
-                .orElseGet(() -> registry.getOrCreate(hostKeys.getFirst(), gameTime, residentIdSupplier));
+                .orElseGet(() -> store.getOrCreate(hostKeys.getFirst(), gameTime, residentIdSupplier));
 
         for (ResidentHostKey hostKey : hostKeys) {
-            if (registry.find(hostKey).isEmpty()) {
-                resident = registry.linkHost(resident.residentId(), hostKey, gameTime);
+            if (store.find(hostKey).isEmpty()) {
+                resident = store.linkHost(resident.residentId(), hostKey, gameTime);
             }
         }
         return resident;
@@ -100,7 +100,7 @@ public final class ResidentIdentityService {
     private Optional<ResidentRecord> resolveExistingResident(List<ResidentHostKey> hostKeys) {
         Map<UUID, ResidentRecord> matchesById = new LinkedHashMap<>();
         for (ResidentHostKey hostKey : hostKeys) {
-            registry.find(hostKey).ifPresent(record -> matchesById.put(record.residentId(), record));
+            store.find(hostKey).ifPresent(record -> matchesById.put(record.residentId(), record));
         }
 
         if (matchesById.size() > 1) {

@@ -43,11 +43,14 @@ downstream assignment failure. Alpha.17 adds live building-object module
 discovery and a coordinator that routes discovered home/work modules through the
 repairable executor. Alpha.21 adds a linked-resident assignment trigger that
 fails closed unless the MineColonies citizen is already linked to an MCA-backed
-CIVITAS resident. Alpha.23 adds operator-only server commands that resolve live
-MineColonies colony, citizen, home building, and work building targets through
-the verified public lookup surface before delegating to the linked-resident
-guard and repairable coordinator. No upstream gameplay implementation source or assets
-have been copied. P0 provenance and asset gates remain active. CIV-003 still
-blocks Modern Companions implementation-detail adaptation and release packaging
-until immutable source commit mappings are proven for Modern Companions `2.0`
-and the current Immersive EGO `0.1.0-alpha.37` prerequisite.
+CIVITAS resident. Alpha.23 adds operator-only assignment commands that resolve
+live MineColonies colony, citizen, home building, and work building targets
+through the verified public lookup surface before delegating to the
+linked-resident guard and repairable coordinator. Alpha.25 adds an
+operator-only link command that resolves a real MineColonies citizen, identifies
+a selected MCA villager entity, and links both host keys into persisted
+`CivitasResidentSavedData`. No upstream gameplay implementation source or
+assets have been copied. P0 provenance and asset gates remain active. CIV-003
+still blocks Modern Companions implementation-detail adaptation and release
+packaging until immutable source commit mappings are proven for Modern
+Companions `2.0` and the current Immersive EGO `0.1.0-alpha.38` prerequisite.

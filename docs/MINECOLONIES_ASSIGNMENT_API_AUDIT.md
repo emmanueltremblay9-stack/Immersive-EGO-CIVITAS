@@ -130,3 +130,16 @@ Alpha.23 adds `MineColoniesAssignmentTarget`,
 - The operator commands are `/civitas assign_minecolonies_home` and
   `/civitas assign_minecolonies_home_work`. Both still fail closed unless the
   MineColonies citizen maps to a CIVITAS resident with an MCA Reborn host link.
+
+Alpha.25 adds `MineColoniesCitizenTarget`, persisted `ResidentStore` support,
+and `/civitas link_mca_minecolonies`.
+
+- The resolver can now resolve a citizen-only target through the same verified
+  colony/citizen lookup path without requiring a home/work building position.
+- `CivitasResidentSavedData` implements `ResidentStore`, so the original
+  recruitment service can link MCA and MineColonies host keys directly into
+  persisted saved data.
+- The link command takes a selected MCA villager entity plus MineColonies
+  colony/citizen ids, fails closed if either host cannot be identified, and
+  creates the linked CIVITAS resident record required by the assignment
+  commands.

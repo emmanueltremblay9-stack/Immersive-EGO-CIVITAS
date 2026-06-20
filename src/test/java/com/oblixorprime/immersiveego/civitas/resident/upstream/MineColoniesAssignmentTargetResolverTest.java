@@ -36,6 +36,17 @@ class MineColoniesAssignmentTargetResolverTest {
     }
 
     @Test
+    void resolvesCitizenOnlyFromColonyManager() {
+        FakeColony colony = colonyManager.addColony(17);
+        FakeCitizenData citizen = colony.citizens.add(42);
+
+        MineColoniesCitizenTarget target = resolver.resolveCitizen(level, 17, 42);
+
+        assertTrue(target.resolved());
+        assertSame(citizen, target.citizenData());
+    }
+
+    @Test
     void rejectsMissingCitizenBeforeBuildingLookupCanMutate() {
         FakeColony colony = colonyManager.addColony(17);
         FakeBuilding home = colonyManager.addBuilding(new FakePos(1, 2, 3), colony);

@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Supplier;
 
-public final class ResidentRegistry {
+public final class ResidentRegistry implements ResidentStore {
     private final Map<UUID, ResidentRecord> recordsById = new LinkedHashMap<>();
     private final Map<ResidentHostKey, UUID> residentIdsByHost = new LinkedHashMap<>();
 
@@ -19,16 +19,19 @@ public final class ResidentRegistry {
         return Optional.ofNullable(recordsById.get(residentId));
     }
 
+    @Override
     public Optional<ResidentRecord> find(ResidentHostKey hostKey) {
         return Optional.ofNullable(residentIdsByHost.get(hostKey))
                 .flatMap(this::find);
     }
 
+    @Override
     public ResidentRecord getOrCreate(ResidentHostKey hostKey, long gameTime, Supplier<UUID> residentIdSupplier) {
         return find(hostKey)
                 .orElseGet(() -> register(ResidentRecord.create(residentIdSupplier.get(), hostKey, gameTime)));
     }
 
+    @Override
     public ResidentRecord linkHost(UUID residentId, ResidentHostKey hostKey, long gameTime) {
         ResidentRecord existing = recordsById.get(residentId);
         if (existing == null) {

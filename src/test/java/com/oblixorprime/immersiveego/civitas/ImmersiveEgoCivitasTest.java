@@ -49,7 +49,7 @@ class ImmersiveEgoCivitasTest {
                         "balm"),
                 requirements.keySet());
         assertEquals(
-                "0.1.0-alpha.37",
+                "0.1.0-alpha.38",
                 requirements.get("immersive_ego").acceptedVersions().getFirst());
         assertTrue(requirements.get("domum_ornamentum").acceptedVersions().contains("${file.jarVersion}"));
     }

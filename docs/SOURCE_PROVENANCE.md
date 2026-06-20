@@ -29,15 +29,16 @@ Summary: <short summary of changes>
 ## Current status
 
 Only original CIVITAS bootstrap, runtime guard, resident registry, SavedData,
-host-adapter registry, identity service, reflection-backed MCA/MineColonies
-host adapters, upstream API contract checks, recruitment orchestration service,
-MineColonies assignment API contract, repairable assignment executor,
-assignment module locator/coordinator, linked-resident assignment trigger
-guards, MineColonies assignment target resolver, operator command wiring, and
-test source exists. The reflection-backed adapters, runtime contracts,
-assignment executor, locator, trigger guard, and target resolver use public
-class and method names from pinned source/runtime evidence as strings; no upstream
-implementation bodies were copied or adapted. Modern
+persisted store abstraction, host-adapter registry, identity service,
+reflection-backed MCA/MineColonies host adapters, upstream API contract checks,
+recruitment orchestration service, MineColonies assignment API contract,
+repairable assignment executor, assignment module locator/coordinator,
+linked-resident assignment trigger guards, MineColonies assignment target and
+citizen-target resolvers, operator command wiring, and test source exists. The
+reflection-backed adapters, runtime contracts, assignment executor, locator,
+trigger guard, and target resolver use public class and method names from
+pinned source/runtime evidence as strings; no upstream implementation bodies
+were copied or adapted. Modern
 Companions adaptation is blocked until the CurseForge `2.0` artifact maps to an
 immutable public source commit and the Human Companions / Basic Weapons lineage
 questions are resolved.

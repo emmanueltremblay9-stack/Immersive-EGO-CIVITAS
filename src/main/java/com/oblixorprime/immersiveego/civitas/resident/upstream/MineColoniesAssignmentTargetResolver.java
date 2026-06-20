@@ -50,6 +50,22 @@ public final class MineColoniesAssignmentTargetResolver {
                 "resolved MineColonies citizen and home building");
     }
 
+    public MineColoniesCitizenTarget resolveCitizen(Object level, int colonyId, int citizenId) {
+        Optional<Object> colonyManager = colonyManager();
+        if (colonyManager.isEmpty()) {
+            return MineColoniesCitizenTarget.failed("MineColonies colony manager is unavailable");
+        }
+
+        Lookup lookup = resolveColonyAndCitizen(colonyManager.get(), level, colonyId, citizenId);
+        if (!lookup.resolved()) {
+            return MineColoniesCitizenTarget.failed(lookup.message());
+        }
+
+        return MineColoniesCitizenTarget.resolved(
+                lookup.citizenData(),
+                "resolved MineColonies citizen");
+    }
+
     public MineColoniesAssignmentTarget resolveHomeAndWork(
             Object level,
             int colonyId,
