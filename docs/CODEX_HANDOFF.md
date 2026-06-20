@@ -37,6 +37,10 @@
   Balm runtime artifacts to immutable Git tags and source commits.
 - Added a pinned runtime dependency guard and required both server and client
   smoke gates to find its `pinned runtime dependency check passed` marker.
+- Rebuilt the sibling Immersive EGO repository from commit
+  `789238c475ecabc19808b9ac7d99df7f457670b8`; the rebuilt
+  `immersive_ego-0.1.0-alpha.27.jar` SHA-256 matched the installed Prism LAB
+  prerequisite hash `f76dd02414a960a23bb627d59307b9e54f05da1f725adebd2ae3e0ebd8c11329`.
 
 ## Exact commands run
 
@@ -103,6 +107,11 @@ Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/Twelv
   `b23553ab12d650c5d90486433bcabcf4e24944bc5d0c13ae02e8eeafc9f129d0`.
 - `scripts\install-runtime-deps.ps1` produced `build/runtime-deps-report.json`
   with `allHashesMatch=true` and `allSingleInstalled=true`.
+- Sibling Immersive EGO `.\gradlew.bat --no-daemon clean build` passed and
+  reproduced SHA-256
+  `f76dd02414a960a23bb627d59307b9e54f05da1f725adebd2ae3e0ebd8c11329`.
+- Sibling Immersive EGO `.\gradlew.bat --no-daemon runGameTestServer` passed
+  with 3 required tests.
 
 ## Upstream files adapted
 
@@ -127,8 +136,6 @@ Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/Twelv
 - Human Companions and Basic Weapons lineage audits are required before adapting Modern Companions files.
 - TownTalk is not part of the selected runtime set unless a later requirement
   proves it mandatory.
-- Immersive EGO source-to-binary proof still needs a clean rebuild from the
-  sibling source worktree.
 
 ## Risks changed
 
@@ -138,5 +145,5 @@ Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/Twelv
 ## Next exact task
 
 Resolve Modern Companions `2.0` source provenance or obtain a maintainer source
-archive, then rebuild Immersive EGO from a clean sibling worktree for
-source-to-binary proof.
+archive, then audit Human Companions and Basic Weapons lineage before adapting
+Modern Companions implementation details.

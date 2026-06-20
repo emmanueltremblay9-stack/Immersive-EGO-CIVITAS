@@ -41,6 +41,13 @@
   client smoke gates find `pinned runtime dependency check passed`.
 - Updated the current Immersive EGO LAB prerequisite to
   `immersive_ego-0.1.0-alpha.27.jar` with SHA-256
-  `f76dd02414a960a23bb627d59307b9e54f05da1f725adebd2ae3e0ebd8c11329`; its
-  source-to-binary proof remains blocked by the dirty sibling checkout.
+  `f76dd02414a960a23bb627d59307b9e54f05da1f725adebd2ae3e0ebd8c11329`.
+- Rebuilt the sibling Immersive EGO source at commit
+  `789238c475ecabc19808b9ac7d99df7f457670b8`; `.\gradlew.bat --no-daemon clean build`
+  reproduced the installed alpha.27 jar SHA-256, and
+  `.\gradlew.bat --no-daemon runGameTestServer` passed with 3 required tests.
+- Refreshed Modern Companions provenance from GitHub, CurseForge, and Modrinth:
+  the selected `2.0` CurseForge artifact still has no matching public source
+  tag/release/branch, while official GitHub and Modrinth releases stop at
+  `v1.2.0`.
 - No upstream implementation source was copied or adapted.

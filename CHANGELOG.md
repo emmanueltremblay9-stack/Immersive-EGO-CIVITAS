@@ -12,6 +12,9 @@
   runtime guard marker before passing.
 - Updated the audit docs to reflect the current Immersive EGO LAB prerequisite
   `immersive_ego-0.1.0-alpha.27.jar`.
+- Replaced the Immersive EGO dirty-worktree blocker with commit
+  `789238c475ecabc19808b9ac7d99df7f457670b8` after a clean sibling rebuild
+  reproduced the installed alpha.27 jar hash.
 
 ## 0.1.0-alpha.3
 

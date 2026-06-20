@@ -12,7 +12,7 @@ Downloaded jars are kept only in the ignored local cache
 |---|---|---:|---|---|
 | NeoForge universal | `https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.233/neoforge-21.1.233-universal.jar` | 3542450 | `ff997bfd7db9735755545a0d073bfb56bef55a8c9dd17bc1bba215a5dd55fc0d` | `modId=neoforge`, version `21.1.233`, license `LGPL v2.1` |
 | NeoForge installer | `https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.233/neoforge-21.1.233-installer.jar` | 6964847 | `311475c8315ed0be6b5f1dbbf5a377b6c0976457c0bd5aa6d19b0fe25fd77148` | Maven `.sha256` sidecar matched |
-| Immersive EGO | LAB prerequisite `immersive_ego-0.1.0-alpha.27.jar` | 290363 | `f76dd02414a960a23bb627d59307b9e54f05da1f725adebd2ae3e0ebd8c11329` | `modId=immersive_ego`, version `0.1.0-alpha.27`, license `MIT`, NeoForge `[21.1.228,)`; sibling source worktree is dirty |
+| Immersive EGO | LAB prerequisite `immersive_ego-0.1.0-alpha.27.jar` | 290363 | `f76dd02414a960a23bb627d59307b9e54f05da1f725adebd2ae3e0ebd8c11329` | `modId=immersive_ego`, version `0.1.0-alpha.27`, license `MIT`, NeoForge `[21.1.228,)`; source-to-binary proof passed at commit `789238c475ecabc19808b9ac7d99df7f457670b8` |
 | MineColonies | CurseForge project `245506`, file `8138370`, `minecolonies-1.1.1319-1.21.1.jar` | 77496046 | `ab97c0eec45c3f2539ec31428e3c836bb30ba1c537af0c86f5ab4e38754f6a4d` | `modId=minecolonies`, version `1.1.1319-1.21.1`, license `GPL3`, NeoForge `[21.1.0, )` |
 | Structurize | CurseForge project `298744`, file `7643353`, `structurize-1.0.810-1.21.1-snapshot.jar` | 1058690 | `7379ee90fde4abaeda6857d954e7cfa1ddb07a526bd425d3f7f23ae47d81ed14` | `modId=structurize`, version `1.0.810-1.21.1-snapshot`, license `GPL 3.0`, NeoForge `[21.0.143,)` |
 | BlockUI | CurseForge project `522992`, file `6367809`, `blockui-1.0.199-1.21.1-snapshot.jar` | 468231 | `238b2e9fda99620318dfa9197754b3f803fff73f7f711f1065ac900d2e4ee9ef` | `modId=blockui`, version `1.0.199-1.21.1-snapshot`, license `GPL3`, NeoForge `[21.1,)` |
@@ -29,13 +29,13 @@ Downloaded jars are kept only in the ignored local cache
 |---|---|
 | MineColonies | Release tag `v1.21.1-1.1.1319` maps to commit `35bd7ad7448c562c84d11dc9dff5b067e8f131e5`. |
 | MCA Reborn | Release tag `7.7.11+1.21.1` maps to commit `802ab602a7e2aea6284853722ffde88f23cd6840`. |
-| Immersive EGO | Local repository HEAD is `6a2f87ce56a35e78f3231daf3b03c43c9b2ca60a`; LAB now uses `0.1.0-alpha.27`, but source-to-binary proof remains conditional because that external worktree has uncommitted changes. |
+| Immersive EGO | Commit `789238c475ecabc19808b9ac7d99df7f457670b8` in `emmanueltremblay9-stack/Immersive-EGO` declares `0.1.0-alpha.27`; a fresh `.\gradlew.bat --no-daemon clean build` reproduced `immersive_ego-0.1.0-alpha.27.jar` with SHA-256 `f76dd02414a960a23bb627d59307b9e54f05da1f725adebd2ae3e0ebd8c11329`, matching the installed Prism LAB prerequisite. |
 | NeoForge | Maven artifacts and hashes are pinned; no CIVITAS source is adapted from NeoForge. |
 | Structurize | Tag `v1.21.1-1.0.810-snapshot` maps to commit `16a05cdb3524fae1662d8bab1f48b1d28f580c7a`; raw `gradle.properties` at that commit declares Minecraft `1.21.1`, BlockUI `1.0.191-1.21.1-snapshot`, and Domum Ornamentum `1.0.203-1.21.1-snapshot`. |
 | BlockUI | Tag `v1.21.1-1.0.199` maps to commit `29c2e55fa09f3d8168dc2677368188d22e2f3688`; raw `gradle.properties` at that commit declares Minecraft `1.21.1` and NeoForge `21.1.113`. |
 | Domum Ornamentum | Tag `v1.21.1-1.0.223` maps to commit `fe16a052f1eca2b8a2cc0a0a0ed3354f404c1d84`; raw `gradle.properties` at that commit declares Minecraft `1.21.1`. The jar still uses placeholder metadata version `${file.jarVersion}`. |
 | Multi-Piston | Correct source repository is `ldtteam/Piston-Unlimited`, GPL-3.0. Tag `v1.21.1-1.2.51` maps to commit `b74560984ea1da1906e59dd2f34286d55ee30449`; raw `gradle.properties` at that commit declares Minecraft `1.21.1`, BlockUI `1.0.188-1.21.1-snapshot`, and Structurize `1.0.751-1.21.1-snapshot`. |
-| Modern Companions 2.0 | CurseForge source link points to `STRHercules/ModernCompanions`, but all public branches checked declare versions below `2.0`; the jar issue tracker points to non-public or missing `MajorBonghits/ModernCompanions`. Exact source commit mapping remains blocked. |
+| Modern Companions 2.0 | CurseForge source link points to `STRHercules/ModernCompanions`, but all public branches checked declare versions below `2.0`; official GitHub and Modrinth releases stop at `v1.2.0`; the jar issue tracker points to non-public or missing `MajorBonghits/ModernCompanions`. Exact source commit mapping remains blocked. |
 | Waystones | Tag `v21.1.29` maps to annotated tag object `17c30448b26bfd81f7af33e4404677dfc4997b86` and peeled source commit `75f923f36938515571fd71fbe8c30ff8050df417`; raw `gradle.properties` at that commit declares version `21.1.29` and Minecraft `1.21.1`. Runtime-only unless license permission changes; jar metadata says `All Rights Reserved` and GitHub license detection is `NOASSERTION`. |
 | Balm | Tag `v21.0.56` maps to annotated tag object `25b904eb951811c98fc90ec2a7760f92ff38c5dc` and peeled source commit `f9af2e38e3a8788d0bddd51de8234ffeb1218ddf`; raw `gradle.properties` at that commit declares version `21.0.56` and Minecraft `1.21.1`. GitHub license detection reports Apache-2.0. |
 
@@ -66,5 +66,3 @@ Downloaded jars are kept only in the ignored local cache
    explicit source archive from the maintainer.
 2. Resolve whether TownTalk remains a CIVITAS requirement even though it is not
    declared by the selected MineColonies runtime artifact.
-3. Rebuild Immersive EGO from a clean source state before treating its local jar
-   as a reproducible binary prerequisite.

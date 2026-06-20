@@ -6,13 +6,13 @@ Current local state:
 
 - Remote: `https://github.com/emmanueltremblay9-stack/Immersive-EGO.git`
 - Branch: `main`
-- Commit: `6a2f87ce56a35e78f3231daf3b03c43c9b2ca60a`
+- Commit: `789238c475ecabc19808b9ac7d99df7f457670b8`
 - Prism LAB prerequisite: `immersive_ego-0.1.0-alpha.27.jar`
 - SHA-256: `f76dd02414a960a23bb627d59307b9e54f05da1f725adebd2ae3e0ebd8c11329`
 - License: MIT
 - Minecraft: `1.21.1`
 - NeoForge: `21.1.233`
-- Source-to-binary proof: pending because the sibling checkout has uncommitted changes.
+- Source-to-binary proof: passed. A fresh `.\gradlew.bat --no-daemon clean build` in the sibling repository reproduced the installed Prism LAB jar hash, and `.\gradlew.bat --no-daemon runGameTestServer` passed with 3 required tests.
 
 ## Required neutral CIVITAS facade capabilities
 
