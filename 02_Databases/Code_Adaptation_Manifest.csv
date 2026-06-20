@@ -1,0 +1,4 @@
+﻿Manifest ID,Upstream Project,Upstream Commit,Original Path,Destination Path,Original Copyright,License,Adaptation Type,Modifications,Asset Included,Reviewer,Status
+SRC-0001,MineColonies,,,,,GPL-3.0,Copied/generalized,,No,,Template
+SRC-0002,MCA Reborn,,,,,GPL-3.0-only,Copied/adapted,,No,,Template
+SRC-0003,Modern Companions,,,,,GPL-3.0-only pending lineage audit,Copied/generalized,,No,,Blocked

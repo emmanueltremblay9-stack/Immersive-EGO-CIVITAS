@@ -1,0 +1,17 @@
+﻿Dependency,Required,Role,Baseline,License,Runtime Packaging,Source URL,Audit Status
+Minecraft,Yes,Game runtime,1.21.1,Commercial EULA,External,https://www.minecraft.net/,Pin
+Java,Yes,JVM,21,OpenJDK distribution dependent,External,https://openjdk.org/projects/jdk/21/,Pin
+NeoForge,Yes,Loader/API,Resolve compatible 21.1.x intersection,LGPL-2.1-only,External,https://github.com/neoforged/NeoForge,Audit
+Immersive EGO,Yes,Physiology/psychology API,0.1.0-alpha.1 API target,MIT,External,Project repository,Prerequisite
+MineColonies,Yes,Colony/jobs/logistics/raids,1.1.1319 stable planning baseline,GPL-3.0,External + selected adaptation,https://github.com/ldtteam/minecolonies/tree/version/1.21,Audit
+BlockUI,Via MineColonies,UI framework,Exact compatible build,Audit exact version,External,https://github.com/ldtteam/BlockUI,Audit
+Domum Ornamentum,Via MineColonies,Content dependency,Exact compatible build,Audit exact version,External,https://github.com/ldtteam/Domum-Ornamentum,Audit
+Multi-Piston,Via MineColonies,Utility dependency,Exact compatible build,Audit exact version,External,https://github.com/ldtteam/multipiston,Audit
+Structurize,Via MineColonies,Structure framework,Exact compatible build,Audit exact version,External,https://github.com/ldtteam/Structurize,Audit
+TownTalk,Via MineColonies,Citizen speech,Exact compatible build,Audit exact version,External,https://github.com/ldtteam/TownTalk,Audit
+MCA Reborn,Yes,Identity/family/relationships/dialogue,7.7.11 NeoForge 1.21.1,GPL-3.0-only,External + selected adaptation,https://github.com/Luke100000/minecraft-comes-alive/tree/1.21.1,Audit
+Modern Companions,Yes,Military roles/orders/equipment/XP,CurseForge 2.0; source mapping unresolved,GPL-3.0-only,External + selected adaptation,https://github.com/STRHercules/ModernCompanions,Critical audit
+Apothic Attributes,Transitive,Attribute display,Pinned by Immersive EGO,MIT code; assets separate,External,https://github.com/Shadows-of-Fire/Apothic-Attributes,Inherited
+Placebo,Transitive,Apothic library,Pinned by Immersive EGO,MIT,External,https://github.com/Shadows-of-Fire/Placebo,Inherited
+MariesLib,Transitive,EGO value tracking,Pinned by Immersive EGO,LGPL-3.0-only,External,https://github.com/kgbcupcake/MarieLib,Inherited
+Lightman's Currency,No,Future currency SPI,Deferred,Apache-2.0,External optional,https://github.com/Lightman314/LightmansCurrency,Deferred

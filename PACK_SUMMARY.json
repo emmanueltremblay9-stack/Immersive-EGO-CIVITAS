@@ -1,0 +1,14 @@
+{
+  "project": "Immersive EGO: CIVITAS",
+  "generated_baseline": "2026-06-19",
+  "pages": 22,
+  "database_csvs": 15,
+  "roadmap_phases": 19,
+  "milestones": 15,
+  "backlog_tasks": 151,
+  "risks": 25,
+  "tests": 24,
+  "story_points": 1396,
+  "codex_prompt_lines": 1027,
+  "files_in_pack": 54
+}

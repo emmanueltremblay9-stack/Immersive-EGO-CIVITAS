@@ -1,0 +1,272 @@
+[
+  {
+    "path": "01_Pages/00_Project_Home.md",
+    "size_bytes": 2230,
+    "sha256": "77c746b47984a0fce1a98f6624e7cfbabdd75c3744e1aaf57cb3b9b38b7f5445"
+  },
+  {
+    "path": "01_Pages/01_Executive_Vision.md",
+    "size_bytes": 1289,
+    "sha256": "d005989b819bb698fb03666ed77ac449ff5da56c87335e6fd11a370fa3d4e1c2"
+  },
+  {
+    "path": "01_Pages/02_Masterplan.md",
+    "size_bytes": 2048,
+    "sha256": "f49b2dd4bee5daae9129a0cfd0b3485291bdaa57c57b42bcfb1a044ba8cbcd53"
+  },
+  {
+    "path": "01_Pages/03_Product_Scope.md",
+    "size_bytes": 1371,
+    "sha256": "6dcbecbbb19214fd1b1b115ebd2d3a41a7508abe2e05b07b54ee184a4ff38199"
+  },
+  {
+    "path": "01_Pages/04_Technical_Architecture.md",
+    "size_bytes": 1372,
+    "sha256": "77484dbb37a2fd42d72eaafb80940aec618f7deafd6134b70a5cc380cdf9cbf7"
+  },
+  {
+    "path": "01_Pages/05_Resident_Unification.md",
+    "size_bytes": 1278,
+    "sha256": "b9555a007f67b71b44129f321171d18f0ad921cfcebf2faac8ca8c50bf945184"
+  },
+  {
+    "path": "01_Pages/06_MineColonies_Integration.md",
+    "size_bytes": 1122,
+    "sha256": "e4b48b2b8159728bf5e041cf3a176417d475b336877bc05ab722ebcef847366a"
+  },
+  {
+    "path": "01_Pages/07_MCA_Reborn_Integration.md",
+    "size_bytes": 836,
+    "sha256": "cd595afd8ca7f9d232acf34cc547d3514f89e116fdcb9012202b808c28f6053b"
+  },
+  {
+    "path": "01_Pages/08_Modern_Companions_Integration.md",
+    "size_bytes": 779,
+    "sha256": "fe3a1195486bbdc1aa10208debe98baf1f2633f756f6a71680a94f642f37165f"
+  },
+  {
+    "path": "01_Pages/09_Immersive_EGO_Integration.md",
+    "size_bytes": 894,
+    "sha256": "d18be20c4f7c884f10efdb186a2589f97c76fac03d3eaf4d8a6ac70fdeaf7e30"
+  },
+  {
+    "path": "01_Pages/10_Work_Logistics_Economy.md",
+    "size_bytes": 996,
+    "sha256": "95d4bc2df0e07a6939d05b9c88dac3eb544ca8db9fb2783335c37e882de2d621"
+  },
+  {
+    "path": "01_Pages/11_Factions_Culture_Reputation.md",
+    "size_bytes": 773,
+    "sha256": "2c901b9fb78880dbf5f99498b3bd1d63d624146d4b17cf346314868957d1dbde"
+  },
+  {
+    "path": "01_Pages/12_Defense_Governance_Crises.md",
+    "size_bytes": 690,
+    "sha256": "d22a7b89a6d90a7e57db993f19f19d1fd57f96a5a70daa01c56ab216a6fcc4a6"
+  },
+  {
+    "path": "01_Pages/13_Configuration_and_Data_Driven_Design.md",
+    "size_bytes": 1124,
+    "sha256": "232e3c7ed4e215e3b232684c7d5f5f7abfc5b11f42225e92f78f16afd83bcb4f"
+  },
+  {
+    "path": "01_Pages/14_Performance_Testing_Release.md",
+    "size_bytes": 778,
+    "sha256": "eb07b9005e0f2910c5a1d097338c476bb0644410efcd9a95b0e540cd57fb66ce"
+  },
+  {
+    "path": "01_Pages/15_Licensing_Provenance_Credits.md",
+    "size_bytes": 850,
+    "sha256": "d1f86821b0bd8fedd7e8a9a94a71eba8f9eb700ed98d25e850183d05f40762e0"
+  },
+  {
+    "path": "01_Pages/16_Roadmap_Overview.md",
+    "size_bytes": 380,
+    "sha256": "d25d8c5d89ac1750c2d5fdf0de65b658f5190010c3a6300bf478ece7da9a9d20"
+  },
+  {
+    "path": "01_Pages/17_Codex_Operating_Manual.md",
+    "size_bytes": 798,
+    "sha256": "7528a536729a260efd9da797132b162651a53e7dd90499d8713bfe4fef144d98"
+  },
+  {
+    "path": "01_Pages/18_Notion_Database_Setup.md",
+    "size_bytes": 1026,
+    "sha256": "f8caf69912ddaf5493d3e3aad37c3ad7506f9316d409a487f0a8c1b52c583b70"
+  },
+  {
+    "path": "01_Pages/19_Vertical_Slice.md",
+    "size_bytes": 965,
+    "sha256": "49c30fdefed0cae11497f17cdac02183c983c3cd478c92b9f61475f4d42dfeec"
+  },
+  {
+    "path": "01_Pages/20_API_Contracts.md",
+    "size_bytes": 812,
+    "sha256": "9a2cc726518c1e6c8ddb206dcaf09ac84174020c1332ba5d50dd52b1b01eaf52"
+  },
+  {
+    "path": "01_Pages/21_Risk_Register_Overview.md",
+    "size_bytes": 550,
+    "sha256": "2c2026d269f95ef2eeb05e849aff31b86a9a5b76ab3d0ab3ae1bf3f95378e922"
+  },
+  {
+    "path": "02_Databases/Acceptance_Criteria.csv",
+    "size_bytes": 1923,
+    "sha256": "57142f84ad16a17c1600c0c8c5ffd42b76090d6d60f4e74297b36bd350fab365"
+  },
+  {
+    "path": "02_Databases/Architecture_Decisions.csv",
+    "size_bytes": 1633,
+    "sha256": "472d239efe3dcae08a78ccef7b64adae86d877a3cf34f3012ca1b4f5226fe133"
+  },
+  {
+    "path": "02_Databases/Backlog.csv",
+    "size_bytes": 42717,
+    "sha256": "aef902f85a26343d9e1063e3093973cd97a0cde9eaad61097caa3ab7ffecb558"
+  },
+  {
+    "path": "02_Databases/Code_Adaptation_Manifest.csv",
+    "size_bytes": 402,
+    "sha256": "600767f8d7742ae540e804e7775526056ce9b4d88f28e5bad0ed92041cd95f01"
+  },
+  {
+    "path": "02_Databases/Codex_Sessions.csv",
+    "size_bytes": 253,
+    "sha256": "93fde420be50d286b3c04ddeb6666e67cfacc403a61f0a81943ddd89ba7396ef"
+  },
+  {
+    "path": "02_Databases/Compatibility_Matrix.csv",
+    "size_bytes": 670,
+    "sha256": "54398f1bf89a0db388c644042cd7f3eda6b0ff3293b4ca6b247d096f7f842088"
+  },
+  {
+    "path": "02_Databases/Configuration_Catalog.csv",
+    "size_bytes": 2997,
+    "sha256": "14eaba9207544fc410a242c57c57277f958385f62c4ea7b45b65dd7ea9e3d056"
+  },
+  {
+    "path": "02_Databases/Dependencies.csv",
+    "size_bytes": 2398,
+    "sha256": "63bafa9e0bf84fc7c59c90dc8990dee8562cc16c4949741a2b3b37e991dc3a91"
+  },
+  {
+    "path": "02_Databases/Feature_Ownership_Matrix.csv",
+    "size_bytes": 1050,
+    "sha256": "dca53e451e66817227c8b91cd33b1acb771f81158a809025c2d783a502d725ce"
+  },
+  {
+    "path": "02_Databases/License_Matrix.csv",
+    "size_bytes": 1016,
+    "sha256": "84b72c735560fd27a63a6e90d822ac7c3fef0b2c243801da5cfa9ed54a6d82f0"
+  },
+  {
+    "path": "02_Databases/Milestones.csv",
+    "size_bytes": 2740,
+    "sha256": "f0562056ceb6c2e4a00618893b2648f81ee530cd8014d20ba0a8a5817836a2da"
+  },
+  {
+    "path": "02_Databases/Release_Checklist.csv",
+    "size_bytes": 1789,
+    "sha256": "b9e5b070d260b03766aad4de909277e677bd7e4abbd4167289f0fd911ecf2a6a"
+  },
+  {
+    "path": "02_Databases/Risks.csv",
+    "size_bytes": 3236,
+    "sha256": "218ad991f0b5801bcd8290deed9ff590bdc0a845211b93a47440f1236a7c8010"
+  },
+  {
+    "path": "02_Databases/Roadmap.csv",
+    "size_bytes": 3807,
+    "sha256": "c807f63900e15a9b1862ce7e111d8381fff26ab4abc84fd9d68dd6d5b2588ca4"
+  },
+  {
+    "path": "02_Databases/Test_Cases.csv",
+    "size_bytes": 2710,
+    "sha256": "7cd81d9a21f60fb5a17ae21adf1bc2efaa6e035e616fdde2a53dc37247c878fa"
+  },
+  {
+    "path": "03_Codex/AGENTS_TEMPLATE.md",
+    "size_bytes": 778,
+    "sha256": "433be29b207783d70302f1b9af11cb6f538807772f711e238b35bd9564507598"
+  },
+  {
+    "path": "03_Codex/CODEX_HANDOFF_TEMPLATE.md",
+    "size_bytes": 212,
+    "sha256": "4f88aaed0aa52a3a3695a862a95e564b1fa9e514370762c17434b9f3223fa78f"
+  },
+  {
+    "path": "03_Codex/IMMERSIVE_EGO_CIVITAS_CODEX_MASTER_PROMPT.txt",
+    "size_bytes": 29094,
+    "sha256": "d7f7c1c216380764c34b25a57007af43087550ed9a8e4da453137d5d1fdee8ee"
+  },
+  {
+    "path": "03_Codex/TASKS_TEMPLATE.md",
+    "size_bytes": 337,
+    "sha256": "41caf14d9ecdf64a88269e3c4211880ec0ae2bb322080887f2956d6e5826b3d4"
+  },
+  {
+    "path": "04_Branding/BRAND_GUIDE.md",
+    "size_bytes": 783,
+    "sha256": "b64ef646c559ba5c1f05ce9ce152363dbd82522c99f06ade03e9f456de61dba8"
+  },
+  {
+    "path": "04_Branding/immersive_ego_civitas_banner.svg",
+    "size_bytes": 2621,
+    "sha256": "26f0896799a9c36aa5875c1fca41043e2666b4b539b842977497dbe39c4ebac6"
+  },
+  {
+    "path": "04_Branding/immersive_ego_civitas_banner_1600x600.png",
+    "size_bytes": 158905,
+    "sha256": "b166b3a93117002a07b2101319b6281cb78d07199207607ffc6197dd50ff2ed0"
+  },
+  {
+    "path": "04_Branding/immersive_ego_civitas_logo.svg",
+    "size_bytes": 3633,
+    "sha256": "313e0e5bb02ace2f4d818f44b13ae6383e9f2d78f7727710546096539e219b99"
+  },
+  {
+    "path": "04_Branding/immersive_ego_civitas_logo_1024.png",
+    "size_bytes": 185244,
+    "sha256": "3611276242b4e8d2a513e3a63afe2da186c36dd5c9a681e7a961a0f9e922f871"
+  },
+  {
+    "path": "04_Branding/immersive_ego_civitas_logo_512.png",
+    "size_bytes": 83899,
+    "sha256": "dcbe4b598cc6b8a08fb7aab80dabd2b5b03677eed3946239603d2c4f0a526085"
+  },
+  {
+    "path": "05_Legal/GPL_SOURCE_PROVENANCE_POLICY.md",
+    "size_bytes": 644,
+    "sha256": "2b5b185a42aab758826e81d58367145ef95ac473476bc1265fe3c07aa4c8bc71"
+  },
+  {
+    "path": "05_Legal/SOURCE_IMPORT_MANIFEST_TEMPLATE.csv",
+    "size_bytes": 402,
+    "sha256": "600767f8d7742ae540e804e7775526056ce9b4d88f28e5bad0ed92041cd95f01"
+  },
+  {
+    "path": "05_Legal/THIRD_PARTY_NOTICES_TEMPLATE.md",
+    "size_bytes": 376,
+    "sha256": "1c6f5bf17d7f74832c8e5b572361b19cc8b9d542ac65cfc3691e5527d98607c0"
+  },
+  {
+    "path": "06_Reference/CURRENT_BASELINE_2026-06-19.md",
+    "size_bytes": 646,
+    "sha256": "6deb4c4505ac708f878ae1e667741f51d15cee4cd6256bf20dfe11f3452270cb"
+  },
+  {
+    "path": "06_Reference/NOTION_RELATION_MAP.md",
+    "size_bytes": 653,
+    "sha256": "c0cd23e9ed4412cb7db01393cb93874065d9b37d9c3e1a3fc87e7c877dc68c95"
+  },
+  {
+    "path": "07_Project_Control/Immersive_EGO_CIVITAS_Project_Control.xlsx",
+    "size_bytes": 47720,
+    "sha256": "ad4e9ecbb3decfd08f03977b8d97dc731b7023e96f25f9d17a04905abe57d514"
+  },
+  {
+    "path": "README_IMPORT_FIRST.md",
+    "size_bytes": 2156,
+    "sha256": "ccdc5327ab7f1ea9ac4a86bdde6faae35d6e4baf12af8a5b30b0a6dce368a1e4"
+  }
+]

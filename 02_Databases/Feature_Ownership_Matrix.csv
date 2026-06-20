@@ -1,0 +1,11 @@
+﻿Domain,Authority,CIVITAS Role,Duplicate Data Allowed,Primary Adapter
+Colony/territory,MineColonies,Facade and orchestration,No,ColonyFacade
+Buildings/jobs/work orders,MineColonies,Generalize citizen-specific paths,References/cache only,BuildingAssignmentFacade
+Requests/warehouse/couriers,MineColonies,Atomic external-worker integration,Reservation ledger only,RequestSystemFacade
+Identity/appearance,MCA Reborn,Reference and dossier,No,McaResidentHostAdapter
+Relationships/family/age,MCA Reborn,Normalized signals and household mapping,No,McaFamilyFacade
+Combat roles/orders,CIVITAS adapted from Modern Companions,Host-neutral military runtime,No,MilitaryRoleService
+Equipment/XP/traits/bond,CIVITAS adapted from Modern Companions,Unified progression,No,CompanionCombatFacade
+Physiology/psychology/readiness,Immersive EGO,Consume snapshots and submit stimuli,Short cache only,CivitasEgoFacade
+Culture/faction/reputation,CIVITAS,Full ownership,No,FactionService
+Economy/governance/crises,CIVITAS,Full ownership,No,CivicSimulationEngine

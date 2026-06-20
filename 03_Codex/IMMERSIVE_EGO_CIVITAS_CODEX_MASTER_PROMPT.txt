@@ -1,0 +1,1026 @@
+IMMERSIVE EGO: CIVITAS
+MASTER EXECUTION PROMPT FOR OPENAI CODEX
+
+Project identity
+- Name: Immersive EGO: CIVITAS
+- Mod ID: immersive_ego_civitas
+- Maven group: com.oblixorprime
+- Artifact: immersive-ego-civitas
+- Base package: com.oblixorprime.immersiveego.civitas
+- Minecraft: 1.21.1
+- Loader: NeoForge
+- Java: 21
+- License: GPL-3.0-only
+- Initial target: 0.1.0-alpha.1
+
+======================================================================
+0. EXECUTION MODE
+======================================================================
+
+You are the lead architect and senior NeoForge engineer responsible for completing
+this repository. This is an execution assignment, not a brainstorming assignment.
+
+Before editing:
+1. Read this complete prompt.
+2. Read AGENTS.md, TASKS.md, docs/CODEX_HANDOFF.md, and the current Notion/CSV
+   Roadmap and Backlog.
+3. Inspect the repository and every required upstream source.
+4. Determine the first incomplete release-blocking task.
+
+Operating rules:
+- If the repository is empty, initialize a complete NeoForge 1.21.1 project.
+- If work exists, preserve valid code and resume it.
+- Do not stop after writing a plan or skeleton.
+- Implement, compile, test, repair, and document in the same run.
+- Build frequently and leave the repository buildable.
+- Never invent upstream classes, events, methods, access transformers, mixin
+  targets, registries, codecs, Gradle coordinates, or licenses.
+- Inspect official repositories, source JARs, generated sources, or official docs.
+- If blocked, continue independent tasks and record the exact blocker.
+- Do not ask routine implementation questions. Choose the safest documented
+  option and record it in docs/DECISIONS.md.
+- Do not leave fake successful implementations or silent placeholder values.
+- Never claim a test passed unless you executed it.
+- Update TASKS.md, docs/IMPLEMENTATION_LOG.md, and docs/CODEX_HANDOFF.md every run.
+- End every run with implemented work, important files, exact commands/results,
+  provenance, blockers, remaining tasks, and one exact next action.
+
+Create a concise root AGENTS.md immediately if it does not exist. Keep detailed
+architecture in docs/ rather than overloading AGENTS.md.
+
+======================================================================
+1. PRODUCT MISSION
+======================================================================
+
+CIVITAS is a mandatory integration of four first-class pillars:
+
+1. MineColonies
+   Colony, territory, buildings, housing, jobs, work orders, requests, warehouse,
+   couriers, permissions, raids, and guards.
+
+2. MCA Reborn
+   Human NPC identity, appearance, personality, mood, relationships, marriage,
+   family, age, life stage, and dialogue.
+
+3. Modern Companions
+   Combat roles, follow/guard/patrol/escort/hold/retreat orders, equipment,
+   experience, traits, morale, bond, friendly-fire rules, and safe recall,
+   adapted into host-neutral services.
+
+4. Immersive EGO
+   Physiology, hydration, nutrition, sleep, fatigue, stress, biome origin,
+   acclimation, and readiness.
+
+CIVITAS owns:
+- canonical civic resident identity;
+- host adapters and cross-system orchestration;
+- professions, specializations, skills, and schedules;
+- household mapping;
+- culture, political faction, loyalty, grievances, and reputation;
+- transaction ledger and generalized work recipes;
+- economy, barter, favor, debt, and contracts;
+- governance, laws, crime, justice, migration, crisis, and diplomacy.
+
+The result must be one coherent society, not four duplicate simulations.
+
+======================================================================
+2. HARD CONSTRAINTS
+======================================================================
+
+- MineColonies, MCA Reborn, Modern Companions, and Immersive EGO are required.
+- MineColonies dependencies remain separately installed:
+  BlockUI, Domum Ornamentum, Multi-Piston, Structurize, and TownTalk.
+- Do not shade, JarJar, or bundle required dependency JARs.
+- Project license is GPL-3.0-only.
+- Verified GPL source code may be copied and generalized.
+- Every copied or substantially adapted file requires exact provenance.
+- Never copy upstream logos, textures, sounds, skins, models, structures, GUI art,
+  screenshots, or trademark presentation by default.
+- No new CIVITAS blocks, items, fluids, entity families, or Blockbench models.
+- Use existing dependency content and existing workstations.
+- Do not destructively replace an MCA villager with a MineColonies entity.
+- Do not construct a duplicate family graph.
+- Do not construct a second independent colony authority.
+- Do not add Cold Sweat.
+- No GPL-derived code may enter the MIT Immersive EGO repository.
+- All important gameplay coefficients must be configurable.
+- All cross-system item movement must be atomic and restart-repairable.
+- Dedicated-server safety is mandatory.
+- Unknown mandatory-mod versions must fail clearly instead of running silently.
+
+======================================================================
+3. DEPENDENCY, SOURCE, AND LICENSE AUDIT
+======================================================================
+
+Before gameplay implementation:
+
+1. Inspect exact current official source and release artifacts for:
+   - MineColonies branch/version for Minecraft 1.21.1;
+   - exact BlockUI, Domum Ornamentum, Multi-Piston, Structurize, and TownTalk builds;
+   - MCA Reborn NeoForge 1.21.1 source/release;
+   - Modern Companions source and runtime artifact;
+   - Immersive EGO source/API;
+   - NeoForge 1.21.1.
+
+2. Resolve one mutually compatible exact version set.
+
+3. Pin:
+   - exact artifact versions;
+   - repository coordinates;
+   - immutable source commits/tags;
+   - NeoForge patch version;
+   - Java version.
+
+4. Map every runtime artifact to source.
+
+5. Resolve the Modern Companions CurseForge/repository version discrepancy before
+   copying or compiling against implementation details.
+
+6. Audit Human Companions and Basic Weapons lineage before adapting affected
+   Modern Companions files.
+
+7. Record evidence in:
+   - docs/DEPENDENCY_AUDIT.md
+   - docs/LICENSE_MATRIX.md
+   - docs/SOURCE_PROVENANCE.md
+   - docs/COMPATIBILITY_MATRIX.md
+   - docs/CODE_ADAPTATION_MANIFEST.csv
+
+8. Create CI checks for:
+   - missing adaptation headers;
+   - copied source missing a manifest row;
+   - forbidden asset namespaces/hashes;
+   - binary/source version mismatch.
+
+Planning baseline only, to be re-verified:
+- MineColonies stable 1.21.1 release observed as 1.1.1319.
+- A newer snapshot 1.1.1331 exists.
+- MCA Reborn NeoForge 1.21.1 observed as 7.7.11.
+- Modern Companions 1.21.1 runtime/source mapping is unresolved.
+
+Do not blindly trust the planning baseline.
+
+======================================================================
+4. REPOSITORY REQUIREMENTS
+======================================================================
+
+Create or maintain:
+- LICENSE
+- THIRD_PARTY_NOTICES.md
+- README.md
+- README_FR.md
+- CHANGELOG.md
+- AGENTS.md
+- TASKS.md
+- docs/ARCHITECTURE.md
+- docs/DECISIONS.md
+- docs/DEPENDENCY_AUDIT.md
+- docs/LICENSE_MATRIX.md
+- docs/SOURCE_PROVENANCE.md
+- docs/CODE_ADAPTATION_MANIFEST.csv
+- docs/ASSET_POLICY.md
+- docs/COMPATIBILITY_MATRIX.md
+- docs/CONFIG_REFERENCE.md
+- docs/TEST_PLAN.md
+- docs/PERFORMANCE.md
+- docs/CODEX_HANDOFF.md
+- docs/IMPLEMENTATION_LOG.md
+- docs/UPSTREAM_EGO_API_REQUIREMENTS.md
+
+Build requirements:
+- Java 21.
+- Current supported NeoForge 1.21.1 conventions.
+- Gradle wrapper.
+- Client, dedicated-server, data-generation, and GameTest runs.
+- JUnit for pure logic.
+- CI build/test/provenance/asset checks.
+- Strict common/client source separation.
+- No reflection except in a documented, isolated compatibility adapter when no
+  safer source/API route exists.
+
+======================================================================
+5. GPL PROVENANCE AND ASSET DISCIPLINE
+======================================================================
+
+Every copied or substantially adapted source file contains an adaptation header:
+
+- original project;
+- immutable source commit;
+- original path;
+- original copyright/authors;
+- original license;
+- adaptation date;
+- destination;
+- summary of modifications.
+
+Every adapted file has a row in docs/CODE_ADAPTATION_MANIFEST.csv.
+
+Rules:
+- Do not copy a file until its license lineage is verified.
+- Do not assume repository assets share the code license.
+- Installed mods provide their own registered assets.
+- Use original CIVITAS branding and original UI resources.
+- Do not copy upstream logos or trademarks.
+- Publish corresponding source for every distributed CIVITAS binary.
+- Keep runtime dependencies separate and credited.
+- Mark all modifications clearly.
+
+======================================================================
+6. AUTHORITY MODEL
+======================================================================
+
+MineColonies remains authoritative for:
+- colony and territory;
+- buildings;
+- housing;
+- colony permissions and lifecycle;
+- requests, warehouse, and couriers;
+- work orders and jobs where directly usable;
+- raid and guard state.
+
+MCA remains authoritative for:
+- MCA host identity and appearance;
+- personality and mood;
+- relationships;
+- marriage and family graph;
+- age and life stage;
+- MCA dialogue/social history.
+
+Immersive EGO remains authoritative for:
+- hydration, nutrition, temperature, respiration;
+- stamina, fatigue, sleep;
+- stress and psychological state;
+- biome origin and acclimation;
+- readiness and recovery state.
+
+CIVITAS remains authoritative for:
+- canonical resident ID;
+- host references;
+- unified profession/specialization/skills/schedule;
+- host-neutral military role/order/XP;
+- household mapping;
+- culture, faction, reputation, loyalty, and grievances;
+- transactions;
+- economy/contracts;
+- governance/law/crime/migration/crisis/diplomacy.
+
+Do not duplicate authoritative truth.
+
+======================================================================
+7. UNIFIED RESIDENT KERNEL
+======================================================================
+
+Implement a versioned UnifiedResidentRecord with:
+
+- schemaVersion;
+- residentId;
+- host type;
+- host entity UUID;
+- MineColonies colony/citizen/building/job references;
+- MCA identity/family references;
+- Modern Companions-derived military state;
+- Immersive EGO subject reference;
+- home and household;
+- profession, specialization, skills, and schedule;
+- faction, culture, loyalty, grievances, and reputation references;
+- work assignment and transaction references;
+- simulation tier;
+- timestamps and bounded audit information.
+
+Implement ResidentHostAdapter:
+- MineColoniesCitizenAdapter
+- McaVillagerAdapter
+- ModernCompanionAdapter
+
+Requirements:
+- Exactly one canonical resident record per host.
+- Use versioned SavedData for canonical records and global indices.
+- Loaded entities carry only a fast resident-ID reference.
+- Support unloaded resident lookup.
+- Implement duplicate/stale-link detection.
+- Implement dry-run repair and quarantine of ambiguous mappings.
+- Emit auditable repair records.
+- Implement migrations and backups.
+
+======================================================================
+8. IMMERSIVE EGO API BOUNDARY
+======================================================================
+
+All EGO interaction lives behind CivitasEgoFacade.
+
+Required neutral capabilities:
+- resolve/register a supported NPC subject;
+- read a bounded EGO snapshot;
+- query ability to work, fight, travel, and recover;
+- submit civic stimuli;
+- advance unloaded state if the API supports it.
+
+Rules:
+- Inspect actual Immersive EGO source/API; do not invent names.
+- If the external subject API is absent, fail fast with a precise version message.
+- Document missing upstream requirements rather than using unsafe reflection as
+  the default solution.
+- Cache snapshots at controlled intervals.
+- Never introduce CIVITAS GPL types into Immersive EGO.
+
+Civic uses:
+- readiness controls work and combat availability;
+- hydration/fatigue/sleep affect schedules;
+- safety/family context contributes recovery stimuli;
+- injury and stress affect military duty;
+- origin may influence cultural affinity but never automatically chooses faction.
+
+======================================================================
+9. MINECOLONIES INTEGRATION
+======================================================================
+
+MineColonies is the civic backbone.
+
+First create a source map dividing relevant code into:
+A. direct runtime use;
+B. version-pinned facade calls;
+C. mixin/access requirements;
+D. copied/generalized GPL code;
+E. excluded content/assets.
+
+Implement:
+- ColonyFacade
+- BuildingAssignmentFacade
+- HousingFacade
+- WorkOrderFacade
+- RequestSystemFacade
+- WarehouseQueryFacade
+- PermissionFacade
+- RaidFacade
+
+Implement ExternalCitizenProxy for MCA and companion hosts.
+
+Where worker/job code assumes a MineColonies citizen:
+- copy only verified GPL source;
+- move it into the CIVITAS namespace;
+- generalize host entity, navigation, inventory, skills, EGO readiness, home, and
+  request state;
+- preserve notices and manifest records;
+- test against the installed MineColonies systems.
+
+Do not duplicate MineColonies blocks, items, buildings, schematics, sounds,
+textures, models, registries, or network channels.
+
+Every resource operation requires:
+- transaction ID;
+- owner;
+- source/destination;
+- reservation state;
+- timeout;
+- commit;
+- rollback;
+- restart repair;
+- diagnostics.
+
+======================================================================
+10. MCA REBORN INTEGRATION
+======================================================================
+
+Implement:
+- McaResidentHostAdapter
+- McaRelationshipFacade
+- McaFamilyFacade
+- McaPersonalityFacade
+- McaAgeFacade
+- McaDialogueFacade
+
+Recruitment:
+- adds colony membership and worker capability;
+- preserves the MCA host entity;
+- preserves relationship and family state;
+- never resets social progress.
+
+Never duplicate spouse, parent, child, sibling, or relationship truth.
+
+Use normalized MCA signals for:
+- trust/favor;
+- family priority;
+- personality-weighted decisions;
+- dialogue conditions;
+- household and migration decisions.
+
+Implement explicit child and life-stage capability gates.
+
+Prefer MCA interactions for:
+- recruitment;
+- contract acceptance;
+- governance decisions;
+- civic dialogue.
+
+======================================================================
+11. MODERN COMPANIONS INTEGRATION
+======================================================================
+
+Audit each candidate subsystem and its third-party lineage.
+
+Adapt verified logic into host-neutral CIVITAS services:
+- military roles;
+- follow;
+- guard;
+- patrol;
+- escort;
+- hold position;
+- retreat;
+- defend settlement;
+- equipment scoring;
+- weapon preference;
+- combat XP and levels;
+- traits;
+- morale and bond;
+- friendly-fire policy;
+- safe recall;
+- support behavior.
+
+Do not copy:
+- custom items;
+- Soul Gems or summoning tools;
+- weapons;
+- structures;
+- textures;
+- models;
+- sounds;
+- spawn assets;
+- files with unresolved lineage.
+
+Implement one OrderCoordinator with this default priority:
+
+EMERGENCY
+> DEFENSE
+> AUTHORIZED PLAYER ORDER
+> ESSENTIAL EGO NEED
+> WORK
+> FAMILY/SOCIAL
+> IDLE
+
+Prevent two upstream AI domains from controlling a resident simultaneously.
+
+======================================================================
+12. JOBS, SKILLS, AND SCHEDULES
+======================================================================
+
+Create data-driven registries for:
+- profession;
+- specialization;
+- qualification;
+- skill;
+- building/job mapping.
+
+Map:
+- vanilla/MCA profession;
+- MineColonies building/job;
+- CIVITAS profession and specialization.
+
+Work readiness consumes Immersive EGO snapshots.
+
+Implement progressive failure:
+1. slow down;
+2. seek missing need/resource;
+3. request relief;
+4. rest;
+5. refuse nonessential work;
+6. migrate/desert only after severe sustained conditions.
+
+Schedules combine:
+- work;
+- sleep;
+- meals;
+- family time;
+- social time;
+- training;
+- emergencies.
+
+Children and apprentices cannot instantly perform adult/master work.
+
+======================================================================
+13. NPC WORK RECIPES
+======================================================================
+
+Use existing workstations and dependency content.
+
+Define validated data-driven recipes with:
+- profession/specialization;
+- MineColonies building;
+- workstation tags;
+- inputs;
+- tools;
+- stages/duration;
+- skill;
+- EGO readiness;
+- safety;
+- culture/faction/reputation;
+- outputs;
+- quality;
+- cancellation policy.
+
+Do not register new workstation blocks or machine items.
+
+All work recipes use atomic reservations and deterministic rollback.
+
+Invalid profiles disable safely with:
+- exact file;
+- section/key;
+- reason;
+- suggested correction.
+
+Ship original example data only.
+
+======================================================================
+14. LOGISTICS AND TRANSACTIONS
+======================================================================
+
+Implement:
+- item-source resolver;
+- worker/building/warehouse policy;
+- reservation ledger;
+- courier handoff;
+- cancellation;
+- rollback;
+- stale transaction repair;
+- admin trace tools.
+
+Transactions must remain idempotent across:
+- resident death;
+- chunk unload;
+- dimension change;
+- job reassignment;
+- server restart;
+- config reload.
+
+Do not release alpha without duplication stress tests.
+
+======================================================================
+15. CULTURE, FACTION, AND REPUTATION
+======================================================================
+
+Keep distinct:
+- Immersive EGO origin;
+- culture;
+- political faction;
+- MineColonies colony;
+- profession;
+- MCA family.
+
+Culture can seed from:
+- foundation biome;
+- population origins;
+- local resources;
+- dominant professions.
+
+It evolves slowly through:
+- migration;
+- trade;
+- success;
+- trauma;
+- crisis.
+
+Reputation dimensions:
+- trust;
+- respect;
+- fear;
+- honor;
+- crime;
+- favor;
+- debt;
+- legitimacy;
+- loyalty.
+
+Fear cannot replace trust by default.
+
+Implement a unified reputation event bus so one upstream action is never scored
+twice.
+
+Provide explain commands with contribution and decay history.
+
+======================================================================
+16. ECONOMY, TRADE, AND CONTRACTS
+======================================================================
+
+Compute bounded value from:
+- colony stock;
+- population need;
+- biome/season;
+- crisis;
+- route risk/distance;
+- culture;
+- reputation;
+- favor/debt.
+
+Support:
+- barter;
+- emeralds;
+- labor/service;
+- protection;
+- favor;
+- debt;
+- contracts;
+- future optional CurrencyProvider SPI.
+
+Implement anti-inflation and exploit controls:
+- self-trade detection;
+- cooldowns;
+- stock verification;
+- bounded multipliers;
+- no circular unlimited-value transformations.
+
+Contracts include:
+- issuer;
+- objective;
+- reward;
+- deadline;
+- reputation requirement;
+- failure consequence.
+
+Prefer MCA dialogue delivery where possible.
+
+======================================================================
+17. DEFENSE AND COMMAND
+======================================================================
+
+Roles:
+- civilian;
+- militia;
+- guard;
+- ranged guard;
+- vanguard;
+- scout;
+- medic/support;
+- commander.
+
+Integrate MineColonies guard buildings and raid state.
+
+Implement:
+- civilian shelter;
+- protect-family priority;
+- patrol;
+- escort;
+- caravan defense;
+- defend settlement;
+- retreat;
+- command permission;
+- casualty, fatigue, trauma, and morale consequences.
+
+Target policy must honor:
+- colony;
+- family;
+- faction;
+- owner;
+- MineColonies permissions;
+- friendly-fire configuration.
+
+======================================================================
+18. HOUSEHOLDS, EDUCATION, AND MIGRATION
+======================================================================
+
+Use MCA family references rather than duplicating family truth.
+
+Implement:
+- household record;
+- shared home policy;
+- household inventory policy;
+- care responsibilities;
+- child safety;
+- apprenticeship;
+- school/university integration where practical;
+- adulthood transition;
+- household migration;
+- cultural inheritance separate from biological origin.
+
+Families migrate together by default.
+
+======================================================================
+19. GOVERNANCE, LAW, AND CRIME
+======================================================================
+
+Implement data-driven:
+- leader, council, guild, and emergency offices;
+- legitimacy;
+- laws and jurisdiction;
+- crime events;
+- evidence/memory;
+- warnings, fines, refusal, exile, and hostility;
+- succession;
+- migration pressure.
+
+Do not override MineColonies ownership/permissions without an explicit,
+reversible policy.
+
+======================================================================
+20. CRISES AND DIPLOMACY
+======================================================================
+
+Crisis lifecycle:
+trigger → warning → escalation → intervention → recovery → memory.
+
+Initial crises:
+- drought;
+- famine;
+- raid trauma;
+- guard exhaustion;
+- labor shortage/strike;
+- trade collapse;
+- succession;
+- migration wave.
+
+Connect crisis effects to:
+- Immersive EGO;
+- MineColonies stock/work/raid state;
+- MCA family;
+- CIVITAS economy, legitimacy, reputation, and migration.
+
+Bound concurrent crises and feedback loops.
+
+Implement:
+- explanation;
+- intervention;
+- pause/stop/admin repair;
+- historical memory;
+- configurable caps.
+
+======================================================================
+21. CONFIGURATION
+======================================================================
+
+Everything materially affecting gameplay is configurable.
+
+Use SERVER ModConfigSpec for scalar rules and validated dynamic TOML profiles for:
+- factions;
+- cultures;
+- professions;
+- specializations;
+- work recipes;
+- trade policies;
+- contracts;
+- dialogue topics;
+- laws;
+- crises;
+- compatibility maps.
+
+Required behavior:
+- schema version;
+- comments;
+- bounds;
+- enum validation;
+- duplicate-ID detection;
+- atomic reload;
+- backup/migration;
+- last-known-good fallback;
+- exact error paths;
+- presets;
+- immutable runtime snapshots;
+- no raw ConfigValue reads in hot loops.
+
+Create commands:
+- /civitas config validate
+- /civitas config reload
+- /civitas config dump
+- /civitas config explain <path>
+- /civitas config preset <casual|immersive|hardcore>
+
+======================================================================
+22. UI
+======================================================================
+
+Use BlockUI when its pinned API is suitable. Essential diagnostics must also have
+a safe text/vanilla fallback.
+
+Create original UI layouts/assets:
+- resident dossier;
+- settlement dashboard;
+- faction ledger;
+- transaction/request trace;
+- crisis/governance dashboard.
+
+Do not copy MineColonies or other upstream GUI art.
+
+Respect privacy/permissions for:
+- family details;
+- relationship values;
+- internal faction information;
+- storage;
+- military orders.
+
+======================================================================
+23. PERSISTENCE, NETWORKING, AND PERFORMANCE
+======================================================================
+
+Server is authoritative.
+
+Use:
+- versioned SavedData;
+- bounded attachments;
+- delta packets;
+- permission validation;
+- protocol versioning;
+- client/common separation.
+
+Simulation tiers:
+- near active;
+- loaded far;
+- unloaded resident;
+- settlement aggregate.
+
+Prohibited:
+- full-world scans;
+- per-tick warehouse scans;
+- unlimited path requests;
+- unbounded history;
+- full state network packets every tick.
+
+Add:
+- configurable budgets;
+- cache metrics;
+- pathfinding counters;
+- transaction counters;
+- profiler commands.
+
+Performance target includes:
+- at least 100 active residents;
+- multiple colonies;
+- families;
+- raids;
+- active transactions;
+- unloaded advancement.
+
+======================================================================
+24. COMMANDS AND DIAGNOSTICS
+======================================================================
+
+Implement /civitas commands for:
+- resident inspect/repair;
+- colony membership;
+- home/job assignment;
+- order issue/clear;
+- transaction trace/repair;
+- reputation explain/set;
+- faction/culture inspect;
+- crisis list/start/stop/explain;
+- config validate/reload/dump;
+- performance report;
+- compatibility report;
+- provenance report in development builds.
+
+All commands require correct permission checks.
+
+======================================================================
+25. TESTING
+======================================================================
+
+Pure Java tests:
+- codecs and migrations;
+- resident ID repair;
+- skill curves;
+- order arbitration;
+- transaction state machine;
+- reputation contributions;
+- scarcity/value;
+- crisis stages;
+- config validation;
+- simulation tiers.
+
+GameTests/integration:
+- client/server boot;
+- MCA recruitment;
+- MineColonies colony/home/job participation;
+- warehouse request;
+- rollback after death/restart;
+- family persistence;
+- guard/patrol;
+- friendly-fire;
+- EGO readiness;
+- child restrictions;
+- raid shelter;
+- migration;
+- unknown-version rejection.
+
+CI gates:
+- clean build;
+- dedicated-server smoke;
+- automated tests;
+- complete provenance manifest;
+- GPL adaptation headers;
+- forbidden asset/hash scan;
+- source/binary version match.
+
+======================================================================
+26. ROADMAP EXECUTION
+======================================================================
+
+Use the imported Roadmap.csv and Backlog.csv as the executable work source.
+
+Phases:
+P0 Governance/legal/source pinning
+P1 Integration harness
+P2 Immersive EGO external subject API
+P3 Unified resident kernel
+P4 MineColonies civic bridge
+P5 MCA social bridge
+P6 Modern Companions military bridge
+P7 Desert vertical slice
+P8 Jobs/professions
+P9 Requests/logistics
+P10 NPC work recipes
+P11 Factions/cultures/reputation
+P12 Economy/trade/contracts
+P13 Defense/raids/command
+P14 Households/family/education
+P15 Governance/law/crime/migration
+P16 Crises/diplomacy
+P17 UI/config/performance
+P18 Hardening/release
+
+Critical path:
+P0 → P1 → P2 → P3 → P4 → P5 → P6 → P7
+
+Do not begin broad economy/governance/diplomacy implementation before P7 passes.
+
+At phase start:
+- load matching backlog tasks;
+- update TASKS.md;
+- identify upstream source paths;
+- register provenance before copying.
+
+At phase exit:
+- run acceptance tests;
+- attach exact evidence;
+- update milestone status;
+- leave the build green.
+
+======================================================================
+27. DESERT VERTICAL SLICE
+======================================================================
+
+Build a MineColonies desert colony with housing, warehouse, farm, and guard
+infrastructure.
+
+Prove:
+1. An MCA villager is recruited without entity replacement.
+2. Exactly one canonical resident record exists.
+3. MineColonies colony/home/building/job participation works.
+4. MCA family/relationship state remains intact.
+5. Immersive EGO readiness changes schedule and output.
+6. A warehouse request completes atomically.
+7. A host-neutral guard/patrol role works.
+8. Drought changes stock, production, value, and reputation.
+9. Raid state triggers guard defense and civilian shelter.
+10. Save/restart preserves every authority.
+11. No item duplication, family duplication, identity loss, or stale transaction.
+12. Dedicated server passes.
+
+Do not declare alpha architecture complete before this scenario passes.
+
+======================================================================
+28. DEFINITION OF DONE
+======================================================================
+
+Version 0.1.0-alpha.1 is done only when:
+
+- exact required dependency versions load;
+- project builds on Java 21 / Minecraft 1.21.1 / NeoForge;
+- dedicated server starts;
+- GPL license/source/provenance are complete;
+- no restricted upstream assets are copied;
+- unified resident state persists and repairs;
+- MCA villager becomes a real colony worker non-destructively;
+- MineColonies requests/warehouse work atomically;
+- military orders work on supported hosts;
+- Immersive EGO readiness affects civic behavior;
+- desert vertical slice passes;
+- all P0 automated tests pass;
+- compatibility and performance results are documented;
+- no release-blocking task remains.
+
+======================================================================
+29. FINAL CODEX REPORT FORMAT
+======================================================================
+
+End every Codex run with exactly:
+
+1. IMPLEMENTED
+2. FILES CHANGED
+3. UPSTREAM CODE ADAPTED
+   - project
+   - commit
+   - original path
+   - destination
+   - manifest ID
+4. BUILD AND TESTS
+   - exact commands
+   - exact result
+5. LICENSE / ASSET CHECK
+6. DEPENDENCY / COMPATIBILITY STATUS
+7. BLOCKERS
+8. TASKS REMAINING
+9. NEXT ACTION
+
+Start now:
+- inspect the repository;
+- create AGENTS.md and TASKS.md;
+- perform the dependency/source/license audit;
+- establish GPL provenance and asset gates;
+- bootstrap the buildable integration harness;
+- continue beyond planning wherever the verified dependencies allow.

@@ -1,0 +1,8 @@
+﻿Project,Code License,Asset License,Use,Copy Code,Copy Assets,Required Action
+Immersive EGO: CIVITAS,GPL-3.0-only,Original,Main project,N/A,Original only,Publish corresponding source and notices.
+MineColonies,GPL-3.0,Audit before copying,Required runtime + adaptation,Yes with provenance,No by default,Record commit/path/copyright/modifications.
+MCA Reborn,GPL-3.0-only,Audit specific assets,Required runtime + adaptation,Yes with provenance,No by default,Preserve notices and social-system lineage.
+Modern Companions,GPL-3.0-only,Mixed/lineage audit,Required runtime + adaptation,Only after lineage verification,No,Resolve artifact/source and Human Companions/Basic Weapons origins.
+Immersive EGO,MIT,Separated,Required runtime API,Prefer API,No,Never send GPL code into MIT repo.
+MineColonies dependencies,Per-project audit,Per-project audit,Separate runtime jars,No without audit,No,Audit independently.
+Logos/trademarks,N/A,Copyright/trademark,Identification only,N/A,No,Use original CIVITAS branding.

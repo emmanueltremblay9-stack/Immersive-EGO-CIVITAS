@@ -1,0 +1,26 @@
+﻿Risk ID,Risk,Category,Impact,Likelihood,Mitigation,Owning Phase,Status,Owner
+R-001,MineColonies internal API instability,Technical,Critical,Likely,"Exact pinning, facades and integration tests.",P0,Open,Codex + Maintainer
+R-002,Modern Companions source/artifact mismatch,Legal/Technical,Critical,Likely,Map jar to commit before adapting.,P0,Open,Codex + Maintainer
+R-003,Third-party code lineage ambiguity,Legal,Critical,Possible,Block adaptation until verified.,P0,Open,Codex + Maintainer
+R-004,Duplicate resident identity,Data,Critical,Possible,"Canonical ID, repair scanner and one-host rule.",P3,Open,Codex + Maintainer
+R-005,Duplicate MCA family graph,Data,High,Possible,MCA remains authoritative.,P5,Open,Codex + Maintainer
+R-006,Citizen-specific MineColonies code blocks MCA hosts,Architecture,Critical,Likely,External proxy plus generalized worker runtime.,P4,Open,Codex + Maintainer
+R-007,Competing AI goals,AI,Critical,Likely,Central order arbitration.,P6,Open,Codex + Maintainer
+R-008,Item duplication in requests,Economy,Critical,Possible,"Atomic reservations, rollback and restart repair.",P9,Open,Codex + Maintainer
+R-009,Pathfinding/TPS degradation,Performance,High,Likely,"Budgets, caches and simulation tiers.",P17,Open,Codex + Maintainer
+R-010,Client classloading on server,Compatibility,Critical,Possible,Dist separation and server CI.,P1,Open,Codex + Maintainer
+R-011,Dependency update breaks internals,Compatibility,High,Likely,Exact support matrix and explicit rejection.,P18,Open,Codex + Maintainer
+R-012,GPL leakage into Immersive EGO,Legal,Critical,Possible,Separate repos and CI package scan.,P2,Open,Codex + Maintainer
+R-013,Restricted assets copied,Legal,Critical,Possible,Hash/namespace scanner and original assets.,P0,Open,Codex + Maintainer
+R-014,Housing/family conflict,Gameplay,High,Possible,Joint transactional assignment.,P14,Open,Codex + Maintainer
+R-015,Children assigned unsafe roles,Safety,High,Possible,Life-stage gates.,P14,Open,Codex + Maintainer
+R-016,Raid targets family/allies,Combat,Critical,Possible,Unified target policy tests.,P13,Open,Codex + Maintainer
+R-017,Infinite-value economy loops,Economy,High,Likely,"Caps, cooldowns and self-trade detection.",P12,Open,Codex + Maintainer
+R-018,Runaway crisis feedback,Simulation,High,Possible,"Stages, caps and interventions.",P16,Open,Codex + Maintainer
+R-019,Configuration overload,UX,Medium,Likely,"Presets, validation and generated docs.",P17,Open,Codex + Maintainer
+R-020,BlockUI incompatibility,UI,Medium,Possible,Pinned version and fallback diagnostics.,P17,Open,Codex + Maintainer
+R-021,Save migration corrupts colony,Data,Critical,Possible,"Backups, dry run and rollback.",P18,Open,Codex + Maintainer
+R-022,Unloaded residents duplicate work,Simulation,High,Possible,Idempotent abstract advancement.,P17,Open,Codex + Maintainer
+R-023,EGO NPC API unavailable,Dependency,Critical,Possible,Explicit prerequisite and fail-fast.,P2,Open,Codex + Maintainer
+R-024,Unauthorized resident commands,Security,High,Possible,MineColonies permissions plus CIVITAS authority.,P13,Open,Codex + Maintainer
+R-025,Scope becomes unfinishable,Delivery,High,Likely,Vertical-slice gate and phase exits.,P7,Open,Codex + Maintainer

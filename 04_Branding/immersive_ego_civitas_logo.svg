@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="35%" r="78%">
+    <stop offset="0%" stop-color="#1c2940"/><stop offset="55%" stop-color="#0a101c"/><stop offset="100%" stop-color="#03050a"/>
+  </radialGradient>
+  <linearGradient id="triad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#f4bd58"/><stop offset="48%" stop-color="#62ecd0"/><stop offset="100%" stop-color="#b17cff"/>
+  </linearGradient>
+  <linearGradient id="word" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#f6c65f"/><stop offset="45%" stop-color="#efffff"/><stop offset="100%" stop-color="#bd92ff"/>
+  </linearGradient>
+  <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+    <feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <clipPath id="rounded"><rect x="12" y="12" width="1000" height="1000" rx="112"/></clipPath>
+</defs>
+<g clip-path="url(#rounded)">
+  <rect x="12" y="12" width="1000" height="1000" rx="112" fill="url(#bg)"/>
+  <g opacity="0.075" stroke="#d8fbff" stroke-width="1">
+    <path d="M80 176H944 M80 272H944 M80 368H944 M80 464H944 M80 560H944 M80 656H944 M80 752H944 M80 848H944"/>
+    <path d="M176 80V944 M272 80V944 M368 80V944 M464 80V944 M560 80V944 M656 80V944 M752 80V944 M848 80V944"/>
+  </g>
+  <path d="M512 102 L792 204 L752 532 C731 665 638 736 512 790 C386 736 293 665 272 532 L232 204 Z"
+        fill="#07101c" stroke="url(#triad)" stroke-width="19" filter="url(#glow)"/>
+  <g stroke-linejoin="round" filter="url(#glow)">
+    <path d="M329 392V234H417V392" fill="#111b29" stroke="#f4bd58" stroke-width="14"/>
+    <path d="M468 392V184H556V392" fill="#111b29" stroke="#62ecd0" stroke-width="14"/>
+    <path d="M607 392V234H695V392" fill="#111b29" stroke="#b17cff" stroke-width="14"/>
+    <path d="M318 234H428 M457 184H567 M596 234H706" stroke="#ecfbff" stroke-width="10"/>
+    <path d="M345 234V207 M374 234V207 M403 234V207 M484 184V155 M512 184V148 M540 184V155 M623 234V207 M652 234V207 M681 234V207"
+          stroke="#ecfbff" stroke-width="9"/>
+  </g>
+  <path d="M300 463 C360 372 438 342 512 342 C586 342 664 372 724 463 C664 554 586 584 512 584 C438 584 360 554 300 463 Z"
+        fill="#07121f" stroke="#eaffff" stroke-width="13" filter="url(#glow)"/>
+  <circle cx="512" cy="463" r="98" fill="url(#triad)" filter="url(#glow)"/>
+  <circle cx="512" cy="463" r="67" fill="#04080f" stroke="#f2ffff" stroke-width="8"/>
+  <g stroke="#ffffff" stroke-width="17" stroke-linecap="round">
+    <path d="M486 421V505 M486 421H546 M486 463H534 M486 505H546"/>
+  </g>
+  <g fill="#0a1421" stroke-width="9" filter="url(#glow)">
+    <circle cx="366" cy="635" r="31" stroke="#f4bd58"/>
+    <circle cx="512" cy="675" r="31" stroke="#62ecd0"/>
+    <circle cx="658" cy="635" r="31" stroke="#b17cff"/>
+    <path d="M392 645L483 670 M541 670L632 645 M392 624L486 496 M632 624L538 496" fill="none" stroke="#bfeff0" opacity="0.72"/>
+  </g>
+  <path d="M218 818H806" stroke="#d8f6ff" stroke-opacity="0.28" stroke-width="2"/>
+  <text x="512" y="868" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="35" font-weight="600" letter-spacing="10" fill="#a7bdc9">IMMERSIVE EGO</text>
+  <text x="512" y="949" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="86" font-weight="900" letter-spacing="10" fill="url(#word)" filter="url(#glow)">CIVITAS</text>
+  <rect x="18" y="18" width="988" height="988" rx="106" fill="none" stroke="#d7fbff" stroke-opacity="0.20" stroke-width="4"/>
+</g></svg>

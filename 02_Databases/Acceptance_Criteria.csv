@@ -1,0 +1,16 @@
+﻿Acceptance ID,Milestone,Area,Criterion,Verification Type,Status,Evidence,Blocking
+AC-M0,M0,Legal & Source Baseline,"GPL repo, dependency audit and provenance gates pass.",Build + tests + scenario,Not Started,,Yes
+AC-M1,M1,Bootable Integration Harness,Clean client/server boot and no classloading errors.,Build + tests + scenario,Not Started,,Yes
+AC-M2,M2,Unified Resident Kernel,"Persistence, repair and adapter tests pass.",Build + tests + scenario,Not Started,,Yes
+AC-M3,M3,MineColonies Civic Backbone,"Recruit, assign, request and reload scenario passes.",Build + tests + scenario,Not Started,,Yes
+AC-M4,M4,MCA Social Continuity,No duplicate social graph and family persistence passes.,Build + tests + scenario,Not Started,,Yes
+AC-M5,M5,Unified Military Roles,Order and friendly-fire tests pass.,Build + tests + scenario,Not Started,,Yes
+AC-M6,M6,Desert Vertical Slice,End-to-end dedicated-server scenario passes.,Build + tests + scenario,Not Started,,Yes
+AC-M7,M7,Production & Logistics Alpha,No duplication under interruption/restart.,Build + tests + scenario,Not Started,,Yes
+AC-M8,M8,NPC Crafting Alpha,"Recipe, quality and rollback tests pass.",Build + tests + scenario,Not Started,,Yes
+AC-M9,M9,Society & Economy Alpha,Bounded economy and explainable reputation pass.,Build + tests + scenario,Not Started,,Yes
+AC-M10,M10,Defense Alpha,Combat policy and raid scenario pass.,Build + tests + scenario,Not Started,,Yes
+AC-M11,M11,Civic Simulation Beta,Multi-generation simulation passes.,Build + tests + scenario,Not Started,,Yes
+AC-M12,M12,Crisis & Diplomacy Beta,Crisis chains are bounded and recoverable.,Build + tests + scenario,Not Started,,Yes
+AC-M13,M13,Performance & UX Beta,Performance budgets and config migrations pass.,Build + tests + scenario,Not Started,,Yes
+AC-M14,M14,Release Candidate,Reproducible jar/source release and matrix tests pass.,Build + tests + scenario,Not Started,,Yes

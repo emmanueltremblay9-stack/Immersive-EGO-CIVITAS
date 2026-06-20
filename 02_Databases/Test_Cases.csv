@@ -1,0 +1,25 @@
+﻿Test ID,Phase,Category,Test,Automation,Priority,Status,Expected
+T-001,P1,Build,All mandatory dependencies resolve from clean cache.,CI,P0,Not Started,Build resolves reproducibly.
+T-002,P1,Server,Dedicated server starts with all mandatory mods.,Smoke,P0,Not Started,No client classloading.
+T-003,P3,Persistence,UnifiedResidentRecord save/load round-trip.,JUnit/GameTest,P0,Not Started,Identifiers and schema persist.
+T-004,P3,Repair,Duplicate host links repair safely.,JUnit,P0,Not Started,One canonical resident remains.
+T-005,P4,MineColonies,MCA host joins colony without conversion.,GameTest,P0,Not Started,Identity and membership remain valid.
+T-006,P4,Housing,Family-aware home assignment rolls back on conflict.,GameTest,P0,Not Started,No orphaned assignment.
+T-007,P4,Requests,External worker fulfills one request.,GameTest,P0,Not Started,Exactly one transfer.
+T-008,P5,MCA,Family graph remains MCA-authoritative.,Integration,P0,Not Started,No duplicate graph.
+T-009,P6,Combat,MCA host executes guard/patrol.,GameTest,P0,Not Started,Order persists and targets safely.
+T-010,P6,Friendly Fire,Family/colony/allies are protected.,GameTest,P0,Not Started,No protected target selected.
+T-011,P7,Vertical Slice,Drought reduces readiness and production.,Scenario,P0,Not Started,EGO causes explainable change.
+T-012,P9,Duplication,Worker dies after reservation.,GameTest,P0,Not Started,No duplicate or untracked loss.
+T-013,P9,Restart,Server restarts during transaction.,Integration,P0,Not Started,Ledger repairs deterministically.
+T-014,P10,Recipe,Invalid work recipe is rejected safely.,JUnit,P0,Not Started,Precise validation error.
+T-015,P11,Reputation,One event contributes once.,JUnit,P0,Not Started,No double counting.
+T-016,P12,Economy,Self-trade cannot create infinite value.,Simulation,P0,Not Started,Net value bounded.
+T-017,P13,Raid,Raid triggers defense and shelter.,Scenario,P0,Not Started,Guards defend; civilians shelter.
+T-018,P14,Children,Child cannot receive unsafe role.,JUnit/GameTest,P0,Not Started,Assignment rejected.
+T-019,P15,Permissions,Unauthorized player cannot command/access.,GameTest,P0,Not Started,Action denied.
+T-020,P16,Crisis,Crisis escalates and recovers within bounds.,Simulation,P1,Not Started,No runaway feedback.
+T-021,P17,Performance,100 residents remain inside tick budget.,Benchmark,P0,Not Started,Documented budget met.
+T-022,P18,Compatibility,Supported dependency matrix passes slice.,Matrix CI,P0,Not Started,Every published combo passes.
+T-023,P18,Legal,Every adapted file has manifest/header.,CI,P0,Not Started,No orphaned derivative.
+T-024,P18,Assets,Forbidden asset scanner is clean.,CI,P0,Not Started,Only original CIVITAS assets.

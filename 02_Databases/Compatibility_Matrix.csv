@@ -1,0 +1,6 @@
+﻿Component,Supported Baseline,Policy,Known Issue,Status
+MineColonies,1.1.1319 stable,Exact pin initially,Snapshot 1.1.1331 may change internals.,Audit Required
+MCA Reborn,7.7.11 NeoForge 1.21.1,Exact pin initially,Use NeoForge artifact from multiloader project.,Audit Required
+Modern Companions,CurseForge 2.0; source mapping unresolved,No copy until jar-to-commit proven,Repository release metadata differs.,Blocked
+Immersive EGO,0.1.0-alpha.1 API target,Stable external subject API required,NPC API prerequisite.,Prerequisite
+NeoForge,Common 21.1.x to resolve,Highest mutually compatible pinned build,Upstreams may use different patch versions.,Audit Required

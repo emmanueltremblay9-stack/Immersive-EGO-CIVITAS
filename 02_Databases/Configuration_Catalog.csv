@@ -1,0 +1,30 @@
+﻿Config File,Key,Type,Default,Reload Level,Description
+immersive_civitas-core.toml,core.enabled,boolean,true,LIVE,Master switch.
+immersive_civitas-core.toml,core.preset,enum,IMMERSIVE,WORLD_RELOAD,CASUAL/IMMERSIVE/HARDCORE/CUSTOM.
+immersive_civitas-residents.toml,residents.scanIntervalTicks,int,40,LIVE,Host reconciliation interval.
+immersive_civitas-residents.toml,residents.autoRepairStaleLinks,boolean,true,LIVE,Repair stale IDs.
+immersive_civitas-minecolonies.toml,minecolonies.externalCitizenProxyEnabled,boolean,true,WORLD_RELOAD,Enable external workers.
+immersive_civitas-minecolonies.toml,minecolonies.strictVersionPin,boolean,true,GAME_RESTART,Reject unknown internals.
+immersive_civitas-mca.toml,mca.familyAuthority,enum,MCA,GAME_RESTART,Never duplicate family truth.
+immersive_civitas-mca.toml,mca.recruitmentMinimumHearts,int,20,LIVE,Relationship gate.
+immersive_civitas-companions.toml,combat.friendlyFirePolicy,enum,FACTION_AND_FAMILY_SAFE,LIVE,Target safety.
+immersive_civitas-companions.toml,combat.safeRecallDistance,int,40,LIVE,Recall threshold.
+immersive_civitas-work.toml,work.baseUpdateIntervalTicks,int,20,LIVE,Planner interval.
+immersive_civitas-work.toml,work.minimumReadiness,double,0.25,LIVE,Nonessential work refusal threshold.
+immersive_civitas-work.toml,work.allowChildrenHazardousJobs,boolean,false,WORLD_RELOAD,Safety gate.
+immersive_civitas-logistics.toml,logistics.reservationTimeoutTicks,int,12000,LIVE,Stale transaction timeout.
+immersive_civitas-logistics.toml,logistics.repairOnServerStart,boolean,true,GAME_RESTART,Repair ledger.
+immersive_civitas-economy.toml,economy.dynamicPricing,boolean,true,LIVE,Stock/context pricing.
+immersive_civitas-economy.toml,economy.maxPriceMultiplier,double,4.0,LIVE,Inflation cap.
+immersive_civitas-reputation.toml,reputation.decayIntervalTicks,int,24000,LIVE,Slow decay.
+immersive_civitas-reputation.toml,reputation.fearCanReplaceTrust,boolean,false,LIVE,Prevent stable fear rule.
+immersive_civitas-factions.toml,factions.maxRelationsPerSettlement,int,128,WORLD_RELOAD,Graph bound.
+immersive_civitas-cultures.toml,culture.changeRate,double,0.001,LIVE,Slow cultural change.
+immersive_civitas-defense.toml,defense.civilianShelterEnabled,boolean,true,LIVE,Threat response.
+immersive_civitas-defense.toml,defense.guardFatigueMatters,boolean,true,LIVE,Use EGO readiness.
+immersive_civitas-family.toml,family.keepHouseholdTogetherOnMigration,boolean,true,LIVE,Family migration.
+immersive_civitas-governance.toml,governance.legitimacyEnabled,boolean,true,WORLD_RELOAD,Political simulation.
+immersive_civitas-crises.toml,crises.maxConcurrentPerSettlement,int,3,LIVE,Crisis bound.
+immersive_civitas-performance.toml,performance.nearResidentBudgetPerTick,int,32,LIVE,Detailed AI budget.
+immersive_civitas-performance.toml,performance.unloadedSimulationIntervalTicks,int,2400,LIVE,Abstract simulation.
+immersive_civitas-performance.toml,performance.maxPathRequestsPerTick,int,8,LIVE,Pathfinding budget.

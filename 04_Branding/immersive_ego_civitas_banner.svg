@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="600" viewBox="0 0 1600 600">
+<defs>
+  <radialGradient id="bg" cx="62%" cy="40%" r="78%"><stop offset="0%" stop-color="#1d2c43"/><stop offset="60%" stop-color="#09101b"/><stop offset="100%" stop-color="#03050a"/></radialGradient>
+  <linearGradient id="line" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f4bd58"/><stop offset="50%" stop-color="#62ecd0"/><stop offset="100%" stop-color="#b17cff"/></linearGradient>
+  <filter id="g" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1600" height="600" fill="url(#bg)"/>
+<g opacity="0.07" stroke="#d6f9ff"><path d="M0 100H1600 M0 200H1600 M0 300H1600 M0 400H1600 M0 500H1600"/><path d="M100 0V600 M200 0V600 M300 0V600 M400 0V600 M500 0V600 M600 0V600 M700 0V600 M800 0V600 M900 0V600 M1000 0V600 M1100 0V600 M1200 0V600 M1300 0V600 M1400 0V600 M1500 0V600"/></g>
+<path d="M1040 58 L1386 174 L1334 466 C1260 518 1160 550 1040 575 C920 550 820 518 746 466 L694 174 Z" fill="#07101c" stroke="url(#line)" stroke-width="15" filter="url(#g)"/>
+<g fill="#111b29" stroke-width="12" filter="url(#g)"><path d="M806 323V171H894V323" stroke="#f4bd58"/><path d="M996 323V111H1084V323" stroke="#62ecd0"/><path d="M1186 323V171H1274V323" stroke="#b17cff"/></g>
+<path d="M770 365 C842 276 948 245 1040 245 C1132 245 1238 276 1310 365 C1238 454 1132 485 1040 485 C948 485 842 454 770 365 Z" fill="#07121f" stroke="#efffff" stroke-width="11"/>
+<circle cx="1040" cy="365" r="83" fill="url(#line)" filter="url(#g)"/><circle cx="1040" cy="365" r="54" fill="#04080f" stroke="#f4ffff" stroke-width="7"/>
+<g stroke="#fff" stroke-width="14" stroke-linecap="round"><path d="M1018 328V402 M1018 328H1069 M1018 365H1058 M1018 402H1069"/></g>
+<text x="110" y="178" font-family="Inter,Arial,sans-serif" font-size="42" font-weight="600" letter-spacing="11" fill="#afc5d1">IMMERSIVE EGO</text>
+<text x="104" y="305" font-family="Inter,Arial,sans-serif" font-size="116" font-weight="900" letter-spacing="6" fill="url(#line)" filter="url(#g)">CIVITAS</text>
+<text x="112" y="380" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="600" letter-spacing="4" fill="#e6f8fa">COLONY • FAMILY • WORK • FACTION • WAR</text>
+<text x="112" y="445" font-family="Inter,Arial,sans-serif" font-size="25" fill="#a9c0ca">MineColonies × MCA Reborn × Modern Companions × Immersive EGO</text>
+<path d="M110 488H618" stroke="url(#line)" stroke-width="5" filter="url(#g)"/>
+</svg>

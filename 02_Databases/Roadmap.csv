@@ -1,0 +1,20 @@
+﻿Order,Phase,Title,Milestone,Objective,Status,Priority,Story Points,Task Count,Depends On,Exit Gate,Release Train
+0,P0,"Governance, legal audit, source pinning",M0,"Establish GPL governance, exact source mapping, provenance and asset controls.",Not Started,P0,40,7,,"GPL repo, dependency audit and provenance gates pass.",Internal Gate
+1,P1,NeoForge integration harness,M1,Boot all mandatory mods together on client and dedicated server.,Not Started,P0,44,8,P0,Clean client/server boot and no classloading errors.,0.0.1-dev
+2,P2,Immersive EGO external subject API,M1,Consume a stable NPC-facing EGO API with strict MIT/GPL isolation.,Not Started,P0,26,6,P1,Clean client/server boot and no classloading errors.,0.0.1-dev
+3,P3,Unified resident kernel,M2,"Create the canonical resident record, host adapters, persistence and repair.",Not Started,P0,47,8,P2,"Persistence, repair and adapter tests pass.",0.0.2-dev
+4,P4,MineColonies civic bridge,M3,"Use colony, building, housing, job, request, warehouse, permissions and raid systems.",Not Started,P0,100,10,P3,"Recruit, assign, request and reload scenario passes.",0.0.3-dev
+5,P5,MCA social bridge,M4,"Preserve identity, appearance, personality, relationships, family and age.",Not Started,P0,76,8,P4,No duplicate social graph and family persistence passes.,0.0.4-dev
+6,P6,Modern Companions military bridge,M5,"Generalize military roles, orders, equipment, XP, traits, morale and bond.",Not Started,P0,87,9,P5,Order and friendly-fire tests pass.,0.0.5-dev
+7,P7,Desert colony vertical slice,M6,Prove all four pillars in one reproducible dedicated-server scenario.,Not Started,P0,97,9,P6,End-to-end dedicated-server scenario passes.,0.1.0-alpha
+8,P8,Unified jobs and professions,M7,"Add profession mapping, skills, schedules, readiness and apprenticeship gates.",Not Started,P1,61,7,P7,No duplication under interruption/restart.,0.2.0-alpha
+9,P9,Resource requests and logistics,M7,"Add transaction-safe requests, warehouse access, couriers and reservations.",Not Started,P1,73,7,P8,No duplication under interruption/restart.,0.2.0-alpha
+10,P10,NPC work recipes,M8,Use existing workstations for data-driven resident production.,Not Started,P1,71,8,P9,"Recipe, quality and rollback tests pass.",0.3.0-alpha
+11,P11,"Factions, cultures and reputation",M9,"Add culture, political faction, loyalty, grievances and reputation dimensions.",Not Started,P1,81,8,P10,Bounded economy and explainable reputation pass.,0.4.0-alpha
+12,P12,"Economy, trade and contracts",M9,"Add scarcity, barter, favor, debt, contracts and optional currency SPI.",Not Started,P1,84,8,P11,Bounded economy and explainable reputation pass.,0.4.0-alpha
+13,P13,"Defense, raids and command",M10,"Unify guards, militia, patrols, escorts, shelter and raid response.",Not Started,P1,79,8,P12,Combat policy and raid scenario pass.,0.5.0-alpha
+14,P14,"Households, family and education",M11,"Connect MCA family to homes, care, apprenticeship and migration.",Not Started,P1,79,8,P13,Multi-generation simulation passes.,0.7.0-beta
+15,P15,"Governance, law, crime and migration",M11,"Add legitimacy, laws, justice, succession and civic movement.",Not Started,P2,89,8,P14,Multi-generation simulation passes.,0.7.0-beta
+16,P16,Crises and diplomacy,M12,Create bounded emergent crisis chains and political relations.,Not Started,P2,84,8,P15,Crisis chains are bounded and recoverable.,0.8.0-beta
+17,P17,"UI, configuration and performance",M13,"Finish dashboards, TOML profiles, simulation tiers and diagnostics.",Not Started,P2,94,8,P16,Performance budgets and config migrations pass.,0.9.0-beta
+18,P18,Hardening and release,M14,"Complete legal, migration, performance, compatibility and release gates.",Not Started,P2,84,8,P17,Reproducible jar/source release and matrix tests pass.,1.0.0-rc1

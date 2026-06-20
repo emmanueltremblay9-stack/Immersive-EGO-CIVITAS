@@ -1,0 +1,4 @@
+﻿Session,Objective,Input Phase,Status,Build Result,Tests Result,Commit,Handoff,Blockers
+S-001,P0 dependency/legal audit and bootstrap,P0,Queued,,,,,
+S-002,P1 integration harness,P1,Queued,,,,,
+S-003,P2-P3 API and resident kernel,P2/P3,Queued,,,,,

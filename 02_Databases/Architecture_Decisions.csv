@@ -1,0 +1,13 @@
+﻿ADR,Decision,Status,Context,Consequences
+ADR-001,Separate required JARs; no shading/JarJar.,Accepted,All pillars remain independently attributable.,Larger dependency set; clearer boundaries.
+ADR-002,CIVITAS is GPL-3.0-only.,Accepted,GPL sources may be adapted.,Corresponding source and notices required.
+ADR-003,MineColonies is civic authority.,Accepted,It owns colony/buildings/logistics.,Version pinning and facades required.
+ADR-004,MCA is social authority.,Accepted,It owns family/relationships/identity.,"Store references, not duplicates."
+ADR-005,Modern Companions supplies military logic.,Accepted,It owns useful role/order patterns.,Lineage must be verified.
+ADR-006,Immersive EGO is body/mind authority.,Accepted,Needs/readiness are external truth.,Stable neutral NPC API required.
+ADR-007,Canonical resident plus host adapters.,Accepted,No host type owns all domains.,Repair and migration complexity.
+ADR-008,MCA colonists use proxy/generalized worker runtime.,Accepted,Entity conversion would destroy social identity.,MineColonies worker code must be generalized.
+ADR-009,No new CIVITAS blocks/items/entities/models.,Accepted,"Value is integration, not content bloat.",Use existing dependency content.
+ADR-010,All material rules configurable.,Accepted,Servers need different simulation depth.,Validation/migration are mandatory.
+ADR-011,Inventory work is atomic and repairable.,Accepted,Cross-mod logistics is duplication-prone.,Reservation ledger is P0.
+ADR-012,"Origin, culture, faction, colony, profession and family stay distinct.",Accepted,Mixed societies need coherent identity.,Explicit data model.

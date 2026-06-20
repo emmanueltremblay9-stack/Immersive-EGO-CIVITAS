@@ -1,0 +1,26 @@
+﻿Checklist ID,Item,Priority,Status,Evidence,Owner
+REL-001,Source and binary version match,P0,Not Started,,Codex + Maintainer
+REL-002,GPL license included,P0,Not Started,,Codex + Maintainer
+REL-003,Corresponding source generated,P0,Not Started,,Codex + Maintainer
+REL-004,THIRD_PARTY_NOTICES complete,P0,Not Started,,Codex + Maintainer
+REL-005,All adapted files in manifest,P0,Not Started,,Codex + Maintainer
+REL-006,No unapproved assets,P0,Not Started,,Codex + Maintainer
+REL-007,Supported dependency versions documented,P0,Not Started,,Codex + Maintainer
+REL-008,Unknown versions rejected clearly,P0,Not Started,,Codex + Maintainer
+REL-009,Clean build succeeds,P0,Not Started,,Codex + Maintainer
+REL-010,Dedicated server starts,P0,Not Started,,Codex + Maintainer
+REL-011,Client starts,P0,Not Started,,Codex + Maintainer
+REL-012,Vertical slice passes,P0,Not Started,,Codex + Maintainer
+REL-013,GameTests pass,P0,Not Started,,Codex + Maintainer
+REL-014,JUnit tests pass,P0,Not Started,,Codex + Maintainer
+REL-015,Migration tests pass,P0,Not Started,,Codex + Maintainer
+REL-016,Duplication stress tests pass,P0,Not Started,,Codex + Maintainer
+REL-017,100-resident performance gate passes,P0,Not Started,,Codex + Maintainer
+REL-018,Config reference complete,P1,Not Started,,Codex + Maintainer
+REL-019,en_us/fr_fr complete,P1,Not Started,,Codex + Maintainer
+REL-020,README/README_FR complete,P1,Not Started,,Codex + Maintainer
+REL-021,CurseForge copy complete,P1,Not Started,,Codex + Maintainer
+REL-022,Credits complete,P0,Not Started,,Codex + Maintainer
+REL-023,No affiliation claim,P0,Not Started,,Codex + Maintainer
+REL-024,Upgrade/rollback guide complete,P1,Not Started,,Codex + Maintainer
+REL-025,Crash-report guide complete,P2,Not Started,,Codex + Maintainer

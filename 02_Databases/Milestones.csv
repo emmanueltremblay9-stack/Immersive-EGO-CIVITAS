@@ -1,0 +1,16 @@
+﻿Milestone ID,Milestone,Release Target,Status,Goal,Exit Criteria,Owner
+M0,Legal & Source Baseline,Internal Gate,Not Started,Every upstream source and asset boundary is documented.,"GPL repo, dependency audit and provenance gates pass.",Codex + Maintainer
+M1,Bootable Integration Harness,0.0.1-dev,Not Started,All mandatory dependencies boot and EGO API is available.,Clean client/server boot and no classloading errors.,Codex + Maintainer
+M2,Unified Resident Kernel,0.0.2-dev,Not Started,One civic identity attaches to all supported host families.,"Persistence, repair and adapter tests pass.",Codex + Maintainer
+M3,MineColonies Civic Backbone,0.0.3-dev,Not Started,"External residents participate in colony, home, job and logistics.","Recruit, assign, request and reload scenario passes.",Codex + Maintainer
+M4,MCA Social Continuity,0.0.4-dev,Not Started,MCA family and relationship truth remains intact.,No duplicate social graph and family persistence passes.,Codex + Maintainer
+M5,Unified Military Roles,0.0.5-dev,Not Started,"Supported hosts can follow, guard, patrol, equip and level.",Order and friendly-fire tests pass.,Codex + Maintainer
+M6,Desert Vertical Slice,0.1.0-alpha,Not Started,All four pillars work together during drought and raid.,End-to-end dedicated-server scenario passes.,Codex + Maintainer
+M7,Production & Logistics Alpha,0.2.0-alpha,Not Started,"Jobs, requests, reservations, couriers and schedules are reliable.",No duplication under interruption/restart.,Codex + Maintainer
+M8,NPC Crafting Alpha,0.3.0-alpha,Not Started,Residents perform configured work recipes at existing stations.,"Recipe, quality and rollback tests pass.",Codex + Maintainer
+M9,Society & Economy Alpha,0.4.0-alpha,Not Started,"Culture, reputation, dynamic value and contracts are playable.",Bounded economy and explainable reputation pass.,Codex + Maintainer
+M10,Defense Alpha,0.5.0-alpha,Not Started,"Military hierarchy, raid response and civilian shelter work.",Combat policy and raid scenario pass.,Codex + Maintainer
+M11,Civic Simulation Beta,0.7.0-beta,Not Started,"Households, education, governance, law and migration persist.",Multi-generation simulation passes.,Codex + Maintainer
+M12,Crisis & Diplomacy Beta,0.8.0-beta,Not Started,Crises and diplomacy connect survival to politics.,Crisis chains are bounded and recoverable.,Codex + Maintainer
+M13,Performance & UX Beta,0.9.0-beta,Not Started,"Dashboards, configuration and simulation tiers are release quality.",Performance budgets and config migrations pass.,Codex + Maintainer
+M14,Release Candidate,1.0.0-rc1,Not Started,"Technical, legal, source and documentation gates are complete.",Reproducible jar/source release and matrix tests pass.,Codex + Maintainer
