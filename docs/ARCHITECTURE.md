@@ -35,7 +35,9 @@ and `ResidentIdentityService` provide neutral adapter surfaces, alpha.8 adds
 reflection-backed MCA Reborn and MineColonies resident host adapters using
 verified public class/method names, and alpha.9 adds original recruitment
 orchestration that links one verified MCA host and one verified MineColonies
-host into the same canonical resident record. No upstream gameplay
-implementation source or assets have been copied. P0 provenance and asset gates
-remain active. CIV-003 still blocks Modern Companions implementation-detail
-adaptation until an immutable source commit mapping is proven.
+host into the same canonical resident record. Alpha.10 adds a runtime contract
+for the MineColonies assignment-module APIs that CIVITAS must use before
+mutating housing or work state. No upstream gameplay implementation source or
+assets have been copied. P0 provenance and asset gates remain active. CIV-003
+still blocks Modern Companions implementation-detail adaptation until an
+immutable source commit mapping is proven.

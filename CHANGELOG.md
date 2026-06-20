@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.10
+
+- Added an original MineColonies assignment API contract for the public home,
+  work, assignment-module, and job methods that CIVITAS must use before
+  mutating colony state.
+- Added a GameTest that verifies the installed MineColonies runtime still
+  exposes that assignment surface.
+- Added `docs/MINECOLONIES_ASSIGNMENT_API_AUDIT.md` with the pinned source and
+  runtime evidence for the safe assignment sequence.
+- Rebuilt and installed `immersive_ego_civitas-0.1.0-alpha.10.jar`; unit tests,
+  clean build, provenance validation, server GameTests, and Prism client smoke
+  passed.
+- No upstream implementation source or assets were copied or adapted.
+
 ## 0.1.0-alpha.9
 
 - Added original resident recruitment orchestration that merges a verified MCA

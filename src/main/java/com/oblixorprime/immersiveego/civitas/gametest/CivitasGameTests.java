@@ -5,6 +5,7 @@ import com.oblixorprime.immersiveego.civitas.resident.CivitasAuthority;
 import com.oblixorprime.immersiveego.civitas.resident.CivitasResidentSavedData;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentHostKey;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRecord;
+import com.oblixorprime.immersiveego.civitas.resident.upstream.MineColoniesAssignmentApiContract;
 import com.oblixorprime.immersiveego.civitas.resident.upstream.UpstreamResidentApiContract;
 import com.oblixorprime.immersiveego.civitas.resident.upstream.UpstreamResidentHostAdapters;
 import java.util.UUID;
@@ -43,6 +44,17 @@ public final class CivitasGameTests {
                 UpstreamResidentHostAdapters.createRegistry().adapters().size(),
                 2,
                 "MCA and MineColonies resident host adapters should be registered");
+        helper.succeed();
+    }
+
+    @GameTest(template = EMPTY, timeoutTicks = 20)
+    public static void mineColoniesAssignmentApiContractMatchesInstalledRuntime(GameTestHelper helper) {
+        var missingMembers = MineColoniesAssignmentApiContract.missingMembers(
+                Thread.currentThread().getContextClassLoader());
+
+        helper.assertTrue(
+                missingMembers.isEmpty(),
+                "installed MineColonies assignment API is missing members: " + missingMembers);
         helper.succeed();
     }
 

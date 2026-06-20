@@ -17,8 +17,8 @@
   cross-resident conflict rejection, and reversed upstream host rejection.
 - GameTests for runtime boot, resident SavedData host lookup, and resident NBT
   round-trip.
-- GameTest runtime contract for installed MCA Reborn and MineColonies resident
-  API class/method surfaces.
+- GameTest runtime contracts for installed MCA Reborn, MineColonies resident
+  API, and MineColonies assignment API class/method surfaces.
 
 ## Required future gates
 

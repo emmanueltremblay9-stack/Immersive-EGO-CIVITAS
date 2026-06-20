@@ -62,8 +62,13 @@ Downloaded jars are kept only in the ignored local cache
   Balm, and Bad Packets integrations. `runGameTestServer` proved Waystones is
   effectively required for this artifact because automatic subscriber scanning
   loads `WaystoneTeleportEvent$Post`; Waystones then requires Balm.
-- Server smoke with CIVITAS `0.1.0-alpha.9` loads Immersive EGO
+- Server smoke with CIVITAS `0.1.0-alpha.10` loads Immersive EGO
   `0.1.0-alpha.27` from the Prism LAB mods directory.
+- The installed CIVITAS `0.1.0-alpha.10` jar is
+  `immersive_ego_civitas-0.1.0-alpha.10.jar`, size `51176`, SHA-256
+  `12892d66a42323587202d2040fb355ce1d43ecc1c4a19ecd673bd0eefe6095e2`, and
+  contains `MineColoniesAssignmentApiContract.class`,
+  `CivitasGameTests.class`, and `META-INF/neoforge.mods.toml`.
 
 ## Blocking gaps before source adaptation
 

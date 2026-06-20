@@ -81,4 +81,12 @@
   `ResidentRecruitmentService` requires an MCA host and a MineColonies host,
   merges their exact host keys into one canonical resident record, and rejects
   cross-resident host conflicts or reversed upstream host roles.
+- Inspected pinned MineColonies source/runtime assignment surfaces and added
+  original alpha.10 `MineColoniesAssignmentApiContract` coverage for public
+  home, work, assignment-module, and job mutation methods. CIVITAS still does
+  not mutate MineColonies state.
+- Advanced CIVITAS to `0.1.0-alpha.10`, installed the verified jar into Prism
+  LAB, and verified unit tests, clean build, provenance validation, server
+  GameTests, and Prism client smoke. The installed jar SHA-256 is
+  `12892d66a42323587202d2040fb355ce1d43ecc1c4a19ecd673bd0eefe6095e2`.
 - No upstream implementation source was copied or adapted.

@@ -7,7 +7,7 @@
 - State: planning pack plus P0 governance/provenance skeleton, artifact audit,
   and initial NeoForge harness.
 - NeoForge build harness exists for `immersive_ego_civitas` version
-  `0.1.0-alpha.9`.
+  `0.1.0-alpha.10`.
 
 ## Implemented this session
 
@@ -70,6 +70,15 @@
   canonical resident record and rejects cross-resident conflicts or reversed
   upstream host roles.
 - Built and installed `immersive_ego_civitas-0.1.0-alpha.9.jar` into the Prism
+  LAB `minecraft\mods` folder with SHA-256 match.
+- Inspected pinned MineColonies source/runtime assignment surfaces and added
+  original `MineColoniesAssignmentApiContract` coverage for the public home,
+  work, assignment-module, and job methods that CIVITAS must use before
+  mutating colony state.
+- Added `docs/MINECOLONIES_ASSIGNMENT_API_AUDIT.md` and a GameTest asserting
+  that the installed MineColonies runtime still exposes that assignment API
+  surface.
+- Built and installed `immersive_ego_civitas-0.1.0-alpha.10.jar` into the Prism
   LAB `minecraft\mods` folder with SHA-256 match.
 
 ## Exact commands run
@@ -154,6 +163,17 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240
 jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.1 TesT LaB\minecraft\mods\immersive_ego_civitas-0.1.0-alpha.9.jar"
+Invoke-WebRequest -UseBasicParsing -Uri 'https://codeload.github.com/ldtteam/minecolonies/zip/35bd7ad7448c562c84d11dc9dff5b067e8f131e5'
+javap -classpath "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.1 TesT LaB\minecraft\mods\minecolonies-1.1.1319-1.21.1.jar" -public com.minecolonies.api.colony.buildings.modules.IAssignsCitizen com.minecolonies.api.colony.buildings.modules.IAssignsJob
+javap -classpath "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.1 TesT LaB\minecraft\mods\minecolonies-1.1.1319-1.21.1.jar" -public com.minecolonies.api.colony.ICitizenData com.minecolonies.api.colony.jobs.IJob
+javap -classpath "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.1 TesT LaB\minecraft\mods\minecolonies-1.1.1319-1.21.1.jar" -public com.minecolonies.core.colony.jobs.AbstractJob
+.\gradlew.bat --no-daemon test
+.\gradlew.bat --no-daemon clean build
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-provenance.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240
+jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.1 TesT LaB\minecraft\mods\immersive_ego_civitas-0.1.0-alpha.10.jar"
 ```
 
 ## Test results
@@ -163,7 +183,7 @@ jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.
 - `.\gradlew.bat --no-daemon test` passed.
 - `.\gradlew.bat --no-daemon clean build` passed.
 - `scripts\run-gametest-smoke.ps1` passed and `build\gametest-smoke.log`
-  contains `All 4 required tests passed :)` and
+  contains `All 5 required tests passed :)` and
   `pinned runtime dependency check passed`.
 - `scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240` passed and
   `build\client-smoke-report.json` contains `result=passed`, all CIVITAS and
@@ -171,10 +191,10 @@ jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.
   no failure markers, and no crash reports since launch.
 - `.\install-mod.ps1 -SkipBuild` produced `build/install-report.json` with
   `hashMatch=true`, `remainingInstalledJarCount=1`, and installed SHA-256
-  `f00d1de57fdfb039a2218becccf0537a75203758414f6c8d82aba406dfbc90e0`.
-- The installed alpha.9 jar contains the resident upstream adapter classes,
-  recruitment service/result classes, resident registry classes, and
-  `CivitasGameTests.class`.
+  `12892d66a42323587202d2040fb355ce1d43ecc1c4a19ecd673bd0eefe6095e2`.
+- The installed alpha.10 jar contains the resident upstream adapter classes,
+  recruitment service/result classes, resident registry classes,
+  `MineColoniesAssignmentApiContract.class`, and `CivitasGameTests.class`.
 - `scripts\install-runtime-deps.ps1` produced `build/runtime-deps-report.json`
   with `allHashesMatch=true` and `allSingleInstalled=true`.
 - Sibling Immersive EGO `.\gradlew.bat --no-daemon clean build` passed and
@@ -218,6 +238,7 @@ jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.
 ## Next exact task
 
 Continue `CIV-058` by proving the exact safe MineColonies assignment/mutation
-surface for an already-linked MCA/MineColonies resident, then add a GameTest or
-contract guard before mutating upstream state. Modern Companions `2.0` source
-mapping remains a hard release blocker.
+execution path for an already-linked MCA/MineColonies resident using
+`IAssignsCitizen#assignCitizen`, `IAssignsJob#assignCitizen`, and repairable
+rollback/no-op handling before mutating upstream state. Modern Companions `2.0`
+source mapping remains a hard release blocker.
