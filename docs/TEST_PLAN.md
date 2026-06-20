@@ -17,6 +17,9 @@
   cross-resident conflict rejection, and reversed upstream host rejection.
 - Pure Java unit tests for repairable MineColonies assignment execution,
   rejection/no-op handling, rollback, and partial mutation cleanup.
+- Pure Java unit tests for MineColonies assignment module discovery,
+  ambiguous target rejection, previous-module rollback discovery, and routing
+  discovered modules through the repairable executor.
 - GameTests for runtime boot, resident SavedData host lookup, and resident NBT
   round-trip.
 - GameTest runtime contracts for installed MCA Reborn, MineColonies resident

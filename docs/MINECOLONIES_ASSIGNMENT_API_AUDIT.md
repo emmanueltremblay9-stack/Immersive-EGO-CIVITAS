@@ -89,3 +89,22 @@ Alpha.14 adds `MineColoniesAssignmentService`, `MineColoniesAssignmentPlan`, and
   assignment and restores the previous module when one is provided.
 - It still does not discover live building modules or mutate real colony state
   from gameplay code; that remains the next slice.
+
+Alpha.17 adds `MineColoniesAssignmentModuleLocator`,
+`MineColoniesAssignmentResolution`, and `MineColoniesAssignmentCoordinator`.
+
+- The locator loads the verified `IAssignsCitizen` and `IAssignsJob`
+  interfaces from the runtime classloader.
+- For home assignment it asks the target building for `IAssignsCitizen`
+  modules and excludes modules that also implement `IAssignsJob`, avoiding
+  worker modules as housing targets.
+- For work assignment it asks the target building for `IAssignsJob` modules.
+- Target selection succeeds only when the module is already assigned to the
+  citizen or when exactly one open target module exists.
+- Previous home modules are discovered from the citizen's current home
+  building; previous work modules are discovered from `getJob().getWorkModule()`
+  so the executor can restore them on rollback.
+- The coordinator returns a normal assignment failure for unresolved or
+  ambiguous modules and otherwise routes the plan through
+  `MineColoniesAssignmentService`.
+- CIVITAS still does not directly set MineColonies citizen home/job fields.

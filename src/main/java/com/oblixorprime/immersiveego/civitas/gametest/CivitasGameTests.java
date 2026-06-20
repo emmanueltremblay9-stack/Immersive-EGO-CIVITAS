@@ -6,6 +6,7 @@ import com.oblixorprime.immersiveego.civitas.resident.CivitasResidentSavedData;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentHostKey;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRecord;
 import com.oblixorprime.immersiveego.civitas.resident.upstream.MineColoniesAssignmentApiContract;
+import com.oblixorprime.immersiveego.civitas.resident.upstream.MineColoniesAssignmentModuleLocator;
 import com.oblixorprime.immersiveego.civitas.resident.upstream.UpstreamResidentApiContract;
 import com.oblixorprime.immersiveego.civitas.resident.upstream.UpstreamResidentHostAdapters;
 import java.util.UUID;
@@ -55,6 +56,11 @@ public final class CivitasGameTests {
         helper.assertTrue(
                 missingMembers.isEmpty(),
                 "installed MineColonies assignment API is missing members: " + missingMembers);
+        var missingLocatorTypes = MineColoniesAssignmentModuleLocator.missingRuntimeTypes(
+                Thread.currentThread().getContextClassLoader());
+        helper.assertTrue(
+                missingLocatorTypes.isEmpty(),
+                "installed MineColonies assignment locator types are missing: " + missingLocatorTypes);
         helper.succeed();
     }
 

@@ -10,7 +10,7 @@ public final class CivitasRuntimeDependencyGuard {
     private static final String AUDIT_SOURCE = "docs/ARTIFACT_AUDIT.md";
 
     private static final List<RuntimeRequirement> REQUIRED_MODS = List.of(
-            exact("immersive_ego", "Immersive EGO", "0.1.0-alpha.29"),
+            exact("immersive_ego", "Immersive EGO", "0.1.0-alpha.33"),
             exact("minecolonies", "MineColonies", "1.1.1319-1.21.1"),
             exact("structurize", "Structurize", "1.0.810-1.21.1-snapshot"),
             exact("blockui", "BlockUI", "1.0.199-1.21.1-snapshot"),

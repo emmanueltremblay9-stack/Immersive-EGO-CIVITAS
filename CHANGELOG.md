@@ -1,5 +1,39 @@
 # Changelog
 
+## 0.1.0-alpha.19
+
+- Refreshed the exact runtime guard and metadata floor for the current Prism
+  LAB Immersive EGO prerequisite, `0.1.0-alpha.33`.
+- Rebuilt and installed `immersive_ego_civitas-0.1.0-alpha.19.jar`; unit tests,
+  clean build, provenance validation, server GameTests, and Prism client smoke
+  passed.
+- The installed CIVITAS jar SHA-256 is
+  `5620ebd9c166140bbad097b474649bb8242266fcc6f651c0f04ed4c54272aac5`.
+- No upstream implementation source or assets were copied or adapted.
+
+## 0.1.0-alpha.18
+
+- Added original MineColonies assignment module discovery:
+  `MineColoniesAssignmentModuleLocator`,
+  `MineColoniesAssignmentResolution`, and
+  `MineColoniesAssignmentCoordinator`.
+- Refreshed the exact runtime guard and metadata floor for the current Prism
+  LAB Immersive EGO prerequisite, `0.1.0-alpha.32`.
+- The locator loads the verified `IAssignsCitizen` and `IAssignsJob` runtime
+  interfaces, selects unambiguous home/work assignment modules from live
+  building objects, captures previous modules for rollback, and rejects
+  ambiguous or full targets instead of guessing.
+- The coordinator routes resolved plans through
+  `MineColoniesAssignmentService`; CIVITAS still does not directly set
+  MineColonies citizen home/job fields.
+- Added unit coverage for living-module selection, worker-module exclusion from
+  home assignment, previous work module rollback discovery, ambiguous-module
+  rejection, and coordinator rollback behavior.
+- Rebuilt and installed `immersive_ego_civitas-0.1.0-alpha.18.jar`; unit tests,
+  clean build, provenance validation, server GameTests, and Prism client smoke
+  passed.
+- No upstream implementation source or assets were copied or adapted.
+
 ## 0.1.0-alpha.14
 
 - Added an original repairable MineColonies assignment executor:

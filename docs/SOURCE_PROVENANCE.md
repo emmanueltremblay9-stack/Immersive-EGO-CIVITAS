@@ -31,7 +31,8 @@ Summary: <short summary of changes>
 Only original CIVITAS bootstrap, runtime guard, resident registry, SavedData,
 host-adapter registry, identity service, reflection-backed MCA/MineColonies
 host adapters, upstream API contract checks, recruitment orchestration service,
-MineColonies assignment API contract, repairable assignment executor, and test
+MineColonies assignment API contract, repairable assignment executor,
+assignment module locator/coordinator, and test
 source exists. The reflection-backed adapters, runtime contracts, and assignment
 executor use public class and method names from pinned source/runtime evidence
 as strings; no upstream implementation bodies were copied or adapted. Modern

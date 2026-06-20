@@ -104,4 +104,29 @@
   LAB, and verified unit tests, clean build, provenance validation, server
   GameTests, and Prism client smoke. The installed jar SHA-256 is
   `9b237d04a53e50de9358e3c31456e49c42c5d3372da7d44b9e9583e9ee6fa495`.
+- Added original alpha.18 MineColonies assignment module discovery:
+  `MineColoniesAssignmentModuleLocator`, `MineColoniesAssignmentResolution`,
+  and `MineColoniesAssignmentCoordinator`. The locator discovers live
+  building-object home/work modules through the verified public
+  `IAssignsCitizen` and `IAssignsJob` interfaces, rejects ambiguous targets,
+  captures previous modules for rollback, and routes resolved plans through the
+  repairable assignment executor.
+- Refreshed the exact runtime dependency guard to the current Prism LAB
+  Immersive EGO prerequisite `0.1.0-alpha.32`. The sibling
+  `immersive_ego-0.1.0-alpha.32.jar` build artifact hash matches the installed
+  jar, but the sibling source checkout is dirty, so immutable source mapping is
+  blocked.
+- Advanced CIVITAS to `0.1.0-alpha.18`, installed the verified jar into Prism
+  LAB, and verified unit tests, clean build, provenance validation, server
+  GameTests, and Prism client smoke. The installed jar SHA-256 is
+  `c6b4ef79e8894fdcf2e5474271e126a4d26e4ed55fea339bfb90ce5f9391951b`.
+- Refreshed the exact runtime dependency guard to the current Prism LAB
+  Immersive EGO prerequisite `0.1.0-alpha.33`. The sibling
+  `immersive_ego-0.1.0-alpha.33.jar` build artifact hash matches the installed
+  jar, but the sibling source checkout is dirty, so immutable source mapping is
+  blocked.
+- Advanced CIVITAS to `0.1.0-alpha.19`, installed the verified jar into Prism
+  LAB, and verified unit tests, clean build, provenance validation, server
+  GameTests, and Prism client smoke. The installed jar SHA-256 is
+  `5620ebd9c166140bbad097b474649bb8242266fcc6f651c0f04ed4c54272aac5`.
 - No upstream implementation source was copied or adapted.
