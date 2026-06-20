@@ -129,4 +129,18 @@
   LAB, and verified unit tests, clean build, provenance validation, server
   GameTests, and Prism client smoke. The installed jar SHA-256 is
   `5620ebd9c166140bbad097b474649bb8242266fcc6f651c0f04ed4c54272aac5`.
+- Added original alpha.21 linked-resident assignment trigger guards:
+  `LinkedResidentAssignmentService`, `ResidentDirectory`, and
+  `MineColoniesAssignmentGateway`. The trigger refuses to delegate to the
+  MineColonies assignment coordinator unless the MineColonies citizen resolves
+  to an existing CIVITAS resident that also has an MCA Reborn host link.
+- Refreshed the exact runtime dependency guard to the current Prism LAB
+  Immersive EGO prerequisite `0.1.0-alpha.35`. The sibling
+  `immersive_ego-0.1.0-alpha.35.jar` build artifact hash matches the installed
+  jar, but the sibling source checkout is dirty, so immutable source mapping is
+  blocked.
+- Advanced CIVITAS to `0.1.0-alpha.21`, installed the verified jar into Prism
+  LAB, and verified unit tests, clean build, provenance validation, server
+  GameTests, and Prism client smoke. The installed jar SHA-256 is
+  `b1fa1197211a4ad16740a2746ba0003935ea11991c293f08301c2647bab7b1ca`.
 - No upstream implementation source was copied or adapted.

@@ -1,6 +1,6 @@
 package com.oblixorprime.immersiveego.civitas.resident.upstream;
 
-public final class MineColoniesAssignmentCoordinator {
+public final class MineColoniesAssignmentCoordinator implements MineColoniesAssignmentGateway {
     private final MineColoniesAssignmentModuleLocator moduleLocator;
     private final MineColoniesAssignmentService assignmentService;
 
@@ -15,6 +15,7 @@ public final class MineColoniesAssignmentCoordinator {
         this.assignmentService = assignmentService;
     }
 
+    @Override
     public MineColoniesAssignmentResult assignHomeOnly(
             Object citizenData,
             Object targetHomeBuilding) {
@@ -26,6 +27,7 @@ public final class MineColoniesAssignmentCoordinator {
         return assignmentService.execute(resolution.plan());
     }
 
+    @Override
     public MineColoniesAssignmentResult assignHomeAndWork(
             Object citizenData,
             Object targetHomeBuilding,

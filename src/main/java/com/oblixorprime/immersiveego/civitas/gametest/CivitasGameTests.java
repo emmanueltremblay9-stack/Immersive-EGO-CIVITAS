@@ -3,12 +3,18 @@ package com.oblixorprime.immersiveego.civitas.gametest;
 import com.oblixorprime.immersiveego.civitas.ImmersiveEgoCivitas;
 import com.oblixorprime.immersiveego.civitas.resident.CivitasAuthority;
 import com.oblixorprime.immersiveego.civitas.resident.CivitasResidentSavedData;
+import com.oblixorprime.immersiveego.civitas.resident.LinkedResidentAssignmentService;
+import com.oblixorprime.immersiveego.civitas.resident.ResidentHostAdapter;
+import com.oblixorprime.immersiveego.civitas.resident.ResidentHostAdapterRegistry;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentHostKey;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRecord;
 import com.oblixorprime.immersiveego.civitas.resident.upstream.MineColoniesAssignmentApiContract;
+import com.oblixorprime.immersiveego.civitas.resident.upstream.MineColoniesAssignmentGateway;
 import com.oblixorprime.immersiveego.civitas.resident.upstream.MineColoniesAssignmentModuleLocator;
+import com.oblixorprime.immersiveego.civitas.resident.upstream.MineColoniesAssignmentResult;
 import com.oblixorprime.immersiveego.civitas.resident.upstream.UpstreamResidentApiContract;
 import com.oblixorprime.immersiveego.civitas.resident.upstream.UpstreamResidentHostAdapters;
+import java.util.Optional;
 import java.util.UUID;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
@@ -105,5 +111,80 @@ public final class CivitasGameTests {
                 created.residentId(),
                 "MineColonies host should resolve after NBT load");
         helper.succeed();
+    }
+
+    @GameTest(template = EMPTY, timeoutTicks = 20)
+    public static void linkedResidentAssignmentRequiresLinkedResident(GameTestHelper helper) {
+        ResidentHostAdapterRegistry adapters = new ResidentHostAdapterRegistry();
+        adapters.register(new GameTestMineColoniesAdapter());
+        RecordingAssignmentGateway assignments = new RecordingAssignmentGateway();
+        LinkedResidentAssignmentService service = new LinkedResidentAssignmentService(adapters, assignments);
+        CivitasResidentSavedData savedData = new CivitasResidentSavedData();
+        GameTestMineColoniesCitizen citizen = new GameTestMineColoniesCitizen("colony:17/citizen:42");
+        Object targetHome = new Object();
+        Object targetWork = new Object();
+
+        MineColoniesAssignmentResult missingResident =
+                service.assignHomeAndWork(savedData, citizen, targetHome, targetWork);
+        helper.assertTrue(!missingResident.succeeded(), "unlinked citizen must fail closed");
+        helper.assertTrue(!assignments.called, "unlinked citizen must not mutate MineColonies assignments");
+
+        ResidentRecord record = savedData.getOrCreate(
+                new ResidentHostKey(CivitasAuthority.MINECOLONIES, citizen.hostId()),
+                100L);
+        MineColoniesAssignmentResult missingMcaHost =
+                service.assignHomeAndWork(savedData, citizen, targetHome, targetWork);
+        helper.assertTrue(!missingMcaHost.succeeded(), "half-linked citizen must fail closed");
+        helper.assertTrue(!assignments.called, "half-linked citizen must not mutate MineColonies assignments");
+
+        savedData.linkHost(
+                record.residentId(),
+                new ResidentHostKey(CivitasAuthority.MCA_REBORN, "villager_entity:demo"),
+                101L);
+        MineColoniesAssignmentResult linked =
+                service.assignHomeAndWork(savedData, citizen, targetHome, targetWork);
+        helper.assertTrue(linked.succeeded(), "linked citizen should delegate to assignment gateway");
+        helper.assertTrue(assignments.called, "linked citizen should reach assignment gateway");
+        helper.succeed();
+    }
+
+    private record GameTestMineColoniesCitizen(String hostId) {
+    }
+
+    private static final class GameTestMineColoniesAdapter
+            implements ResidentHostAdapter<GameTestMineColoniesCitizen> {
+        @Override
+        public CivitasAuthority authority() {
+            return CivitasAuthority.MINECOLONIES;
+        }
+
+        @Override
+        public Class<GameTestMineColoniesCitizen> hostType() {
+            return GameTestMineColoniesCitizen.class;
+        }
+
+        @Override
+        public Optional<ResidentHostKey> identify(GameTestMineColoniesCitizen host) {
+            return Optional.of(new ResidentHostKey(authority(), host.hostId()));
+        }
+    }
+
+    private static final class RecordingAssignmentGateway implements MineColoniesAssignmentGateway {
+        private boolean called;
+
+        @Override
+        public MineColoniesAssignmentResult assignHomeOnly(Object citizenData, Object targetHomeBuilding) {
+            called = true;
+            return MineColoniesAssignmentResult.applied(true, false, "recorded home assignment");
+        }
+
+        @Override
+        public MineColoniesAssignmentResult assignHomeAndWork(
+                Object citizenData,
+                Object targetHomeBuilding,
+                Object targetWorkBuilding) {
+            called = true;
+            return MineColoniesAssignmentResult.applied(true, true, "recorded home/work assignment");
+        }
     }
 }

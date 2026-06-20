@@ -12,7 +12,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 
-public final class CivitasResidentSavedData extends SavedData {
+public final class CivitasResidentSavedData extends SavedData implements ResidentDirectory {
     public static final String FILE_ID = ImmersiveEgoCivitas.MOD_ID + "_residents";
 
     private static final String TAG_SCHEMA = "schema";
@@ -38,6 +38,7 @@ public final class CivitasResidentSavedData extends SavedData {
         return registry.records();
     }
 
+    @Override
     public Optional<ResidentRecord> find(ResidentHostKey hostKey) {
         return registry.find(hostKey);
     }

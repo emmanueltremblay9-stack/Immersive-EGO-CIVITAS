@@ -7,8 +7,8 @@ Current local state:
 - Remote: `https://github.com/emmanueltremblay9-stack/Immersive-EGO.git`
 - Branch: `main`
 - Commit: `789238c475ecabc19808b9ac7d99df7f457670b8`
-- Prism LAB prerequisite: `immersive_ego-0.1.0-alpha.33.jar`
-- SHA-256: `1acdea17171e4b401362a6e3d98173fd103032f7508a6abb15e38b80747a8905`
+- Prism LAB prerequisite: `immersive_ego-0.1.0-alpha.35.jar`
+- SHA-256: `af1f7a6f0662d080d33cfbff13de67c813127c7fc81c709bbdcf54567a0ce3a9`
 - License: MIT
 - Minecraft: `1.21.1`
 - NeoForge: `21.1.233`

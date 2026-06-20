@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.0-alpha.21
+
+- Added original linked-resident assignment trigger surface:
+  `LinkedResidentAssignmentService`, `ResidentDirectory`, and
+  `MineColoniesAssignmentGateway`.
+- The trigger refuses to call the MineColonies assignment gateway unless the
+  MineColonies citizen already resolves to a CIVITAS resident that also has an
+  MCA Reborn host link.
+- Added unit coverage and a server GameTest guard for unlinked, half-linked,
+  and fully linked assignment trigger behavior.
+- Refreshed the exact runtime guard and metadata floor for the current Prism
+  LAB Immersive EGO prerequisite, `0.1.0-alpha.35`.
+- Rebuilt and installed `immersive_ego_civitas-0.1.0-alpha.21.jar`; unit tests,
+  clean build, provenance validation, server GameTests, and Prism client smoke
+  passed.
+- The installed CIVITAS jar SHA-256 is
+  `b1fa1197211a4ad16740a2746ba0003935ea11991c293f08301c2647bab7b1ca`.
+- No upstream implementation source or assets were copied or adapted.
+
 ## 0.1.0-alpha.19
 
 - Refreshed the exact runtime guard and metadata floor for the current Prism

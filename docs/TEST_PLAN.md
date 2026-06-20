@@ -20,10 +20,13 @@
 - Pure Java unit tests for MineColonies assignment module discovery,
   ambiguous target rejection, previous-module rollback discovery, and routing
   discovered modules through the repairable executor.
+- Pure Java unit tests for linked-resident assignment trigger guards, including
+  unlinked MineColonies hosts, missing MCA links, and successful delegation.
 - GameTests for runtime boot, resident SavedData host lookup, and resident NBT
   round-trip.
 - GameTest runtime contracts for installed MCA Reborn, MineColonies resident
-  API, and MineColonies assignment API class/method surfaces.
+  API, MineColonies assignment API class/method surfaces, and linked-resident
+  assignment trigger guard behavior.
 
 ## Required future gates
 

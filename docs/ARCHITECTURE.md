@@ -41,9 +41,11 @@ mutating housing or work state. Alpha.14 adds an original repairable assignment
 executor that calls assignment modules and rolls back target module changes on
 downstream assignment failure. Alpha.17 adds live building-object module
 discovery and a coordinator that routes discovered home/work modules through the
-repairable executor. Gameplay event wiring and live colony mutation triggers are
-still pending. No upstream gameplay implementation source or assets
+repairable executor. Alpha.21 adds a linked-resident assignment trigger that
+fails closed unless the MineColonies citizen is already linked to an MCA-backed
+CIVITAS resident. Gameplay event wiring and live colony lookup are still
+pending. No upstream gameplay implementation source or assets
 have been copied. P0 provenance and asset gates remain active. CIV-003 still
 blocks Modern Companions implementation-detail adaptation and release packaging
 until immutable source commit mappings are proven for Modern Companions `2.0`
-and the current Immersive EGO `0.1.0-alpha.33` prerequisite.
+and the current Immersive EGO `0.1.0-alpha.35` prerequisite.

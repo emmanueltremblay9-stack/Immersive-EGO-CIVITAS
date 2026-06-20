@@ -13,7 +13,7 @@ metadata are recorded in `docs/ARTIFACT_AUDIT.md`.
 | Minecraft | `1.21.1` | Mojang runtime, external | Pinned target |
 | Java | `21` | OpenJDK-compatible runtime | Pinned target |
 | NeoForge | `21.1.233` observed in Maven metadata | `neoforged/NeoForge`, 1.21.x active | Candidate loader pin |
-| Immersive EGO | `0.1.0-alpha.33` LAB jar observed during smoke | Sibling repo HEAD `789238c475ecabc19808b9ac7d99df7f457670b8` plus uncommitted local changes; sibling build artifact hash matches installed jar | Local prerequisite binary-matched; immutable source mapping blocked |
+| Immersive EGO | `0.1.0-alpha.35` LAB jar observed during smoke | Sibling repo HEAD `789238c475ecabc19808b9ac7d99df7f457670b8` plus uncommitted local changes; sibling build artifact hash matches installed jar | Local prerequisite binary-matched; immutable source mapping blocked |
 | MineColonies | `1.1.1319` for Minecraft 1.21.1 | `35bd7ad7448c562c84d11dc9dff5b067e8f131e5` | Stable audit target |
 | Structurize | `1.0.810-1.21.1-snapshot` | tag `v1.21.1-1.0.810-snapshot` commit `16a05cdb3524fae1662d8bab1f48b1d28f580c7a` | Source/release mapped |
 | Multi-Piston | `1.2.51-1.21.1-snapshot` | tag `v1.21.1-1.2.51` commit `b74560984ea1da1906e59dd2f34286d55ee30449` | Source/release mapped |
@@ -39,8 +39,8 @@ metadata are recorded in `docs/ARTIFACT_AUDIT.md`.
   matches the local SHA-256 in `docs/ARTIFACT_AUDIT.md`.
 - Immersive EGO sibling repo HEAD is
   `789238c475ecabc19808b9ac7d99df7f457670b8`, the dirty local checkout
-  declares `0.1.0-alpha.33`, and `build\libs\immersive_ego-0.1.0-alpha.33.jar`
-  SHA-256 `1acdea17171e4b401362a6e3d98173fd103032f7508a6abb15e38b80747a8905`
+  declares `0.1.0-alpha.35`, and `build\libs\immersive_ego-0.1.0-alpha.35.jar`
+  SHA-256 `af1f7a6f0662d080d33cfbff13de67c813127c7fc81c709bbdcf54567a0ce3a9`
   matches the installed Prism LAB prerequisite. Because the sibling checkout
   has uncommitted changes, this is local binary parity, not immutable
   source-to-binary proof.
@@ -79,7 +79,7 @@ metadata are recorded in `docs/ARTIFACT_AUDIT.md`.
 
 ## Blockers
 
-1. Commit and push the Immersive EGO `0.1.0-alpha.33` source state, or restore
+1. Commit and push the Immersive EGO `0.1.0-alpha.35` source state, or restore
    the previously mapped alpha.27 prerequisite.
 2. Map Modern Companions CurseForge `2.0` to an immutable source commit.
 3. Verify Modern Companions root/source license file or another authoritative
