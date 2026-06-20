@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.4
+
+- Added an original pinned runtime dependency guard that verifies the audited
+  LAB versions at common setup and fails with a CIVITAS-specific error when a
+  mandatory mod is missing or drifted.
+- Bumped the harness to `0.1.0-alpha.4`, rebuilt and installed the verified
+  Prism LAB jar, and confirmed the installed jar contains the alpha.27
+  Immersive EGO pin.
+- Updated the server and Prism client smoke wrappers to require the pinned
+  runtime guard marker before passing.
+- Updated the audit docs to reflect the current Immersive EGO LAB prerequisite
+  `immersive_ego-0.1.0-alpha.27.jar`.
+
 ## 0.1.0-alpha.3
 
 - Added a minimal NeoForge GameTest smoke gate for the original CIVITAS bootstrap.

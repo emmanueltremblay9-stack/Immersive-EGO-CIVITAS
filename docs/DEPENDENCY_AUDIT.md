@@ -13,7 +13,7 @@ metadata are recorded in `docs/ARTIFACT_AUDIT.md`.
 | Minecraft | `1.21.1` | Mojang runtime, external | Pinned target |
 | Java | `21` | OpenJDK-compatible runtime | Pinned target |
 | NeoForge | `21.1.233` observed in Maven metadata | `neoforged/NeoForge`, 1.21.x active | Candidate loader pin |
-| Immersive EGO | `0.1.0-alpha.17` LAB jar observed during smoke | `6a2f87ce56a35e78f3231daf3b03c43c9b2ca60a`; local source tree is dirty and source-to-binary proof is pending | Local prerequisite |
+| Immersive EGO | `0.1.0-alpha.27` LAB jar observed during smoke | `6a2f87ce56a35e78f3231daf3b03c43c9b2ca60a`; local source tree is dirty and source-to-binary proof is pending | Local prerequisite |
 | MineColonies | `1.1.1319` for Minecraft 1.21.1 | `35bd7ad7448c562c84d11dc9dff5b067e8f131e5` | Stable audit target |
 | Structurize | `1.0.810-1.21.1-snapshot` | tag `v1.21.1-1.0.810-snapshot` commit `16a05cdb3524fae1662d8bab1f48b1d28f580c7a` | Source/release mapped |
 | Multi-Piston | `1.2.51-1.21.1-snapshot` | tag `v1.21.1-1.2.51` commit `b74560984ea1da1906e59dd2f34286d55ee30449` | Source/release mapped |
@@ -37,10 +37,10 @@ metadata are recorded in `docs/ARTIFACT_AUDIT.md`.
   `802ab602...`.
 - MCA Reborn GitHub asset digest for `mca-neoforge-7.7.11+1.21.1.jar`
   matches the local SHA-256 in `docs/ARTIFACT_AUDIT.md`.
-- Local Immersive EGO checkout is at commit `6a2f87ce...`, with current
-  `mod_version=0.1.0-alpha.17`, `mod_license=MIT`, `minecraft_version=1.21.1`,
-  and `neo_version=21.1.233`; the worktree is dirty, so source-to-binary proof
-  is still pending.
+- Local Immersive EGO checkout is at commit `6a2f87ce...`, while the Prism LAB
+  prerequisite jar is `0.1.0-alpha.27` with SHA-256
+  `f76dd02414a960a23bb627d59307b9e54f05da1f725adebd2ae3e0ebd8c11329`; the
+  worktree is dirty, so source-to-binary proof is still pending.
 - Modern Companions CurseForge file `7902593` downloads as
   `ModernCompanions-1.21.1-2.0-NeoForge.jar` and its metadata declares
   `version = "2.0"`, `license = "GPL-3.0-only"`, required NeoForge

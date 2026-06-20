@@ -55,8 +55,19 @@ if ($matchedFailures.Count -gt 0) {
     throw "runGameTestServer log contains failure markers: $($matchedFailures -join ', '). See $LogPath."
 }
 
-if (-not $log.Contains("required tests passed")) {
-    throw "runGameTestServer log did not contain the required success marker. See $LogPath."
+$successMarkers = @(
+    "required tests passed",
+    "pinned runtime dependency check passed"
+)
+$missingSuccessMarkers = @()
+foreach ($marker in $successMarkers) {
+    if (-not $log.Contains($marker)) {
+        $missingSuccessMarkers += $marker
+    }
+}
+
+if ($missingSuccessMarkers.Count -gt 0) {
+    throw "runGameTestServer log did not contain required success markers: $($missingSuccessMarkers -join ', '). See $LogPath."
 }
 
 [pscustomobject]@{
@@ -64,5 +75,6 @@ if (-not $log.Contains("required tests passed")) {
     exitCode = $gradleExitCode
     logPath = $LogPath
     failureMarkers = $matchedFailures
+    successMarkers = $successMarkers
     result = "passed"
 } | ConvertTo-Json -Depth 4

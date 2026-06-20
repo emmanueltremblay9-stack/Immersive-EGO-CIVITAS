@@ -19,6 +19,7 @@ public final class ImmersiveEgoCivitas {
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
+        CivitasRuntimeDependencyGuard.verifyPinnedRuntime(LOGGER);
         LOGGER.info("{} common setup complete; integration surfaces are intentionally neutral.", MOD_ID);
     }
 }

@@ -36,4 +36,11 @@
 - Advanced CIV-003 by mapping Structurize, BlockUI, Domum Ornamentum,
   Multi-Piston, Waystones, and Balm runtime artifacts to immutable Git tags and
   source commits. Modern Companions `2.0` remains source-blocked.
+- Added an original pinned runtime dependency guard for the audited LAB stack,
+  advanced CIVITAS to `0.1.0-alpha.4`, and verified both server and Prism
+  client smoke gates find `pinned runtime dependency check passed`.
+- Updated the current Immersive EGO LAB prerequisite to
+  `immersive_ego-0.1.0-alpha.27.jar` with SHA-256
+  `f76dd02414a960a23bb627d59307b9e54f05da1f725adebd2ae3e0ebd8c11329`; its
+  source-to-binary proof remains blocked by the dirty sibling checkout.
 - No upstream implementation source was copied or adapted.

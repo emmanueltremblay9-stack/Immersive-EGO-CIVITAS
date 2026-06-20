@@ -12,7 +12,7 @@ Downloaded jars are kept only in the ignored local cache
 |---|---|---:|---|---|
 | NeoForge universal | `https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.233/neoforge-21.1.233-universal.jar` | 3542450 | `ff997bfd7db9735755545a0d073bfb56bef55a8c9dd17bc1bba215a5dd55fc0d` | `modId=neoforge`, version `21.1.233`, license `LGPL v2.1` |
 | NeoForge installer | `https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.233/neoforge-21.1.233-installer.jar` | 6964847 | `311475c8315ed0be6b5f1dbbf5a377b6c0976457c0bd5aa6d19b0fe25fd77148` | Maven `.sha256` sidecar matched |
-| Immersive EGO | LAB prerequisite `immersive_ego-0.1.0-alpha.17.jar` | 253497 | `0e4af22f671f775626c46993fea82594723003f1c1a159604c597b5b66cd1ee4` | `modId=immersive_ego`, version `0.1.0-alpha.17`, license `MIT`, NeoForge `[21.1.228,)`; sibling source worktree is dirty |
+| Immersive EGO | LAB prerequisite `immersive_ego-0.1.0-alpha.27.jar` | 290363 | `f76dd02414a960a23bb627d59307b9e54f05da1f725adebd2ae3e0ebd8c11329` | `modId=immersive_ego`, version `0.1.0-alpha.27`, license `MIT`, NeoForge `[21.1.228,)`; sibling source worktree is dirty |
 | MineColonies | CurseForge project `245506`, file `8138370`, `minecolonies-1.1.1319-1.21.1.jar` | 77496046 | `ab97c0eec45c3f2539ec31428e3c836bb30ba1c537af0c86f5ab4e38754f6a4d` | `modId=minecolonies`, version `1.1.1319-1.21.1`, license `GPL3`, NeoForge `[21.1.0, )` |
 | Structurize | CurseForge project `298744`, file `7643353`, `structurize-1.0.810-1.21.1-snapshot.jar` | 1058690 | `7379ee90fde4abaeda6857d954e7cfa1ddb07a526bd425d3f7f23ae47d81ed14` | `modId=structurize`, version `1.0.810-1.21.1-snapshot`, license `GPL 3.0`, NeoForge `[21.0.143,)` |
 | BlockUI | CurseForge project `522992`, file `6367809`, `blockui-1.0.199-1.21.1-snapshot.jar` | 468231 | `238b2e9fda99620318dfa9197754b3f803fff73f7f711f1065ac900d2e4ee9ef` | `modId=blockui`, version `1.0.199-1.21.1-snapshot`, license `GPL3`, NeoForge `[21.1,)` |
@@ -29,7 +29,7 @@ Downloaded jars are kept only in the ignored local cache
 |---|---|
 | MineColonies | Release tag `v1.21.1-1.1.1319` maps to commit `35bd7ad7448c562c84d11dc9dff5b067e8f131e5`. |
 | MCA Reborn | Release tag `7.7.11+1.21.1` maps to commit `802ab602a7e2aea6284853722ffde88f23cd6840`. |
-| Immersive EGO | Local repository HEAD is `6a2f87ce56a35e78f3231daf3b03c43c9b2ca60a`; LAB smoke used `0.1.0-alpha.17`, but source-to-binary proof remains conditional because that external worktree has uncommitted changes. |
+| Immersive EGO | Local repository HEAD is `6a2f87ce56a35e78f3231daf3b03c43c9b2ca60a`; LAB now uses `0.1.0-alpha.27`, but source-to-binary proof remains conditional because that external worktree has uncommitted changes. |
 | NeoForge | Maven artifacts and hashes are pinned; no CIVITAS source is adapted from NeoForge. |
 | Structurize | Tag `v1.21.1-1.0.810-snapshot` maps to commit `16a05cdb3524fae1662d8bab1f48b1d28f580c7a`; raw `gradle.properties` at that commit declares Minecraft `1.21.1`, BlockUI `1.0.191-1.21.1-snapshot`, and Domum Ornamentum `1.0.203-1.21.1-snapshot`. |
 | BlockUI | Tag `v1.21.1-1.0.199` maps to commit `29c2e55fa09f3d8168dc2677368188d22e2f3688`; raw `gradle.properties` at that commit declares Minecraft `1.21.1` and NeoForge `21.1.113`. |
@@ -57,8 +57,8 @@ Downloaded jars are kept only in the ignored local cache
   Balm, and Bad Packets integrations. `runGameTestServer` proved Waystones is
   effectively required for this artifact because automatic subscriber scanning
   loads `WaystoneTeleportEvent$Post`; Waystones then requires Balm.
-- Server smoke with CIVITAS `0.1.0-alpha.3` loaded Immersive EGO
-  `0.1.0-alpha.17` from the Prism LAB mods directory.
+- Server smoke with CIVITAS `0.1.0-alpha.4` loads Immersive EGO
+  `0.1.0-alpha.27` from the Prism LAB mods directory.
 
 ## Blocking gaps before source adaptation
 

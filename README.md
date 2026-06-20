@@ -12,7 +12,7 @@
 | Loader | `NeoForge` |
 | Java | `21` |
 | License | `GPL-3.0-only` |
-| Current harness | `0.1.0-alpha.3` |
+| Current harness | `0.1.0-alpha.4` |
 | Planning baseline | `2026-06-19` |
 
 ## Four mandatory pillars
@@ -32,6 +32,8 @@
 - MCA remains family authority; MineColonies remains colony authority; Immersive EGO remains needs authority.
 - Every material gameplay rule is configurable.
 - Dedicated-server safety, atomic logistics and save migration are release gates.
+- The bootstrap fails fast if the installed mandatory runtime mods do not match
+  the audited LAB version pins in `docs/ARTIFACT_AUDIT.md`.
 
 ## First playable target
 
@@ -60,13 +62,13 @@ A desert MineColonies settlement recruits an MCA villager, assigns family-aware 
 ```powershell
 .\gradlew.bat --no-daemon clean build
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-provenance.ps1
-pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1
-pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240
 pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\install-runtime-deps.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240
 ```
 
-The current harness build produces `immersive_ego_civitas-0.1.0-alpha.3.jar`.
+The current harness build produces `immersive_ego_civitas-0.1.0-alpha.4.jar`.
 The installer writes `build/install-report.json`; runtime dependency install
 proof is written to `build/runtime-deps-report.json`; client smoke proof is
 written to `build/client-smoke-report.json`.

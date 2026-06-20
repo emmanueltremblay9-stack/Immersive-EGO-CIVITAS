@@ -33,13 +33,19 @@
   - Upstream source/commit: Original CIVITAS test and build tooling; no upstream implementation source copied.
   - Provenance manifest ID: N/A, original source only.
   - Tests: `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1`.
-  - Evidence: `build\gametest-smoke.log` reported `All 1 required tests passed :)` with CIVITAS `0.1.0-alpha.3`, Immersive EGO `0.1.0-alpha.17`, MineColonies, MCA, Modern Companions, Waystones, and Balm loaded.
+  - Evidence: `build\gametest-smoke.log` reported `All 1 required tests passed :)` with CIVITAS `0.1.0-alpha.4`, Immersive EGO `0.1.0-alpha.27`, MineColonies, MCA, Modern Companions, Waystones, Balm, and the pinned runtime guard marker loaded.
 - [x] CIV-010 - Run client smoke boot
-  - Acceptance: Prism LAB client reaches a responsive Minecraft client window with CIVITAS `0.1.0-alpha.3` installed and no crash markers.
+  - Acceptance: Prism LAB client reaches a responsive Minecraft client window with CIVITAS `0.1.0-alpha.4` installed and no crash markers.
   - Upstream source/commit: Original CIVITAS smoke tooling; no upstream implementation source copied.
   - Provenance manifest ID: N/A, original script only.
   - Tests: `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240`.
-  - Evidence: `build\client-smoke-report.json` reported `result=passed`; Prism launched `1.21.1 TesT LaB`; log markers found `immersive_ego_civitas-0.1.0-alpha.3.jar`, CIVITAS bootstrap/common setup, LWJGL, OpenAL, sound engine, and block atlas; client window title was `Minecraft NeoForge* 1.21.1`; no failure markers or crash reports were created.
+  - Evidence: `build\client-smoke-report.json` reported `result=passed`; Prism launched `1.21.1 TesT LaB`; log markers found `immersive_ego_civitas-0.1.0-alpha.4.jar`, CIVITAS bootstrap, pinned runtime guard, common setup, LWJGL, OpenAL, sound engine, and block atlas; client window title was `Minecraft NeoForge* 1.21.1`; no failure markers or crash reports were created.
+- [x] CIV-011 - Add pinned runtime dependency guard
+  - Acceptance: CIVITAS fails clearly when a mandatory runtime mod is missing or not one of the audited versions.
+  - Upstream source/commit: Original CIVITAS guard; uses NeoForge `ModList` only, no unresolved upstream gameplay APIs.
+  - Provenance manifest ID: N/A, original source only.
+  - Tests: `.\gradlew.bat --no-daemon clean build`; `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1`; `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240`.
+  - Evidence: Server and client smoke reports both found `pinned runtime dependency check passed` with Immersive EGO `0.1.0-alpha.27`, MineColonies `1.1.1319-1.21.1`, Structurize `1.0.810-1.21.1-snapshot`, BlockUI `1.0.199-1.21.1-snapshot`, Domum Ornamentum `1.0.223-snapshot`, Multi-Piston `1.2.51-1.21.1-snapshot`, MCA `7.7.11+1.21.1`, Modern Companions `2.0`, Waystones `21.1.29`, and Balm `21.0.56`.
 
 ## Blockers
 
@@ -55,3 +61,4 @@
 - CIV-008 - Initial NeoForge harness, build, and LAB install.
 - CIV-009 - Server GameTest smoke gate with local LAB dependency staging.
 - CIV-010 - Prism LAB client smoke gate.
+- CIV-011 - Pinned runtime dependency guard.

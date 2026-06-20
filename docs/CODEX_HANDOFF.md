@@ -7,7 +7,7 @@
 - State: planning pack plus P0 governance/provenance skeleton, artifact audit,
   and initial NeoForge harness.
 - NeoForge build harness exists for `immersive_ego_civitas` version
-  `0.1.0-alpha.3`.
+  `0.1.0-alpha.4`.
 
 ## Implemented this session
 
@@ -23,18 +23,20 @@
 - Added Gradle wrapper, ModDevGradle build, NeoForge metadata template,
   original bootstrap mod class, JUnit identity test, install script, runtime
   dependency installer, and CI build gate.
-- Built and installed `immersive_ego_civitas-0.1.0-alpha.3.jar` into the Prism
+- Built and installed `immersive_ego_civitas-0.1.0-alpha.4.jar` into the Prism
   LAB `minecraft\mods` folder with SHA-256 match.
 - Installed audited runtime dependency jars for MineColonies, Structurize,
   BlockUI, Domum Ornamentum, Multi-Piston, MCA Reborn, Modern Companions,
   Waystones, and Balm into the same LAB mods folder with SHA-256 matches.
 - Added local runtime staging and a crash-marker-aware GameTest smoke wrapper.
 - Generated the CIVITAS empty GameTest structure and verified the server smoke
-  gate with Immersive EGO `0.1.0-alpha.17` from Prism LAB.
+  gate with Immersive EGO `0.1.0-alpha.27` from Prism LAB.
 - Added a reproducible Prism LAB client smoke wrapper and verified the client
-  reaches a responsive Minecraft window with CIVITAS `0.1.0-alpha.3` loaded.
+  reaches a responsive Minecraft window with CIVITAS `0.1.0-alpha.4` loaded.
 - Mapped Structurize, BlockUI, Domum Ornamentum, Multi-Piston, Waystones, and
   Balm runtime artifacts to immutable Git tags and source commits.
+- Added a pinned runtime dependency guard and required both server and client
+  smoke gates to find its `pinned runtime dependency check passed` marker.
 
 ## Exact commands run
 
@@ -90,13 +92,15 @@ Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/Twelv
 - Output: `Provenance validation passed. Active adapted-source rows: 0`.
 - `.\gradlew.bat --no-daemon clean build` passed.
 - `scripts\run-gametest-smoke.ps1` passed and `build\gametest-smoke.log`
-  contains `All 1 required tests passed :)`.
+  contains `All 1 required tests passed :)` and
+  `pinned runtime dependency check passed`.
 - `scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240` passed and
   `build\client-smoke-report.json` contains `result=passed`, all CIVITAS and
-  client render/audio success markers, no failure markers, and no crash
-  reports since launch.
+  client render/audio success markers including the pinned runtime guard marker,
+  no failure markers, and no crash reports since launch.
 - `.\install-mod.ps1 -SkipBuild` produced `build/install-report.json` with
-  `hashMatch=true` and `remainingInstalledJarCount=1`.
+  `hashMatch=true`, `remainingInstalledJarCount=1`, and installed SHA-256
+  `b23553ab12d650c5d90486433bcabcf4e24944bc5d0c13ae02e8eeafc9f129d0`.
 - `scripts\install-runtime-deps.ps1` produced `build/runtime-deps-report.json`
   with `allHashesMatch=true` and `allSingleInstalled=true`.
 

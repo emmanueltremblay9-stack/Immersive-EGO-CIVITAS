@@ -234,6 +234,7 @@ $successPatterns = [ordered]@{
     modJar = [regex]::Escape("Found mod file `"$ExpectedJarName`"")
     modVersion = [regex]::Escape("Immersive EGO: CIVITAS $ExpectedVersion (immersive_ego_civitas)")
     bootstrap = [regex]::Escape("Immersive EGO: CIVITAS bootstrap registered.")
+    runtimeGuard = [regex]::Escape("immersive_ego_civitas pinned runtime dependency check passed:")
     commonSetup = [regex]::Escape("immersive_ego_civitas common setup complete; integration surfaces are intentionally neutral.")
     settingUser = "Setting user:"
     backend = "Backend library: LWJGL"

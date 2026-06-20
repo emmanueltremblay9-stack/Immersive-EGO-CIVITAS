@@ -10,6 +10,7 @@
 - `.\gradlew.bat --no-daemon runGameTestServer`
 - `.\install-mod.ps1 -SkipBuild`
 - `scripts/install-runtime-deps.ps1`
+- Pure Java unit tests for the pinned runtime dependency guard.
 
 ## Required future gates
 
@@ -18,6 +19,6 @@
   simulation tiers.
 - GameTests for recruitment, MineColonies assignment, warehouse requests,
   rollback, family persistence, guard/patrol, EGO readiness, child restrictions,
-  raid shelter, migration, and unknown-version rejection.
+  raid shelter, migration, and gameplay-level unknown-version rejection.
 - Forbidden asset/hash scan.
 - Adapted-source header and manifest scan.
