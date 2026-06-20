@@ -4,8 +4,8 @@ Audit date: 2026-06-20
 
 | Component | Minecraft | Loader | Version | Compatibility status |
 |---|---|---|---|---|
-| CIVITAS | 1.21.1 | NeoForge | 0.1.0-alpha.2 | Harness builds and installs |
-| Immersive EGO | 1.21.1 | NeoForge | 0.1.0-alpha.7 | Local prerequisite exists |
+| CIVITAS | 1.21.1 | NeoForge | 0.1.0-alpha.3 | Harness builds, installs, and passes server GameTest smoke |
+| Immersive EGO | 1.21.1 | NeoForge | 0.1.0-alpha.17 | LAB prerequisite loaded in server smoke; source-to-binary proof pending dirty sibling worktree |
 | NeoForge | 1.21.1 | NeoForge | 21.1.233 candidate | Maven metadata verified |
 | MineColonies | 1.21.1 | NeoForge/Forge-family release | 1.1.1319 | Stable source tag mapped |
 | MCA Reborn | 1.21.1 | NeoForge asset available | 7.7.11 | Source tag mapped |
@@ -14,5 +14,7 @@ Audit date: 2026-06-20
 | BlockUI | 1.21.1 | NeoForge | 1.0.199 snapshot | Artifact verified; source commit blocked |
 | Domum Ornamentum | 1.21.1 | NeoForge | 1.0.223 snapshot | Artifact verified; metadata version placeholder |
 | Multi-Piston | 1.21.1 | NeoForge | 1.2.51 snapshot | Artifact verified; source commit blocked |
+| Waystones | 1.21.1 | NeoForge | 21.1.29 | Artifact verified; required by Modern Companions runtime scan |
+| Balm | 1.21.1 | NeoForge | 21.0.56 | Artifact verified; required by Waystones |
 
 The first build harness must fail clearly on unknown mandatory-mod versions.

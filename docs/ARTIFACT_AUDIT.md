@@ -12,7 +12,7 @@ Downloaded jars are kept only in the ignored local cache
 |---|---|---:|---|---|
 | NeoForge universal | `https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.233/neoforge-21.1.233-universal.jar` | 3542450 | `ff997bfd7db9735755545a0d073bfb56bef55a8c9dd17bc1bba215a5dd55fc0d` | `modId=neoforge`, version `21.1.233`, license `LGPL v2.1` |
 | NeoForge installer | `https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.233/neoforge-21.1.233-installer.jar` | 6964847 | `311475c8315ed0be6b5f1dbbf5a377b6c0976457c0bd5aa6d19b0fe25fd77148` | Maven `.sha256` sidecar matched |
-| Immersive EGO | Local prerequisite `..\Immersive EGO\build\libs\immersive_ego-0.1.0-alpha.7.jar` | 215202 | `9e75a6b31b671ec9063d7cde54cc486dff46437bf9b62077411e248882cd43eb` | `modId=immersive_ego`, version `0.1.0-alpha.7`, license `MIT`, NeoForge `[21.1.228,)` |
+| Immersive EGO | LAB prerequisite `immersive_ego-0.1.0-alpha.17.jar` | 253497 | `0e4af22f671f775626c46993fea82594723003f1c1a159604c597b5b66cd1ee4` | `modId=immersive_ego`, version `0.1.0-alpha.17`, license `MIT`, NeoForge `[21.1.228,)`; sibling source worktree is dirty |
 | MineColonies | CurseForge project `245506`, file `8138370`, `minecolonies-1.1.1319-1.21.1.jar` | 77496046 | `ab97c0eec45c3f2539ec31428e3c836bb30ba1c537af0c86f5ab4e38754f6a4d` | `modId=minecolonies`, version `1.1.1319-1.21.1`, license `GPL3`, NeoForge `[21.1.0, )` |
 | Structurize | CurseForge project `298744`, file `7643353`, `structurize-1.0.810-1.21.1-snapshot.jar` | 1058690 | `7379ee90fde4abaeda6857d954e7cfa1ddb07a526bd425d3f7f23ae47d81ed14` | `modId=structurize`, version `1.0.810-1.21.1-snapshot`, license `GPL 3.0`, NeoForge `[21.0.143,)` |
 | BlockUI | CurseForge project `522992`, file `6367809`, `blockui-1.0.199-1.21.1-snapshot.jar` | 468231 | `238b2e9fda99620318dfa9197754b3f803fff73f7f711f1065ac900d2e4ee9ef` | `modId=blockui`, version `1.0.199-1.21.1-snapshot`, license `GPL3`, NeoForge `[21.1,)` |
@@ -20,6 +20,8 @@ Downloaded jars are kept only in the ignored local cache
 | Multi-Piston | CurseForge project `303278`, file `5783614`, `multipiston-1.2.51-1.21.1-snapshot.jar` | 33318 | `d0eafb395fdf1e6962b5cb127f26488124dc7d5008361b164576423820f3782e` | `modId=multipiston`, version `1.2.51-1.21.1-snapshot`, license `GPL3`, NeoForge `[21.0.143,)` |
 | MCA Reborn | GitHub release asset `Luke100000/minecraft-comes-alive`, tag `7.7.11+1.21.1`, `mca-neoforge-7.7.11+1.21.1.jar` | 10471867 | `8d569c0ae870e1fe098a7270f240780aa588f328512f64ffa0a6d74a886fc59f` | GitHub asset digest matched; `modId=mca`, version `7.7.11+1.21.1`, license `GPL-3.0` |
 | Modern Companions | CurseForge project `1391597`, file `7902593`, `ModernCompanions-1.21.1-2.0-NeoForge.jar` | 870678 | `fb7085db4f1f99f7fcd845470685ff9f86348a03db5727f06f74ce685e4ab312` | `modId=modern_companions`, version `2.0`, license `GPL-3.0-only`, NeoForge `21.1.215` |
+| Waystones | CurseForge project `245755`, file `7750240`, `waystones-neoforge-1.21.1-21.1.29.jar` | 876329 | `4ba58cbff6600179addd06f8e27912339ff4aca9624c279caa173aaebc68a3a8` | `modId=waystones`, version `21.1.29`, NeoForge `[21-beta,)`, required by Modern Companions event subscriber at runtime |
+| Balm | CurseForge project `531761`, file `7420963`, `balm-neoforge-1.21.1-21.0.56.jar` | 739709 | `670ed64e73cacb646b21eaa6e2d2028f95c498d0cf1ae5cffcf7035d0b2fb32e` | `modId=balm`, version `21.0.56`, NeoForge `[21.0.82-beta,)`, required by Waystones |
 
 ## Source mapping
 
@@ -27,13 +29,15 @@ Downloaded jars are kept only in the ignored local cache
 |---|---|
 | MineColonies | Release tag `v1.21.1-1.1.1319` maps to commit `35bd7ad7448c562c84d11dc9dff5b067e8f131e5`. |
 | MCA Reborn | Release tag `7.7.11+1.21.1` maps to commit `802ab602a7e2aea6284853722ffde88f23cd6840`. |
-| Immersive EGO | Local repository HEAD is `6a2f87ce56a35e78f3231daf3b03c43c9b2ca60a`; source-to-binary proof remains conditional because that external worktree has uncommitted changes. |
+| Immersive EGO | Local repository HEAD is `6a2f87ce56a35e78f3231daf3b03c43c9b2ca60a`; LAB smoke used `0.1.0-alpha.17`, but source-to-binary proof remains conditional because that external worktree has uncommitted changes. |
 | NeoForge | Maven artifacts and hashes are pinned; no CIVITAS source is adapted from NeoForge. |
 | Structurize | GitHub repository `ldtteam/Structurize` exists and reports GPL-3.0, but GitHub API returned no releases or tags for file `7643353`; exact source commit mapping is still pending. |
 | BlockUI | GitHub repository `ldtteam/BlockUI` exists and reports GPL-3.0, but GitHub API returned no releases or tags for file `6367809`; exact source commit mapping is still pending. |
 | Domum Ornamentum | GitHub repository `ldtteam/Domum-Ornamentum` exists and reports GPL-3.0, but GitHub API returned no releases or tags for file `7231908`; exact source commit mapping is still pending. |
 | Multi-Piston | Correct source repository is `ldtteam/Piston-Unlimited`, GPL-3.0. GitHub API returned no releases or tags for file `5783614`; exact source commit mapping is still pending. |
 | Modern Companions 2.0 | CurseForge source link points to `STRHercules/ModernCompanions`, but all public branches checked declare versions below `2.0`; the jar issue tracker points to non-public or missing `MajorBonghits/ModernCompanions`. Exact source commit mapping remains blocked. |
+| Waystones | Runtime support artifact is pinned by CurseForge file `7750240`; exact source commit mapping is pending. |
+| Balm | Runtime support artifact is pinned by CurseForge file `7420963`; exact source commit mapping is pending. |
 
 ## Dependency observations
 
@@ -50,8 +54,11 @@ Downloaded jars are kept only in the ignored local cache
 - Modern Companions `2.0` raises its required NeoForge floor to `21.1.215`.
   The selected NeoForge `21.1.233` satisfies that floor.
 - Modern Companions `2.0` metadata declares optional Curios, Waystones, WTHIT,
-  Balm, and Bad Packets integrations. They are not mandatory runtime
-  dependencies for the first CIVITAS dependency set.
+  Balm, and Bad Packets integrations. `runGameTestServer` proved Waystones is
+  effectively required for this artifact because automatic subscriber scanning
+  loads `WaystoneTeleportEvent$Post`; Waystones then requires Balm.
+- Server smoke with CIVITAS `0.1.0-alpha.3` loaded Immersive EGO
+  `0.1.0-alpha.17` from the Prism LAB mods directory.
 
 ## Blocking gaps before source adaptation
 
@@ -63,3 +70,5 @@ Downloaded jars are kept only in the ignored local cache
    declared by the selected MineColonies runtime artifact.
 4. Rebuild Immersive EGO from a clean source state before treating its local jar
    as a reproducible binary prerequisite.
+5. Map Waystones and Balm runtime support artifacts to immutable source commits
+   before adapting any code from those projects.

@@ -27,6 +27,15 @@
   - Provenance manifest ID: N/A, original source only.
   - Tests: `.\gradlew.bat --no-daemon clean build`; `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-provenance.ps1`; `pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild`; `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\install-runtime-deps.ps1`.
   - Evidence: NeoForge metadata in `build/libs/immersive_ego_civitas-0.1.0-alpha.2.jar`, `build/install-report.json`, `build/runtime-deps-report.json`.
+- [x] CIV-009 - Add server GameTest smoke gate
+  - Acceptance: `runGameTestServer` starts with the local LAB dependency stack and runs the CIVITAS smoke test.
+  - Upstream source/commit: Original CIVITAS test and build tooling; no upstream implementation source copied.
+  - Provenance manifest ID: N/A, original source only.
+  - Tests: `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1`.
+  - Evidence: `build\gametest-smoke.log` reported `All 1 required tests passed :)` with CIVITAS `0.1.0-alpha.3`, Immersive EGO `0.1.0-alpha.17`, MineColonies, MCA, Modern Companions, Waystones, and Balm loaded.
+- [ ] CIV-010 - Run client smoke boot
+  - Acceptance: Prism LAB client reaches title screen or produces an actionable crash report with CIVITAS `0.1.0-alpha.3` installed.
+  - Blocker: Needs interactive client launch or a reliable headless client check.
 
 ## Blockers
 
@@ -39,3 +48,4 @@
 - CIV-001 - P0 repository skeleton and provenance gate.
 - CIV-002 - Exact selected runtime artifacts and NeoForge intersection audit.
 - CIV-008 - Initial NeoForge harness, build, and LAB install.
+- CIV-009 - Server GameTest smoke gate with local LAB dependency staging.

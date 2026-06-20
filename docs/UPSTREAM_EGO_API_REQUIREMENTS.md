@@ -7,10 +7,11 @@ Current local state:
 - Remote: `https://github.com/emmanueltremblay9-stack/Immersive-EGO.git`
 - Branch: `main`
 - Commit: `6a2f87ce56a35e78f3231daf3b03c43c9b2ca60a`
-- Version: `0.1.0-alpha.7`
+- Version: `0.1.0-alpha.17` in the sibling source checkout; Prism LAB smoke used `immersive_ego-0.1.0-alpha.17.jar`
 - License: MIT
 - Minecraft: `1.21.1`
 - NeoForge: `21.1.233`
+- Source-to-binary proof: pending because the sibling checkout has uncommitted changes.
 
 ## Required neutral CIVITAS facade capabilities
 

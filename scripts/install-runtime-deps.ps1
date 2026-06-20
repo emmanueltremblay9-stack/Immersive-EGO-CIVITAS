@@ -190,6 +190,18 @@ $artifacts = @(
         FileName = "ModernCompanions-1.21.1-2.0-NeoForge.jar"
         Url = "https://www.curseforge.com/api/v1/mods/1391597/files/7902593/download"
         Sha256 = "fb7085db4f1f99f7fcd845470685ff9f86348a03db5727f06f74ce685e4ab312"
+    },
+    [pscustomobject]@{
+        ModId = "waystones"
+        FileName = "waystones-neoforge-1.21.1-21.1.29.jar"
+        Url = "https://www.curseforge.com/api/v1/mods/245755/files/7750240/download"
+        Sha256 = "4ba58cbff6600179addd06f8e27912339ff4aca9624c279caa173aaebc68a3a8"
+    },
+    [pscustomobject]@{
+        ModId = "balm"
+        FileName = "balm-neoforge-1.21.1-21.0.56.jar"
+        Url = "https://www.curseforge.com/api/v1/mods/531761/files/7420963/download"
+        Sha256 = "670ed64e73cacb646b21eaa6e2d2028f95c498d0cf1ae5cffcf7035d0b2fb32e"
     }
 )
 

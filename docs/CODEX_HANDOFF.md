@@ -7,7 +7,7 @@
 - State: planning pack plus P0 governance/provenance skeleton, artifact audit,
   and initial NeoForge harness.
 - NeoForge build harness exists for `immersive_ego_civitas` version
-  `0.1.0-alpha.2`.
+  `0.1.0-alpha.3`.
 
 ## Implemented this session
 
@@ -23,11 +23,14 @@
 - Added Gradle wrapper, ModDevGradle build, NeoForge metadata template,
   original bootstrap mod class, JUnit identity test, install script, runtime
   dependency installer, and CI build gate.
-- Built and installed `immersive_ego_civitas-0.1.0-alpha.2.jar` into the Prism
+- Built and installed `immersive_ego_civitas-0.1.0-alpha.3.jar` into the Prism
   LAB `minecraft\mods` folder with SHA-256 match.
 - Installed audited runtime dependency jars for MineColonies, Structurize,
-  BlockUI, Domum Ornamentum, Multi-Piston, MCA Reborn, and Modern Companions
-  into the same LAB mods folder with SHA-256 matches.
+  BlockUI, Domum Ornamentum, Multi-Piston, MCA Reborn, Modern Companions,
+  Waystones, and Balm into the same LAB mods folder with SHA-256 matches.
+- Added local runtime staging and a crash-marker-aware GameTest smoke wrapper.
+- Generated the CIVITAS empty GameTest structure and verified the server smoke
+  gate with Immersive EGO `0.1.0-alpha.17` from Prism LAB.
 
 ## Exact commands run
 
@@ -58,6 +61,7 @@ Invoke-RestMethod -Uri 'https://api.github.com/repos/STRHercules/ModernCompanion
 .\gradlew.bat --no-daemon --version
 .\gradlew.bat --no-daemon clean build
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-provenance.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1
 pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\install-runtime-deps.ps1
 ```
@@ -67,6 +71,8 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\install-runtime-deps.ps1
 - `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-provenance.ps1` passed.
 - Output: `Provenance validation passed. Active adapted-source rows: 0`.
 - `.\gradlew.bat --no-daemon clean build` passed.
+- `scripts\run-gametest-smoke.ps1` passed and `build\gametest-smoke.log`
+  contains `All 1 required tests passed :)`.
 - `.\install-mod.ps1 -SkipBuild` produced `build/install-report.json` with
   `hashMatch=true` and `remainingInstalledJarCount=1`.
 - `scripts\install-runtime-deps.ps1` produced `build/runtime-deps-report.json`
@@ -102,5 +108,5 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\install-runtime-deps.ps1
 
 ## Next exact task
 
-Run a client or dedicated-server smoke boot in Prism LAB, then continue CIV-003
-source mapping before adapting Modern Companions or LDT dependency code.
+Run a Prism LAB client smoke boot, then continue CIV-003 source mapping before
+adapting Modern Companions or LDT dependency code.

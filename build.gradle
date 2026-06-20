@@ -76,7 +76,13 @@ sourceSets.main.resources {
     exclude('src/generated/**/.cache')
 }
 
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
 dependencies {
+    localRuntime fileTree(dir: "${layout.buildDirectory.get().asFile}/runtime-deps", include: ['*.jar'])
+
     testImplementation platform("org.junit:junit-bom:${junit_version}")
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
