@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.0-alpha.6
+
+- Added original host-adapter abstractions:
+  `ResidentHostAdapter`, `ResidentHostAdapterRegistry`, and
+  `ResidentIdentityService`.
+- Added unit coverage proving duplicate adapter rejection, unsupported-host
+  rejection, and one canonical resident record across multiple supported host
+  keys.
+- Rebuilt and installed `immersive_ego_civitas-0.1.0-alpha.6.jar`; server and
+  Prism client smoke gates passed with the pinned runtime guard.
+- No upstream APIs or implementation details were imported.
+
 ## 0.1.0-alpha.5
 
 - Added the first original CIVITAS resident identity core:

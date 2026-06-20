@@ -65,4 +65,9 @@
   reader against launch-time `latest.log` rotation, installed the verified jar
   into Prism LAB, and verified unit tests, clean build, provenance validation,
   server GameTests, and Prism client smoke.
+- Added neutral resident host-adapter abstractions and an identity service for
+  future host bindings without importing upstream APIs, advanced CIVITAS to
+  `0.1.0-alpha.6`, installed the verified jar into Prism LAB, and verified
+  unit tests, clean build, provenance validation, server GameTests, and Prism
+  client smoke.
 - No upstream implementation source was copied or adapted.

@@ -48,11 +48,11 @@
   - Evidence: Server and client smoke reports both found `pinned runtime dependency check passed` with Immersive EGO `0.1.0-alpha.27`, MineColonies `1.1.1319-1.21.1`, Structurize `1.0.810-1.21.1-snapshot`, BlockUI `1.0.199-1.21.1-snapshot`, Domum Ornamentum `1.0.223-snapshot`, Multi-Piston `1.2.51-1.21.1-snapshot`, MCA `7.7.11+1.21.1`, Modern Companions `2.0`, Waystones `21.1.29`, and Balm `21.0.56`.
 - [ ] CIV-058 - Recruit MCA villager into MineColonies colony
   - Acceptance: One resident record; MCA identity preserved.
-  - Progress: Original CIVITAS canonical resident identity scaffold is complete: one resident per external host key, reverse host index, cross-resident host collision guard, and `SavedData` persistence. Actual MCA/MineColonies host adapters are still pending and must not invent upstream APIs.
+  - Progress: Original CIVITAS canonical resident identity scaffold is complete: one resident per external host key, reverse host index, cross-resident host collision guard, `SavedData` persistence, and neutral host-adapter registry/service abstractions. Actual MCA/MineColonies adapters are still pending and must not invent upstream APIs.
   - Upstream source/commit: Original CIVITAS source only; no upstream implementation source copied.
   - Provenance manifest ID: N/A, original source only.
   - Tests: `.\gradlew.bat --no-daemon test`; `.\gradlew.bat --no-daemon clean build`; `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-provenance.ps1`; `pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild`; `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1`; `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240`.
-  - Evidence: `build\gametest-smoke.log` reported `All 3 required tests passed :)`; `build\install-report.json` installed `immersive_ego_civitas-0.1.0-alpha.5.jar` with SHA-256 `bdf07f1ddb5276883e7a3cc9d2a0ac03af58ed45be9c10f00f0f569ad501909e`; `build\client-smoke-report.json` reported `result=passed`.
+  - Evidence: `build\gametest-smoke.log` reported `All 3 required tests passed :)`; `build\install-report.json` installed `immersive_ego_civitas-0.1.0-alpha.6.jar` with SHA-256 `cf54b7934d6bd01c6bb744a7f07240e311ff9417692b0c78996c87e54226b1da`; `build\client-smoke-report.json` reported `result=passed`.
 
 ## Blockers
 

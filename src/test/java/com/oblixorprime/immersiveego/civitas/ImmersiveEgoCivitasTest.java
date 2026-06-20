@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.oblixorprime.immersiveego.civitas.resident.CivitasAuthority;
+import com.oblixorprime.immersiveego.civitas.resident.ResidentHostAdapter;
+import com.oblixorprime.immersiveego.civitas.resident.ResidentHostAdapterRegistry;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentHostKey;
+import com.oblixorprime.immersiveego.civitas.resident.ResidentIdentityService;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRecord;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRegistry;
 import java.util.Map;
@@ -109,6 +112,72 @@ class ImmersiveEgoCivitasTest {
         ResidentRecord linked = registry.linkHost(firstId, conflictingHost, 103L);
         assertEquals(conflictingHost, linked.host(CivitasAuthority.MCA_REBORN).orElseThrow());
         assertEquals(Optional.empty(), registry.find(firstHost));
+    }
+
+    @Test
+    void residentIdentityServiceCreatesOneRecordAcrossSupportedHosts() {
+        ResidentHostAdapterRegistry adapters = new ResidentHostAdapterRegistry();
+        adapters.register(new FakeMcaAdapter());
+        adapters.register(new FakeColonyAdapter());
+        ResidentIdentityService service = new ResidentIdentityService(new ResidentRegistry(), adapters);
+        UUID residentId = UUID.fromString("c1f9cd29-a2b5-4f03-a7d2-d3ac7ef4e8c1");
+        FakeDualHost host = new FakeDualHost("villager:12", "citizen:44");
+
+        ResidentRecord first = service.getOrCreate(host, 200L, () -> residentId);
+        ResidentRecord second = service.getOrCreate(host, 205L, UUID::randomUUID);
+
+        assertEquals(residentId, first.residentId());
+        assertEquals(first.residentId(), second.residentId());
+        assertEquals("villager:12", second.host(CivitasAuthority.MCA_REBORN).orElseThrow().hostId());
+        assertEquals("citizen:44", second.host(CivitasAuthority.MINECOLONIES).orElseThrow().hostId());
+    }
+
+    @Test
+    void residentHostAdapterRegistryRejectsDuplicateAuthorityAndUnsupportedHosts() {
+        ResidentHostAdapterRegistry adapters = new ResidentHostAdapterRegistry();
+        adapters.register(new FakeMcaAdapter());
+
+        assertThrows(IllegalStateException.class, () -> adapters.register(new FakeMcaAdapter()));
+        assertThrows(IllegalArgumentException.class, () ->
+                new ResidentIdentityService(new ResidentRegistry(), adapters)
+                        .getOrCreate(new Object(), 1L, UUID::randomUUID));
+    }
+
+    private record FakeDualHost(String mcaId, String colonyId) {
+    }
+
+    private static final class FakeMcaAdapter implements ResidentHostAdapter<FakeDualHost> {
+        @Override
+        public CivitasAuthority authority() {
+            return CivitasAuthority.MCA_REBORN;
+        }
+
+        @Override
+        public Class<FakeDualHost> hostType() {
+            return FakeDualHost.class;
+        }
+
+        @Override
+        public Optional<ResidentHostKey> identify(FakeDualHost host) {
+            return Optional.of(new ResidentHostKey(authority(), host.mcaId()));
+        }
+    }
+
+    private static final class FakeColonyAdapter implements ResidentHostAdapter<FakeDualHost> {
+        @Override
+        public CivitasAuthority authority() {
+            return CivitasAuthority.MINECOLONIES;
+        }
+
+        @Override
+        public Class<FakeDualHost> hostType() {
+            return FakeDualHost.class;
+        }
+
+        @Override
+        public Optional<ResidentHostKey> identify(FakeDualHost host) {
+            return Optional.of(new ResidentHostKey(authority(), host.colonyId()));
+        }
     }
 
 }

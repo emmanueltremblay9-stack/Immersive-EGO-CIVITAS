@@ -7,7 +7,7 @@
 - State: planning pack plus P0 governance/provenance skeleton, artifact audit,
   and initial NeoForge harness.
 - NeoForge build harness exists for `immersive_ego_civitas` version
-  `0.1.0-alpha.5`.
+  `0.1.0-alpha.6`.
 
 ## Implemented this session
 
@@ -53,6 +53,11 @@
 - Deep-checked Modern Companions public source evidence again: public branch
   heads are no later than 2026-01-01, public tags stop at `v1.2.0`, and the
   selected CurseForge `2.0` artifact was uploaded on 2026-04-10.
+- Added neutral resident host-adapter abstractions:
+  `ResidentHostAdapter`, `ResidentHostAdapterRegistry`, and
+  `ResidentIdentityService`.
+- Built and installed `immersive_ego_civitas-0.1.0-alpha.6.jar` into the Prism
+  LAB `minecraft\mods` folder with SHA-256 match.
 
 ## Exact commands run
 
@@ -110,6 +115,13 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240
 jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.1 TesT LaB\minecraft\mods\immersive_ego_civitas-0.1.0-alpha.5.jar"
+.\gradlew.bat --no-daemon test
+.\gradlew.bat --no-daemon clean build
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-provenance.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240
+jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.1 TesT LaB\minecraft\mods\immersive_ego_civitas-0.1.0-alpha.6.jar"
 ```
 
 ## Test results
@@ -127,9 +139,9 @@ jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.
   no failure markers, and no crash reports since launch.
 - `.\install-mod.ps1 -SkipBuild` produced `build/install-report.json` with
   `hashMatch=true`, `remainingInstalledJarCount=1`, and installed SHA-256
-  `bdf07f1ddb5276883e7a3cc9d2a0ac03af58ed45be9c10f00f0f569ad501909e`.
-- The installed alpha.5 jar contains the new `resident` classes and
-  `CivitasGameTests.class`.
+  `cf54b7934d6bd01c6bb744a7f07240e311ff9417692b0c78996c87e54226b1da`.
+- The installed alpha.6 jar contains the new resident adapter classes,
+  resident registry classes, and `CivitasGameTests.class`.
 - `scripts\install-runtime-deps.ps1` produced `build/runtime-deps-report.json`
   with `allHashesMatch=true` and `allSingleInstalled=true`.
 - Sibling Immersive EGO `.\gradlew.bat --no-daemon clean build` passed and
@@ -141,7 +153,8 @@ jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.
 ## Upstream files adapted
 
 - None. Only original CIVITAS bootstrap, runtime guard, resident registry,
-  SavedData, and test source has been added.
+  SavedData, host-adapter registry, identity service, and test source has been
+  added.
 
 ## Provenance status
 

@@ -31,7 +31,9 @@ pages remain the detailed product source.
 The NeoForge harness exists with original CIVITAS bootstrap code, the pinned
 runtime dependency guard, and the first original resident identity persistence
 scaffold. `CivitasResidentSavedData` owns canonical resident records and reverse
-host indexing; external host adapters are still pending. No upstream gameplay
-implementation source or assets have been copied. P0 provenance and asset gates
-remain active. CIV-003 still blocks Modern Companions implementation-detail
-adaptation until an immutable source commit mapping is proven.
+host indexing. `ResidentHostAdapterRegistry` and `ResidentIdentityService`
+provide neutral adapter seams for future MCA, MineColonies, Immersive EGO, and
+Modern Companions bindings. No upstream gameplay implementation source or
+assets have been copied. P0 provenance and asset gates remain active. CIV-003
+still blocks Modern Companions implementation-detail adaptation until an
+immutable source commit mapping is proven.
