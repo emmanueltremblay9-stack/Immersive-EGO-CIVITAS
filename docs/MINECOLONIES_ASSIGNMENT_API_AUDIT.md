@@ -16,6 +16,12 @@ copy MineColonies implementation source and does not yet mutate colony state.
 
 Citizen and lookup methods:
 
+- `IMinecoloniesAPI#getInstance()`
+- `IMinecoloniesAPI#getColonyManager()`
+- `IColonyManager#getColonyByWorld(int, Level)`
+- `IColonyManager#getBuilding(Level, BlockPos)`
+- `IColony#getID()`
+- `IColony#getCitizenManager()`
 - `ICitizenManager#getCivilian(int)`
 - `ICitizenData#getHomeBuilding()`
 - `ICitizenData#setHomeBuilding(IBuilding)`
@@ -26,6 +32,7 @@ Citizen and lookup methods:
 Building and module methods:
 
 - `IBuildingModule#getBuilding()`
+- `IBuilding#getColony()`
 - `IBuilding#getModulesByType(Class)`
 - `IBuilding#getAllAssignedCitizen()`
 - `IBuilding#cancelAllRequestsOfCitizenOrBuilding(ICitizenData)`
@@ -108,3 +115,18 @@ Alpha.17 adds `MineColoniesAssignmentModuleLocator`,
   ambiguous modules and otherwise routes the plan through
   `MineColoniesAssignmentService`.
 - CIVITAS still does not directly set MineColonies citizen home/job fields.
+
+Alpha.23 adds `MineColoniesAssignmentTarget`,
+`MineColoniesAssignmentTargetResolver`, and `CivitasServerCommands`.
+
+- The resolver obtains the live MineColonies colony manager through
+  `IMinecoloniesAPI#getInstance().getColonyManager()`.
+- It resolves a requested colony by id, then resolves citizen data through
+  `IColony#getCitizenManager().getCivilian(int)`.
+- It resolves home/work building positions through
+  `IColonyManager#getBuilding(Level, BlockPos)`.
+- It verifies each building's `getColony().getID()` matches the requested
+  colony id before delegating to the linked-resident trigger.
+- The operator commands are `/civitas assign_minecolonies_home` and
+  `/civitas assign_minecolonies_home_work`. Both still fail closed unless the
+  MineColonies citizen maps to a CIVITAS resident with an MCA Reborn host link.

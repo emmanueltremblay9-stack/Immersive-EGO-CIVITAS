@@ -7,7 +7,7 @@
 - State: planning pack plus P0 governance/provenance skeleton, artifact audit,
   and initial NeoForge harness.
 - NeoForge build harness exists for `immersive_ego_civitas` version
-  `0.1.0-alpha.21`.
+  `0.1.0-alpha.23`.
 
 ## Implemented this session
 
@@ -120,6 +120,21 @@
   mapping is blocked until that source state is committed/pushed or alpha.27 is
   restored.
 - Built and installed `immersive_ego_civitas-0.1.0-alpha.21.jar` into the Prism
+  LAB `minecraft\mods` folder with SHA-256 match.
+- Added original operator server command wiring:
+  `/civitas assign_minecolonies_home` and
+  `/civitas assign_minecolonies_home_work`. The commands resolve the real
+  MineColonies colony, citizen, home building, and work building targets,
+  verify target building ownership, and delegate through the linked-resident
+  guard and repairable assignment coordinator.
+- Refreshed the exact CIVITAS runtime guard to accept the current Prism LAB
+  Immersive EGO prerequisite `0.1.0-alpha.37`. The installed
+  `immersive_ego-0.1.0-alpha.37.jar` hash matches the sibling build artifact,
+  but the sibling source checkout has uncommitted changes, so immutable source
+  mapping is blocked until that source state is committed/pushed or alpha.27 is
+  restored. Alpha.22 failed server smoke only because the LAB prerequisite had
+  already drifted past its alpha.35 pin; alpha.23 supersedes it.
+- Built and installed `immersive_ego_civitas-0.1.0-alpha.23.jar` into the Prism
   LAB `minecraft\mods` folder with SHA-256 match.
 
 ## Exact commands run
@@ -248,6 +263,14 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240
 jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.1 TesT LaB\minecraft\mods\immersive_ego_civitas-0.1.0-alpha.21.jar"
+Get-FileHash -Algorithm SHA256 -LiteralPath 'C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.1 TesT LaB\minecraft\mods\immersive_ego-0.1.0-alpha.37.jar'
+.\gradlew.bat --no-daemon test
+.\gradlew.bat --no-daemon clean build
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-provenance.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240
+jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.1 TesT LaB\minecraft\mods\immersive_ego_civitas-0.1.0-alpha.23.jar"
 ```
 
 ## Test results
@@ -265,11 +288,11 @@ jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.
   no failure markers, and no crash reports since launch.
 - `.\install-mod.ps1 -SkipBuild` produced `build/install-report.json` with
   `hashMatch=true`, `remainingInstalledJarCount=1`, and installed SHA-256
-  `b1fa1197211a4ad16740a2746ba0003935ea11991c293f08301c2647bab7b1ca`.
+  `4f809300c073f0bd66bbfa9cffa256adc870e945379463c756f461a95beb34ff`.
 - `build\local-runtime-stage-report.json` staged Immersive EGO
-  `0.1.0-alpha.35` from the Prism LAB mods directory with SHA-256
-  `af1f7a6f0662d080d33cfbff13de67c813127c7fc81c709bbdcf54567a0ce3a9`.
-- The installed alpha.21 jar contains the resident upstream adapter classes,
+  `0.1.0-alpha.37` from the Prism LAB mods directory with SHA-256
+  `259e4af9e524087d5d24cad9ec389edabb6087af637790aa3a0f0ea3e42c01d0`.
+- The installed alpha.23 jar contains the resident upstream adapter classes,
   recruitment service/result classes, resident registry classes,
   `MineColoniesAssignmentApiContract.class`,
   `MineColoniesAssignmentModuleLocator.class`,
@@ -277,17 +300,19 @@ jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.
   `MineColoniesAssignmentResolution.class`,
   `MineColoniesAssignmentService.class`, `MineColoniesAssignmentPlan.class`,
   `MineColoniesAssignmentResult.class`, `LinkedResidentAssignmentService.class`,
-  `ResidentDirectory.class`, `MineColoniesAssignmentGateway.class`, and
-  `CivitasGameTests.class`.
+  `ResidentDirectory.class`, `MineColoniesAssignmentGateway.class`,
+  `MineColoniesAssignmentTarget.class`,
+  `MineColoniesAssignmentTargetResolver.class`, `CivitasServerCommands.class`,
+  and `CivitasGameTests.class`.
 - `scripts\install-runtime-deps.ps1` produced `build/runtime-deps-report.json`
   with `allHashesMatch=true` and `allSingleInstalled=true`.
 - Sibling Immersive EGO build artifact
-  `build\libs\immersive_ego-0.1.0-alpha.35.jar` matches the installed Prism
+  `build\libs\immersive_ego-0.1.0-alpha.37.jar` matches the installed Prism
   LAB prerequisite SHA-256
-  `af1f7a6f0662d080d33cfbff13de67c813127c7fc81c709bbdcf54567a0ce3a9`, but
+  `259e4af9e524087d5d24cad9ec389edabb6087af637790aa3a0f0ea3e42c01d0`, but
   the sibling repository is dirty.
 - The sibling Immersive EGO GameTest proof was not rerun for dirty
-  `0.1.0-alpha.35` in this CIVITAS pass; the earlier 3-test proof belongs to
+  `0.1.0-alpha.37` in this CIVITAS pass; the earlier 3-test proof belongs to
   the previously mapped alpha.27 source state.
 
 ## Upstream files adapted
@@ -296,14 +321,14 @@ jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.
   SavedData, host-adapter registry, identity service, reflection-backed
   upstream resident host adapters, recruitment orchestration, API contract
   checks, repairable assignment execution, assignment module
-  locator/coordinator, linked-resident assignment trigger guards, and test
-  source has been added.
+  locator/coordinator, linked-resident assignment trigger guards, target
+  resolver, operator command wiring, and test source has been added.
 
 ## Provenance status
 
 - `docs/CODE_ADAPTATION_MANIFEST.csv` added.
 - No active adapted-source rows.
-- Immersive EGO `0.1.0-alpha.35` source mapping is blocked until the dirty
+- Immersive EGO `0.1.0-alpha.37` source mapping is blocked until the dirty
   sibling source state is committed/pushed or alpha.27 is restored.
 - Modern Companions adaptation is blocked pending source/artifact and lineage verification.
 - Structurize, BlockUI, Domum Ornamentum, and Multi-Piston source tags are
@@ -316,7 +341,7 @@ jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.
 
 - Modern Companions CurseForge `2.0` artifact is hashed, but still does not map
   to an immutable public source commit.
-- Immersive EGO `0.1.0-alpha.35` has local binary parity only because the
+- Immersive EGO `0.1.0-alpha.37` has local binary parity only because the
   sibling source checkout has uncommitted changes.
 - Modern Companions repository-level license file is not exposed by the GitHub API.
 - Human Companions and Basic Weapons lineage audits are required before adapting Modern Companions files.
@@ -330,7 +355,7 @@ jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.
 
 ## Next exact task
 
-Continue `CIV-058` by binding the linked-resident assignment trigger to a real
-server/gameplay invocation path and real colony/citizen/building lookup without
-inventing upstream APIs. Modern Companions `2.0` source mapping and the dirty
-Immersive EGO `0.1.0-alpha.35` source state remain hard release blockers.
+Continue `CIV-058` by adding a verified gameplay or operator command path that
+links a real MCA villager host to a real MineColonies citizen host before
+assignment. Modern Companions `2.0` source mapping and the dirty Immersive EGO
+`0.1.0-alpha.37` source state remain hard release blockers.

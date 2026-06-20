@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class MineColoniesAssignmentApiContract {
+    private static final String MINECOLONIES_API = "com.minecolonies.api.IMinecoloniesAPI";
+    private static final String COLONY_MANAGER = "com.minecolonies.api.colony.IColonyManager";
+    private static final String COLONY = "com.minecolonies.api.colony.IColony";
+    private static final String LEVEL = "net.minecraft.world.level.Level";
+    private static final String BLOCK_POS = "net.minecraft.core.BlockPos";
     private static final String CITIZEN_DATA = "com.minecolonies.api.colony.ICitizenData";
     private static final String CITIZEN_MANAGER =
             "com.minecolonies.api.colony.managers.interfaces.ICitizenManager";
@@ -19,6 +24,12 @@ public final class MineColoniesAssignmentApiContract {
     private static final String JOB_ENTRY = "com.minecolonies.api.colony.jobs.registry.JobEntry";
 
     private static final List<RequiredMethod> REQUIRED_METHODS = List.of(
+            required(MINECOLONIES_API, "getInstance", MINECOLONIES_API),
+            required(MINECOLONIES_API, "getColonyManager", COLONY_MANAGER),
+            required(COLONY_MANAGER, "getColonyByWorld", COLONY, "int", LEVEL),
+            required(COLONY_MANAGER, "getBuilding", BUILDING, LEVEL, BLOCK_POS),
+            required(COLONY, "getID", "int"),
+            required(COLONY, "getCitizenManager", CITIZEN_MANAGER),
             required(CITIZEN_MANAGER, "getCivilian", CITIZEN_DATA, "int"),
             required(CITIZEN_DATA, "getHomeBuilding", BUILDING),
             required(CITIZEN_DATA, "setHomeBuilding", "void", BUILDING),
@@ -26,6 +37,7 @@ public final class MineColoniesAssignmentApiContract {
             required(CITIZEN_DATA, "getJob", JOB),
             required(CITIZEN_DATA, "setJob", "void", JOB),
             required(BUILDING_MODULE, "getBuilding", BUILDING),
+            required(BUILDING, "getColony", COLONY),
             required(BUILDING, "getModulesByType", "java.util.List", "java.lang.Class"),
             required(BUILDING, "getAllAssignedCitizen", "java.util.Set"),
             required(BUILDING, "cancelAllRequestsOfCitizenOrBuilding", "void", CITIZEN_DATA),

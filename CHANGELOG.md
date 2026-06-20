@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.0-alpha.23
+
+- Added an operator-only server command surface:
+  `/civitas assign_minecolonies_home` and
+  `/civitas assign_minecolonies_home_work`.
+- Added original MineColonies target lookup classes:
+  `MineColoniesAssignmentTarget` and `MineColoniesAssignmentTargetResolver`.
+  They resolve the real colony, citizen, and target building objects through
+  the verified public MineColonies API and fail closed on missing citizens,
+  missing buildings, or cross-colony building ownership.
+- Extended the MineColonies assignment API contract to cover
+  `IMinecoloniesAPI`, `IColonyManager`, `IColony`, and building ownership
+  methods used by the command resolver.
+- Refreshed the exact runtime guard and metadata floor for the current Prism
+  LAB Immersive EGO prerequisite, `0.1.0-alpha.37`.
+- Rebuilt and installed `immersive_ego_civitas-0.1.0-alpha.23.jar`; unit tests,
+  clean build, provenance validation, server GameTests, and Prism client smoke
+  passed.
+- The installed CIVITAS jar SHA-256 is
+  `4f809300c073f0bd66bbfa9cffa256adc870e945379463c756f461a95beb34ff`.
+- No upstream implementation source or assets were copied or adapted.
+
 ## 0.1.0-alpha.21
 
 - Added original linked-resident assignment trigger surface:

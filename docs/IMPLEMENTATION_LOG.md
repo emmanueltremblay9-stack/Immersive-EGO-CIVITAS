@@ -143,4 +143,19 @@
   LAB, and verified unit tests, clean build, provenance validation, server
   GameTests, and Prism client smoke. The installed jar SHA-256 is
   `b1fa1197211a4ad16740a2746ba0003935ea11991c293f08301c2647bab7b1ca`.
+- Added original alpha.23 operator server command wiring:
+  `/civitas assign_minecolonies_home` and
+  `/civitas assign_minecolonies_home_work`. The commands resolve the real
+  MineColonies colony, citizen, and target buildings through verified public
+  lookup APIs, verify target building ownership, and delegate through the
+  linked-resident guard and repairable assignment coordinator.
+- Refreshed the exact runtime dependency guard to the current Prism LAB
+  Immersive EGO prerequisite `0.1.0-alpha.37`. The sibling
+  `immersive_ego-0.1.0-alpha.37.jar` build artifact hash matches the installed
+  jar, but the sibling source checkout is dirty, so immutable source mapping is
+  blocked.
+- Advanced CIVITAS to `0.1.0-alpha.23`, installed the verified jar into Prism
+  LAB, and verified unit tests, clean build, provenance validation, server
+  GameTests, and Prism client smoke. The installed jar SHA-256 is
+  `4f809300c073f0bd66bbfa9cffa256adc870e945379463c756f461a95beb34ff`.
 - No upstream implementation source was copied or adapted.
