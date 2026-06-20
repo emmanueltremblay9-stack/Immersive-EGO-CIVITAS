@@ -1,0 +1,14 @@
+name: Provenance and asset gates
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  provenance:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate source provenance and asset policy
+        shell: pwsh
+        run: ./scripts/validate-provenance.ps1

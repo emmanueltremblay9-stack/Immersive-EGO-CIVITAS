@@ -1,0 +1,13 @@
+GNU General Public License v3.0 only
+
+SPDX-License-Identifier: GPL-3.0-only
+
+Immersive EGO: CIVITAS is licensed under the GNU General Public License,
+version 3 only.
+
+Canonical license text:
+https://www.gnu.org/licenses/gpl-3.0.txt
+
+This short license file is intentional for the P0 repository skeleton. Release
+packaging must include the complete GPL-3.0-only text and corresponding source
+for every distributed binary.
