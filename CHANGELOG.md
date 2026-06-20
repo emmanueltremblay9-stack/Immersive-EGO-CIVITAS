@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.9
+
+- Added original resident recruitment orchestration that merges a verified MCA
+  host key and a verified MineColonies host key into one canonical CIVITAS
+  resident record.
+- Added a key-based identity merge path so recruitment can link exact upstream
+  hosts without reassigning ambiguous argument roles.
+- Added unit coverage for MCA-to-colony resident linking, cross-resident host
+  conflict rejection, and reversed upstream host rejection.
+- Rebuilt and installed `immersive_ego_civitas-0.1.0-alpha.9.jar`; unit tests,
+  clean build, provenance validation, server GameTests, and Prism client smoke
+  passed.
+- No upstream implementation source or assets were copied or adapted.
+
 ## 0.1.0-alpha.8
 
 - Added original reflection-backed MCA Reborn and MineColonies resident host

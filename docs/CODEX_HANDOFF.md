@@ -7,7 +7,7 @@
 - State: planning pack plus P0 governance/provenance skeleton, artifact audit,
   and initial NeoForge harness.
 - NeoForge build harness exists for `immersive_ego_civitas` version
-  `0.1.0-alpha.8`.
+  `0.1.0-alpha.9`.
 
 ## Implemented this session
 
@@ -64,6 +64,12 @@
   adapters plus `UpstreamResidentApiContract`.
 - Added `docs/UPSTREAM_RESIDENT_API_AUDIT.md`.
 - Built and installed `immersive_ego_civitas-0.1.0-alpha.8.jar` into the Prism
+  LAB `minecraft\mods` folder with SHA-256 match.
+- Added original MCA-to-MineColonies resident recruitment orchestration:
+  `ResidentRecruitmentService` links exact verified upstream host keys into one
+  canonical resident record and rejects cross-resident conflicts or reversed
+  upstream host roles.
+- Built and installed `immersive_ego_civitas-0.1.0-alpha.9.jar` into the Prism
   LAB `minecraft\mods` folder with SHA-256 match.
 
 ## Exact commands run
@@ -141,6 +147,13 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240
 jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.1 TesT LaB\minecraft\mods\immersive_ego_civitas-0.1.0-alpha.8.jar"
+.\gradlew.bat --no-daemon test
+.\gradlew.bat --no-daemon clean build
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-provenance.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-gametest-smoke.ps1
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\run-prism-client-smoke.ps1 -TimeoutSeconds 240
+jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.1 TesT LaB\minecraft\mods\immersive_ego_civitas-0.1.0-alpha.9.jar"
 ```
 
 ## Test results
@@ -158,9 +171,10 @@ jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.
   no failure markers, and no crash reports since launch.
 - `.\install-mod.ps1 -SkipBuild` produced `build/install-report.json` with
   `hashMatch=true`, `remainingInstalledJarCount=1`, and installed SHA-256
-  `7b5d6733aa8b99f060256fa6e19dea2f2c5ad854da5ece87f6da17424996a26b`.
-- The installed alpha.8 jar contains the new resident upstream adapter classes,
-  resident registry classes, and `CivitasGameTests.class`.
+  `f00d1de57fdfb039a2218becccf0537a75203758414f6c8d82aba406dfbc90e0`.
+- The installed alpha.9 jar contains the resident upstream adapter classes,
+  recruitment service/result classes, resident registry classes, and
+  `CivitasGameTests.class`.
 - `scripts\install-runtime-deps.ps1` produced `build/runtime-deps-report.json`
   with `allHashesMatch=true` and `allSingleInstalled=true`.
 - Sibling Immersive EGO `.\gradlew.bat --no-daemon clean build` passed and
@@ -173,8 +187,8 @@ jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.
 
 - None. Only original CIVITAS bootstrap, runtime guard, resident registry,
   SavedData, host-adapter registry, identity service, reflection-backed
-  upstream resident host adapters, API contract checks, and test source has
-  been added.
+  upstream resident host adapters, recruitment orchestration, API contract
+  checks, and test source has been added.
 
 ## Provenance status
 
@@ -203,7 +217,7 @@ jar tf "C:\Users\Emmanuel Tremblay\AppData\Roaming\PrismLauncher\instances\1.21.
 
 ## Next exact task
 
-Continue `CIV-058` with original recruitment orchestration that links verified
-MCA and MineColonies host keys into one resident record, without mutating
-upstream state until exact recruitment/assignment API calls are proven. Modern
-Companions `2.0` source mapping remains a hard release blocker.
+Continue `CIV-058` by proving the exact safe MineColonies assignment/mutation
+surface for an already-linked MCA/MineColonies resident, then add a GameTest or
+contract guard before mutating upstream state. Modern Companions `2.0` source
+mapping remains a hard release blocker.

@@ -77,4 +77,8 @@
   the MineColonies adapter identifies `ICitizen`/`ICitizenData` hosts by
   `getColony().getID()` plus `getId()` and entity fallbacks by
   `getCitizenColonyHandler().getColonyId()` plus `getCivilianID()`.
+- Added original alpha.9 recruitment orchestration:
+  `ResidentRecruitmentService` requires an MCA host and a MineColonies host,
+  merges their exact host keys into one canonical resident record, and rejects
+  cross-resident host conflicts or reversed upstream host roles.
 - No upstream implementation source was copied or adapted.

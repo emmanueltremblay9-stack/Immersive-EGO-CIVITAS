@@ -1,8 +1,11 @@
 package com.oblixorprime.immersiveego.civitas.resident;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -25,7 +28,55 @@ public final class ResidentIdentityService {
     }
 
     public ResidentRecord getOrCreate(Object host, long gameTime, Supplier<UUID> residentIdSupplier) {
-        List<ResidentHostKey> hostKeys = requireHostKeys(host);
+        return getOrCreate(requireHostKeys(host), gameTime, residentIdSupplier);
+    }
+
+    public ResidentRecord getOrCreateAll(
+            Collection<?> hosts,
+            long gameTime,
+            Supplier<UUID> residentIdSupplier) {
+        if (hosts == null || hosts.isEmpty()) {
+            throw new IllegalArgumentException("At least one resident host is required");
+        }
+
+        List<ResidentHostKey> hostKeys = new ArrayList<>();
+        for (Object host : hosts) {
+            hostKeys.addAll(requireHostKeys(host));
+        }
+        return getOrCreateKeys(hostKeys, gameTime, residentIdSupplier);
+    }
+
+    public ResidentRecord getOrCreateKeys(
+            Collection<ResidentHostKey> hostKeys,
+            long gameTime,
+            Supplier<UUID> residentIdSupplier) {
+        Objects.requireNonNull(hostKeys, "hostKeys");
+        if (hostKeys.isEmpty()) {
+            throw new IllegalArgumentException("At least one resident host key is required");
+        }
+
+        return getOrCreate(
+                hostKeys.stream()
+                        .map(hostKey -> Objects.requireNonNull(hostKey, "hostKey"))
+                        .toList(),
+                gameTime,
+                residentIdSupplier);
+    }
+
+    public ResidentHostKey requireHostKey(Object host, CivitasAuthority authority) {
+        Objects.requireNonNull(authority, "authority");
+        return requireHostKeys(host).stream()
+                .filter(hostKey -> hostKey.authority() == authority)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Host " + host.getClass().getName() + " did not identify as "
+                                + authority.serializedId()));
+    }
+
+    private ResidentRecord getOrCreate(
+            List<ResidentHostKey> hostKeys,
+            long gameTime,
+            Supplier<UUID> residentIdSupplier) {
         ResidentRecord resident = resolveExistingResident(hostKeys)
                 .orElseGet(() -> registry.getOrCreate(hostKeys.getFirst(), gameTime, residentIdSupplier));
 

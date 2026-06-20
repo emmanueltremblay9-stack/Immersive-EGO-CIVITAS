@@ -10,6 +10,8 @@ import com.oblixorprime.immersiveego.civitas.resident.ResidentHostAdapterRegistr
 import com.oblixorprime.immersiveego.civitas.resident.ResidentHostKey;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentIdentityService;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRecord;
+import com.oblixorprime.immersiveego.civitas.resident.ResidentRecruitmentResult;
+import com.oblixorprime.immersiveego.civitas.resident.ResidentRecruitmentService;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRegistry;
 import java.util.Map;
 import java.util.Optional;
@@ -143,7 +145,70 @@ class ImmersiveEgoCivitasTest {
                         .getOrCreate(new Object(), 1L, UUID::randomUUID));
     }
 
+    @Test
+    void residentRecruitmentLinksMcaVillagerAndMineColoniesCitizen() {
+        ResidentHostAdapterRegistry adapters = new ResidentHostAdapterRegistry();
+        adapters.register(new FakeRecruitmentMcaAdapter());
+        adapters.register(new FakeRecruitmentColonyAdapter());
+        ResidentRecruitmentService recruitment = new ResidentRecruitmentService(
+                new ResidentIdentityService(new ResidentRegistry(), adapters));
+        UUID residentId = UUID.fromString("b7944a6a-09fb-4fef-a378-e1d52f5c9ec1");
+
+        ResidentRecruitmentResult result = recruitment.recruitMcaIntoColony(
+                new FakeMcaHost("villager_entity:52cc5adc-a51a-4c98-bc21-3d623f08f8a5"),
+                new FakeMineColoniesHost("colony:17/citizen:42"),
+                300L,
+                () -> residentId);
+
+        assertEquals(residentId, result.resident().residentId());
+        assertEquals(result.mcaHost(), result.resident().host(CivitasAuthority.MCA_REBORN).orElseThrow());
+        assertEquals(
+                result.mineColoniesHost(),
+                result.resident().host(CivitasAuthority.MINECOLONIES).orElseThrow());
+    }
+
+    @Test
+    void residentRecruitmentRejectsHostsAlreadyOwnedByDifferentResidents() {
+        ResidentHostAdapterRegistry adapters = new ResidentHostAdapterRegistry();
+        adapters.register(new FakeRecruitmentMcaAdapter());
+        adapters.register(new FakeRecruitmentColonyAdapter());
+        ResidentRegistry registry = new ResidentRegistry();
+        ResidentRecruitmentService recruitment = new ResidentRecruitmentService(
+                new ResidentIdentityService(registry, adapters));
+        FakeMcaHost mcaHost = new FakeMcaHost("villager_entity:52cc5adc-a51a-4c98-bc21-3d623f08f8a5");
+        FakeMineColoniesHost colonyHost = new FakeMineColoniesHost("colony:17/citizen:42");
+
+        recruitment.recruitMcaIntoColony(mcaHost, new FakeMineColoniesHost("colony:17/citizen:43"), 300L,
+                () -> UUID.fromString("b7944a6a-09fb-4fef-a378-e1d52f5c9ec1"));
+        recruitment.recruitMcaIntoColony(new FakeMcaHost("villager_entity:71f7504a-bdab-4e75-888e-ef75f36e7338"),
+                colonyHost, 301L, () -> UUID.fromString("48c69dd1-f08b-4bb4-bfc7-3ee0b93991f2"));
+
+        assertThrows(IllegalStateException.class, () ->
+                recruitment.recruitMcaIntoColony(mcaHost, colonyHost, 302L, UUID::randomUUID));
+    }
+
+    @Test
+    void residentRecruitmentRejectsReversedUpstreamHosts() {
+        ResidentHostAdapterRegistry adapters = new ResidentHostAdapterRegistry();
+        adapters.register(new FakeRecruitmentMcaAdapter());
+        adapters.register(new FakeRecruitmentColonyAdapter());
+        ResidentRecruitmentService recruitment = new ResidentRecruitmentService(
+                new ResidentIdentityService(new ResidentRegistry(), adapters));
+
+        assertThrows(IllegalArgumentException.class, () -> recruitment.recruitMcaIntoColony(
+                new FakeMineColoniesHost("colony:17/citizen:42"),
+                new FakeMcaHost("villager_entity:52cc5adc-a51a-4c98-bc21-3d623f08f8a5"),
+                300L,
+                UUID::randomUUID));
+    }
+
     private record FakeDualHost(String mcaId, String colonyId) {
+    }
+
+    private record FakeMcaHost(String hostId) {
+    }
+
+    private record FakeMineColoniesHost(String hostId) {
     }
 
     private static final class FakeMcaAdapter implements ResidentHostAdapter<FakeDualHost> {
@@ -177,6 +242,41 @@ class ImmersiveEgoCivitasTest {
         @Override
         public Optional<ResidentHostKey> identify(FakeDualHost host) {
             return Optional.of(new ResidentHostKey(authority(), host.colonyId()));
+        }
+    }
+
+    private static final class FakeRecruitmentMcaAdapter implements ResidentHostAdapter<FakeMcaHost> {
+        @Override
+        public CivitasAuthority authority() {
+            return CivitasAuthority.MCA_REBORN;
+        }
+
+        @Override
+        public Class<FakeMcaHost> hostType() {
+            return FakeMcaHost.class;
+        }
+
+        @Override
+        public Optional<ResidentHostKey> identify(FakeMcaHost host) {
+            return Optional.of(new ResidentHostKey(authority(), host.hostId()));
+        }
+    }
+
+    private static final class FakeRecruitmentColonyAdapter
+            implements ResidentHostAdapter<FakeMineColoniesHost> {
+        @Override
+        public CivitasAuthority authority() {
+            return CivitasAuthority.MINECOLONIES;
+        }
+
+        @Override
+        public Class<FakeMineColoniesHost> hostType() {
+            return FakeMineColoniesHost.class;
+        }
+
+        @Override
+        public Optional<ResidentHostKey> identify(FakeMineColoniesHost host) {
+            return Optional.of(new ResidentHostKey(authority(), host.hostId()));
         }
     }
 

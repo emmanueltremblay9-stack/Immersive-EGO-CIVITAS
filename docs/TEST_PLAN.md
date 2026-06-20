@@ -13,6 +13,8 @@
 - Pure Java unit tests for the pinned runtime dependency guard, original
   resident registry invariants, neutral host-adapter registry/service, and
   reflection-backed MCA/MineColonies resident host-key adapters.
+- Pure Java unit tests for MCA-to-colony resident recruitment linking,
+  cross-resident conflict rejection, and reversed upstream host rejection.
 - GameTests for runtime boot, resident SavedData host lookup, and resident NBT
   round-trip.
 - GameTest runtime contract for installed MCA Reborn and MineColonies resident
