@@ -1,6 +1,9 @@
 .gradle/
 build/
 out/
+run/
+runs/
+repo/
 
 *.log
 *.tmp
@@ -11,3 +14,6 @@ out/
 *.iml
 Thumbs.db
 Desktop.ini
+
+# Local machine overrides
+.codex/local.env

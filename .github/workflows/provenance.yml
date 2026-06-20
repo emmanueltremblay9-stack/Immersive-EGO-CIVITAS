@@ -9,6 +9,14 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
       - name: Validate source provenance and asset policy
         shell: pwsh
         run: ./scripts/validate-provenance.ps1
+      - name: Build NeoForge harness
+        shell: pwsh
+        run: ./gradlew.bat --no-daemon clean build

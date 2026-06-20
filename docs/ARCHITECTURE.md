@@ -28,5 +28,8 @@ pages remain the detailed product source.
 
 ## Current state
 
-No NeoForge harness exists yet. P0 governance, dependency audit, provenance, and
-asset gates must complete before gameplay implementation or source adaptation.
+The initial NeoForge harness exists. It contains only original CIVITAS bootstrap
+code, generated mod metadata, and no gameplay systems or adapted upstream
+source. P0 provenance and asset gates remain active. CIV-003 still blocks
+Modern Companions or LDT dependency source adaptation until immutable source
+commit mappings are proven.

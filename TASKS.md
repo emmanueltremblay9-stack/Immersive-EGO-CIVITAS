@@ -21,6 +21,12 @@
 - [ ] CIV-003 - Map release artifacts to immutable source commits
   - Acceptance: Every mandatory jar maps to source.
   - Blocker: Modern Companions CurseForge `2.0` artifact is verified, but no checked public `STRHercules/ModernCompanions` branch declares `2.0` and `MajorBonghits/ModernCompanions` returned `404`.
+- [x] CIV-008 - Initialize NeoForge 1.21.1 Java 21 project
+  - Acceptance: Project compiles with standard runs.
+  - Upstream source/commit: Original CIVITAS harness; no upstream implementation source copied.
+  - Provenance manifest ID: N/A, original source only.
+  - Tests: `.\gradlew.bat --no-daemon clean build`; `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-provenance.ps1`; `pwsh -NoProfile -ExecutionPolicy Bypass -File .\install-mod.ps1 -SkipBuild`; `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\install-runtime-deps.ps1`.
+  - Evidence: NeoForge metadata in `build/libs/immersive_ego_civitas-0.1.0-alpha.2.jar`, `build/install-report.json`, `build/runtime-deps-report.json`.
 
 ## Blockers
 
@@ -32,3 +38,4 @@
 
 - CIV-001 - P0 repository skeleton and provenance gate.
 - CIV-002 - Exact selected runtime artifacts and NeoForge intersection audit.
+- CIV-008 - Initial NeoForge harness, build, and LAB install.

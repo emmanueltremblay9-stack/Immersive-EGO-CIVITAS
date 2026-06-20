@@ -28,8 +28,8 @@ Summary: <short summary of changes>
 
 ## Current status
 
-All implementation source remains original or absent. Modern Companions
-adaptation is blocked until the CurseForge `2.0` artifact maps to an immutable
-public source commit and the Human Companions / Basic Weapons lineage questions
-are resolved. Structurize, BlockUI, Domum Ornamentum, and Multi-Piston source
-commit mappings are also pending before adapting code from those projects.
+Only original CIVITAS bootstrap source exists. Modern Companions adaptation is
+blocked until the CurseForge `2.0` artifact maps to an immutable public source
+commit and the Human Companions / Basic Weapons lineage questions are resolved.
+Structurize, BlockUI, Domum Ornamentum, and Multi-Piston source commit mappings
+are also pending before adapting code from those projects.

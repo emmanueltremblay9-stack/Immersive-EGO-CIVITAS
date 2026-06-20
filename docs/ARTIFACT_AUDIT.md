@@ -37,6 +37,9 @@ Downloaded jars are kept only in the ignored local cache
 
 ## Dependency observations
 
+- `scripts/install-runtime-deps.ps1` uses the artifact locators and SHA-256
+  values above to install verified runtime jars into Prism LAB. This is runtime
+  installation proof only; it does not resolve source-adaptation blockers.
 - MineColonies jar metadata requires Structurize, BlockUI, and Domum
   Ornamentum. Its release text also lists Multi-Piston as a required minimum,
   but the jar metadata does not declare a `multipiston` dependency.

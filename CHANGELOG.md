@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.2
+
+- Initialized the NeoForge 1.21.1 Java 21 harness.
+- Added original CIVITAS bootstrap class and metadata template.
+- Added Gradle build, CI build gate, provenance validation, install script, and
+  runtime dependency installer.
+- Installed the verified LAB jar and audited runtime dependency stack.
+
 ## Unreleased
 
 - Imported the planning, Notion, branding, legal, and project-control pack.

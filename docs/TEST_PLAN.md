@@ -3,10 +3,12 @@
 ## Current gates
 
 - `scripts/validate-provenance.ps1`
+- `.\gradlew.bat --no-daemon clean build`
+- `.\install-mod.ps1 -SkipBuild`
+- `scripts/install-runtime-deps.ps1`
 
 ## Required future gates
 
-- Gradle clean build.
 - Dedicated-server smoke boot.
 - Client smoke boot.
 - Pure Java tests for codecs, migrations, resident repair, order arbitration,

@@ -4,7 +4,7 @@ Audit date: 2026-06-20
 
 | Component | Minecraft | Loader | Version | Compatibility status |
 |---|---|---|---|---|
-| CIVITAS | 1.21.1 | NeoForge | 0.1.0-alpha.1 target | Harness not created |
+| CIVITAS | 1.21.1 | NeoForge | 0.1.0-alpha.2 | Harness builds and installs |
 | Immersive EGO | 1.21.1 | NeoForge | 0.1.0-alpha.7 | Local prerequisite exists |
 | NeoForge | 1.21.1 | NeoForge | 21.1.233 candidate | Maven metadata verified |
 | MineColonies | 1.21.1 | NeoForge/Forge-family release | 1.1.1319 | Stable source tag mapped |
