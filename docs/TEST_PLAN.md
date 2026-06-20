@@ -15,6 +15,8 @@
   reflection-backed MCA/MineColonies resident host-key adapters.
 - Pure Java unit tests for MCA-to-colony resident recruitment linking,
   cross-resident conflict rejection, and reversed upstream host rejection.
+- Pure Java unit tests for repairable MineColonies assignment execution,
+  rejection/no-op handling, rollback, and partial mutation cleanup.
 - GameTests for runtime boot, resident SavedData host lookup, and resident NBT
   round-trip.
 - GameTest runtime contracts for installed MCA Reborn, MineColonies resident

@@ -7,12 +7,15 @@ Current local state:
 - Remote: `https://github.com/emmanueltremblay9-stack/Immersive-EGO.git`
 - Branch: `main`
 - Commit: `789238c475ecabc19808b9ac7d99df7f457670b8`
-- Prism LAB prerequisite: `immersive_ego-0.1.0-alpha.27.jar`
-- SHA-256: `f76dd02414a960a23bb627d59307b9e54f05da1f725adebd2ae3e0ebd8c11329`
+- Prism LAB prerequisite: `immersive_ego-0.1.0-alpha.29.jar`
+- SHA-256: `a1063f2b29e5a9f5fda1380cc8effa84ca87323078cb966b81c47099bf26c0d5`
 - License: MIT
 - Minecraft: `1.21.1`
 - NeoForge: `21.1.233`
-- Source-to-binary proof: passed. A fresh `.\gradlew.bat --no-daemon clean build` in the sibling repository reproduced the installed Prism LAB jar hash, and `.\gradlew.bat --no-daemon runGameTestServer` passed with 3 required tests.
+- Source-to-binary proof: local binary parity only. The sibling build artifact
+  hash matches the installed Prism LAB jar, but the sibling repository has
+  uncommitted changes, so immutable source mapping is blocked until that state
+  is committed and pushed or alpha.27 is restored.
 
 ## Required neutral CIVITAS facade capabilities
 

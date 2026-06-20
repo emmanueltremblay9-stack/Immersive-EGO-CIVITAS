@@ -31,12 +31,13 @@ Summary: <short summary of changes>
 Only original CIVITAS bootstrap, runtime guard, resident registry, SavedData,
 host-adapter registry, identity service, reflection-backed MCA/MineColonies
 host adapters, upstream API contract checks, recruitment orchestration service,
-MineColonies assignment API contract, and test source exists. The
-reflection-backed adapters and runtime contracts use public class and method
-names from pinned source/runtime evidence as strings; no upstream implementation
-bodies were copied or adapted. Modern Companions adaptation is blocked until
-the CurseForge `2.0` artifact maps to an immutable public source commit and the
-Human Companions / Basic Weapons lineage questions are resolved.
+MineColonies assignment API contract, repairable assignment executor, and test
+source exists. The reflection-backed adapters, runtime contracts, and assignment
+executor use public class and method names from pinned source/runtime evidence
+as strings; no upstream implementation bodies were copied or adapted. Modern
+Companions adaptation is blocked until the CurseForge `2.0` artifact maps to an
+immutable public source commit and the Human Companions / Basic Weapons lineage
+questions are resolved.
 Structurize, BlockUI, Domum Ornamentum, and Multi-Piston now have immutable
 source tag mappings recorded in `docs/ARTIFACT_AUDIT.md`; no source from those
 projects has been copied or adapted. Waystones and Balm are mapped for runtime

@@ -13,7 +13,7 @@ metadata are recorded in `docs/ARTIFACT_AUDIT.md`.
 | Minecraft | `1.21.1` | Mojang runtime, external | Pinned target |
 | Java | `21` | OpenJDK-compatible runtime | Pinned target |
 | NeoForge | `21.1.233` observed in Maven metadata | `neoforged/NeoForge`, 1.21.x active | Candidate loader pin |
-| Immersive EGO | `0.1.0-alpha.27` LAB jar observed during smoke | `789238c475ecabc19808b9ac7d99df7f457670b8`; clean rebuild reproduced the installed jar SHA-256 | Local prerequisite mapped |
+| Immersive EGO | `0.1.0-alpha.29` LAB jar observed during smoke | Sibling repo HEAD `789238c475ecabc19808b9ac7d99df7f457670b8` plus uncommitted local changes; sibling build artifact hash matches installed jar | Local prerequisite binary-matched; immutable source mapping blocked |
 | MineColonies | `1.1.1319` for Minecraft 1.21.1 | `35bd7ad7448c562c84d11dc9dff5b067e8f131e5` | Stable audit target |
 | Structurize | `1.0.810-1.21.1-snapshot` | tag `v1.21.1-1.0.810-snapshot` commit `16a05cdb3524fae1662d8bab1f48b1d28f580c7a` | Source/release mapped |
 | Multi-Piston | `1.2.51-1.21.1-snapshot` | tag `v1.21.1-1.2.51` commit `b74560984ea1da1906e59dd2f34286d55ee30449` | Source/release mapped |
@@ -37,11 +37,13 @@ metadata are recorded in `docs/ARTIFACT_AUDIT.md`.
   `802ab602...`.
 - MCA Reborn GitHub asset digest for `mca-neoforge-7.7.11+1.21.1.jar`
   matches the local SHA-256 in `docs/ARTIFACT_AUDIT.md`.
-- Immersive EGO commit `789238c475ecabc19808b9ac7d99df7f457670b8` declares
-  `0.1.0-alpha.27`. A fresh sibling `.\gradlew.bat --no-daemon clean build`
-  reproduced `build\libs\immersive_ego-0.1.0-alpha.27.jar` with SHA-256
-  `f76dd02414a960a23bb627d59307b9e54f05da1f725adebd2ae3e0ebd8c11329`,
-  matching the installed Prism LAB prerequisite jar.
+- Immersive EGO sibling repo HEAD is
+  `789238c475ecabc19808b9ac7d99df7f457670b8`, the dirty local checkout
+  declares `0.1.0-alpha.29`, and `build\libs\immersive_ego-0.1.0-alpha.29.jar`
+  SHA-256 `a1063f2b29e5a9f5fda1380cc8effa84ca87323078cb966b81c47099bf26c0d5`
+  matches the installed Prism LAB prerequisite. Because the sibling checkout
+  has uncommitted changes, this is local binary parity, not immutable
+  source-to-binary proof.
 - Modern Companions CurseForge file `7902593` downloads as
   `ModernCompanions-1.21.1-2.0-NeoForge.jar` and its metadata declares
   `version = "2.0"`, `license = "GPL-3.0-only"`, required NeoForge
@@ -77,10 +79,12 @@ metadata are recorded in `docs/ARTIFACT_AUDIT.md`.
 
 ## Blockers
 
-1. Map Modern Companions CurseForge `2.0` to an immutable source commit.
-2. Verify Modern Companions root/source license file or another authoritative
+1. Commit and push the Immersive EGO `0.1.0-alpha.29` source state, or restore
+   the previously mapped alpha.27 prerequisite.
+2. Map Modern Companions CurseForge `2.0` to an immutable source commit.
+3. Verify Modern Companions root/source license file or another authoritative
    repository-level license record.
-3. Audit Human Companions and Basic Weapons lineage before using Modern
+4. Audit Human Companions and Basic Weapons lineage before using Modern
    Companions implementation details.
 
 ## Source links

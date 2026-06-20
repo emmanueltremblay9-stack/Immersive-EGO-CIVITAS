@@ -73,3 +73,19 @@ than setting citizen fields directly:
 
 `MineColoniesAssignmentApiContract` verifies these installed runtime members
 during the GameTest smoke gate.
+
+## CIVITAS executor status
+
+Alpha.14 adds `MineColoniesAssignmentService`, `MineColoniesAssignmentPlan`, and
+`MineColoniesAssignmentResult`.
+
+- The executor calls `assignCitizen`, `removeCitizen`, and
+  `hasAssignedCitizen` through the verified assignment modules.
+- It treats assignment rejection as a failed no-op.
+- If a downstream work assignment fails after a home assignment changed, it
+  removes the target home assignment and restores the previous home module when
+  one is provided.
+- If a home or work assignment mutates and then throws, it removes the target
+  assignment and restores the previous module when one is provided.
+- It still does not discover live building modules or mutate real colony state
+  from gameplay code; that remains the next slice.

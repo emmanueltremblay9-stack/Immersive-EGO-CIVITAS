@@ -37,7 +37,11 @@ verified public class/method names, and alpha.9 adds original recruitment
 orchestration that links one verified MCA host and one verified MineColonies
 host into the same canonical resident record. Alpha.10 adds a runtime contract
 for the MineColonies assignment-module APIs that CIVITAS must use before
-mutating housing or work state. No upstream gameplay implementation source or
-assets have been copied. P0 provenance and asset gates remain active. CIV-003
-still blocks Modern Companions implementation-detail adaptation until an
-immutable source commit mapping is proven.
+mutating housing or work state. Alpha.14 adds an original repairable assignment
+executor that calls assignment modules and rolls back target module changes on
+downstream assignment failure. Live colony module discovery and gameplay
+mutation are still pending. No upstream gameplay implementation source or assets
+have been copied. P0 provenance and asset gates remain active. CIV-003 still
+blocks Modern Companions implementation-detail adaptation and release packaging
+until immutable source commit mappings are proven for Modern Companions `2.0`
+and the current Immersive EGO `0.1.0-alpha.29` prerequisite.

@@ -22,7 +22,16 @@ final class ReflectiveHostAccess {
         }
 
         return findNoArg(target.getClass(), methodName)
-                .flatMap(method -> invoke(target, method));
+                .flatMap(method -> invokeMethod(target, method));
+    }
+
+    static Optional<Object> invoke(Object target, String methodName, Object... arguments) {
+        if (target == null) {
+            return Optional.empty();
+        }
+
+        return findCompatible(target.getClass(), methodName, arguments)
+                .flatMap(method -> invokeMethod(target, method, arguments));
     }
 
     static Optional<UUID> invokeUuid(Object target, String methodName) {
@@ -78,6 +87,77 @@ final class ReflectiveHostAccess {
         return Optional.empty();
     }
 
+    private static Optional<Method> findCompatible(Class<?> type, String methodName, Object[] arguments) {
+        for (Method method : type.getMethods()) {
+            if (isCompatible(method, methodName, arguments)) {
+                makeAccessible(method);
+                return Optional.of(method);
+            }
+        }
+
+        Class<?> current = type;
+        while (current != null) {
+            for (Method method : current.getDeclaredMethods()) {
+                if (isCompatible(method, methodName, arguments)) {
+                    makeAccessible(method);
+                    return Optional.of(method);
+                }
+            }
+            current = current.getSuperclass();
+        }
+        return Optional.empty();
+    }
+
+    private static boolean isCompatible(Method method, String methodName, Object[] arguments) {
+        if (!method.getName().equals(methodName) || method.getParameterCount() != arguments.length) {
+            return false;
+        }
+
+        Class<?>[] parameterTypes = method.getParameterTypes();
+        for (int index = 0; index < parameterTypes.length; index++) {
+            Object argument = arguments[index];
+            if (argument == null) {
+                if (parameterTypes[index].isPrimitive()) {
+                    return false;
+                }
+            } else if (!wrapPrimitive(parameterTypes[index]).isInstance(argument)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static Class<?> wrapPrimitive(Class<?> type) {
+        if (!type.isPrimitive()) {
+            return type;
+        }
+        if (type == boolean.class) {
+            return Boolean.class;
+        }
+        if (type == byte.class) {
+            return Byte.class;
+        }
+        if (type == char.class) {
+            return Character.class;
+        }
+        if (type == short.class) {
+            return Short.class;
+        }
+        if (type == int.class) {
+            return Integer.class;
+        }
+        if (type == long.class) {
+            return Long.class;
+        }
+        if (type == float.class) {
+            return Float.class;
+        }
+        if (type == double.class) {
+            return Double.class;
+        }
+        return Void.class;
+    }
+
     private static void makeAccessible(Method method) {
         try {
             method.setAccessible(true);
@@ -86,9 +166,9 @@ final class ReflectiveHostAccess {
         }
     }
 
-    private static Optional<Object> invoke(Object target, Method method) {
+    private static Optional<Object> invokeMethod(Object target, Method method, Object... arguments) {
         try {
-            return Optional.ofNullable(method.invoke(target));
+            return Optional.ofNullable(method.invoke(target, arguments));
         } catch (IllegalAccessException | InvocationTargetException | RuntimeException ignored) {
             return Optional.empty();
         }

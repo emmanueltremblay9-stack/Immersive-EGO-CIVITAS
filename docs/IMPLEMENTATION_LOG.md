@@ -89,4 +89,19 @@
   LAB, and verified unit tests, clean build, provenance validation, server
   GameTests, and Prism client smoke. The installed jar SHA-256 is
   `12892d66a42323587202d2040fb355ce1d43ecc1c4a19ecd673bd0eefe6095e2`.
+- Added original alpha.14 repairable MineColonies assignment execution:
+  `MineColoniesAssignmentPlan`, `MineColoniesAssignmentResult`, and
+  `MineColoniesAssignmentService`. The executor invokes assignment modules
+  reflectively and rolls back target home/work module changes on downstream
+  failures, including partial home/work mutations that throw, instead of
+  directly setting MineColonies citizen fields.
+- Refreshed the exact runtime dependency guard to the current Prism LAB
+  Immersive EGO prerequisite `0.1.0-alpha.29`. The sibling
+  `immersive_ego-0.1.0-alpha.29.jar` build artifact hash matches the installed
+  jar, but the sibling source checkout is dirty, so immutable source mapping is
+  blocked.
+- Advanced CIVITAS to `0.1.0-alpha.14`, installed the verified jar into Prism
+  LAB, and verified unit tests, clean build, provenance validation, server
+  GameTests, and Prism client smoke. The installed jar SHA-256 is
+  `9b237d04a53e50de9358e3c31456e49c42c5d3372da7d44b9e9583e9ee6fa495`.
 - No upstream implementation source was copied or adapted.

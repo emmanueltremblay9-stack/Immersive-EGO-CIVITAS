@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.0-alpha.14
+
+- Added an original repairable MineColonies assignment executor:
+  `MineColoniesAssignmentPlan`, `MineColoniesAssignmentResult`, and
+  `MineColoniesAssignmentService`.
+- Refreshed the exact runtime guard and metadata floor for the current Prism
+  LAB Immersive EGO prerequisite, `0.1.0-alpha.29`.
+- The executor uses assignment modules only (`assignCitizen`,
+  `removeCitizen`, and `hasAssignedCitizen`) and does not directly mutate
+  MineColonies citizen fields.
+- Added unit coverage for home/work assignment, home rollback when work rejects
+  a citizen, preserving pre-existing home assignment, partial home/work
+  mutation rollback after an exception, and invalid plan rejection.
+- Rebuilt and installed `immersive_ego_civitas-0.1.0-alpha.14.jar`; unit tests,
+  clean build, provenance validation, server GameTests, and Prism client smoke
+  passed.
+- No upstream implementation source or assets were copied or adapted.
+
 ## 0.1.0-alpha.10
 
 - Added an original MineColonies assignment API contract for the public home,
