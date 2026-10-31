@@ -2,6 +2,7 @@ package com.oblixorprime.immersiveego.civitas.resident;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,14 +22,14 @@ public final class ResidentIdentityService {
 
     public Optional<ResidentRecord> find(Object host) {
         List<ResidentHostKey> hostKeys = requireHostKeys(host);
-        return hostKeys.stream()
-                .map(store::find)
-                .flatMap(Optional::stream)
-                .findFirst();
+        requireDistinctAuthorities(hostKeys);
+        return resolveExistingResident(hostKeys);
     }
 
     public ResidentRecord getOrCreate(Object host, long gameTime, Supplier<UUID> residentIdSupplier) {
-        return getOrCreate(requireHostKeys(host), gameTime, residentIdSupplier);
+        List<ResidentHostKey> hostKeys = requireHostKeys(host);
+        requireDistinctAuthorities(hostKeys);
+        return getOrCreate(hostKeys, gameTime, residentIdSupplier);
     }
 
     public ResidentRecord getOrCreateAll(
@@ -55,16 +56,19 @@ public final class ResidentIdentityService {
             throw new IllegalArgumentException("At least one resident host key is required");
         }
 
-        return getOrCreate(
-                hostKeys.stream()
-                        .map(hostKey -> Objects.requireNonNull(hostKey, "hostKey"))
-                        .toList(),
-                gameTime,
-                residentIdSupplier);
+        List<ResidentHostKey> resolvedHostKeys = hostKeys.stream()
+                .map(hostKey -> Objects.requireNonNull(hostKey, "hostKey"))
+                .toList();
+        requireDistinctAuthorities(resolvedHostKeys);
+
+        return getOrCreate(resolvedHostKeys, gameTime, residentIdSupplier);
     }
 
     public ResidentHostKey requireHostKey(Object host, CivitasAuthority authority) {
         Objects.requireNonNull(authority, "authority");
+        if (host == null) {
+            throw new IllegalArgumentException(authorityDisplayName(authority) + " host is required");
+        }
         return requireHostKeys(host).stream()
                 .filter(hostKey -> hostKey.authority() == authority)
                 .findFirst()
@@ -89,6 +93,9 @@ public final class ResidentIdentityService {
     }
 
     private List<ResidentHostKey> requireHostKeys(Object host) {
+        if (host == null) {
+            throw new IllegalArgumentException("Resident host is required");
+        }
         List<ResidentHostKey> hostKeys = adapters.identify(host);
         if (hostKeys.isEmpty()) {
             throw new IllegalArgumentException(
@@ -108,5 +115,28 @@ public final class ResidentIdentityService {
                     + matchesById.keySet());
         }
         return matchesById.values().stream().findFirst();
+    }
+
+    private static void requireDistinctAuthorities(List<ResidentHostKey> hostKeys) {
+        EnumMap<CivitasAuthority, ResidentHostKey> hostsByAuthority = new EnumMap<>(CivitasAuthority.class);
+        for (ResidentHostKey hostKey : hostKeys) {
+            ResidentHostKey previousHost = hostsByAuthority.putIfAbsent(hostKey.authority(), hostKey);
+            if (previousHost != null) {
+                throw new IllegalArgumentException(
+                        "Duplicate CIVITAS host authority '" + hostKey.authority().serializedId()
+                                + "' in one identity request: " + previousHost.hostId()
+                                + " and " + hostKey.hostId());
+            }
+        }
+    }
+
+    private static String authorityDisplayName(CivitasAuthority authority) {
+        return switch (authority) {
+            case MCA_REBORN -> "MCA Reborn";
+            case MINECOLONIES -> "MineColonies";
+            case IMMERSIVE_EGO -> "Immersive EGO";
+            case MODERN_COMPANIONS -> "Modern Companions";
+            case CIVITAS -> "CIVITAS";
+        };
     }
 }

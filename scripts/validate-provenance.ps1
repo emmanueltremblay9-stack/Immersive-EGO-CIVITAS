@@ -111,5 +111,8 @@ if (Test-Path -LiteralPath $resourcesRoot) {
     }
 }
 
+$boundaryScan = Join-Path $PSScriptRoot 'validate-boundary-scan.ps1'
+& $boundaryScan -RepoRoot $RepoRoot
+
 Write-Host "Provenance validation passed."
 Write-Host "Active adapted-source rows: $($activeRows.Count)"

@@ -1,6 +1,7 @@
 package com.oblixorprime.immersiveego.civitas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -13,8 +14,13 @@ import com.oblixorprime.immersiveego.civitas.resident.ResidentRecord;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRecruitmentResult;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRecruitmentService;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRegistry;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -28,7 +34,7 @@ class ImmersiveEgoCivitasTest {
     }
 
     @Test
-    void runtimeGuardPinsEveryAuditedRuntimeMod() {
+    void runtimeGuardRequiresEveryMandatoryRuntimeMod() {
         Map<String, CivitasRuntimeDependencyGuard.RuntimeRequirement> requirements =
                 CivitasRuntimeDependencyGuard.requiredMods().stream()
                         .collect(Collectors.toMap(
@@ -48,18 +54,35 @@ class ImmersiveEgoCivitasTest {
                         "waystones",
                         "balm"),
                 requirements.keySet());
-        assertEquals(
-                "0.1.0-alpha.38",
-                requirements.get("immersive_ego").acceptedVersions().getFirst());
-        assertTrue(requirements.get("domum_ornamentum").acceptedVersions().contains("${file.jarVersion}"));
+        assertTrue(requirements.values().stream()
+                .allMatch(requirement -> "any installed version".equals(requirement.expectedVersions())));
     }
 
     @Test
-    void runtimeGuardAcceptsAuditedVersions() {
+    void metadataRangesArePermissiveForDirectDependencies() throws Exception {
+        Properties properties = new Properties();
+        try (InputStream input = Files.newInputStream(Path.of("gradle.properties"))) {
+            properties.load(input);
+        }
+
+        assertEquals("0.1.0-alpha.39", properties.getProperty("mod_version"));
+        assertEquals("[21.1,)", properties.getProperty("neo_version_range"));
+        assertEquals("[0,)", properties.getProperty("immersive_ego_version_range"));
+        assertEquals("[0,)", properties.getProperty("minecolonies_version_range"));
+        assertEquals("[0,)", properties.getProperty("mca_version_range"));
+        assertEquals("[0,)", properties.getProperty("modern_companions_version_range"));
+    }
+
+    @Test
+    void runtimeGuardAcceptsObservedAndFutureVersionStrings() {
         Map<String, String> versions = CivitasRuntimeDependencyGuard.requiredMods().stream()
                 .collect(Collectors.toMap(
                         CivitasRuntimeDependencyGuard.RuntimeRequirement::modId,
-                        requirement -> requirement.acceptedVersions().getFirst()));
+                        requirement -> "future-" + requirement.modId() + "-9999"));
+        versions.put("immersive_ego", "0.1.0-alpha.56");
+        versions.put("minecolonies", "1.1.1332-1.21.1-snapshot");
+        versions.put("multipiston", "1.2.58-1.21.1");
+        versions.put("balm", "21.0.59");
 
         assertTrue(CivitasRuntimeDependencyGuard.findViolations(
                         modId -> Optional.ofNullable(versions.get(modId)))
@@ -67,12 +90,27 @@ class ImmersiveEgoCivitasTest {
     }
 
     @Test
-    void runtimeGuardRejectsMissingAndUnknownVersions() {
+    void runtimeGuardAcceptsPatchFamilyVersionsWithSnapshotSuffix() {
+        CivitasRuntimeDependencyGuard.RuntimeRequirement requirement = new CivitasRuntimeDependencyGuard.RuntimeRequirement(
+                "minecolonies",
+                "MineColonies",
+                List.of("1.1.x"),
+                "manual-test");
+
+        assertTrue(requirement.accepts("1.1.1332-1.21.1-snapshot"));
+        assertTrue(requirement.accepts("1.1.42"));
+        assertFalse(requirement.accepts("1.10.42"));
+        assertFalse(requirement.accepts("1.2.5"));
+        assertFalse(requirement.accepts("abc"));
+    }
+
+    @Test
+    void runtimeGuardRejectsMissingRequiredMods() {
         Map<String, String> versions = CivitasRuntimeDependencyGuard.requiredMods().stream()
                 .filter(requirement -> !"minecolonies".equals(requirement.modId()))
                 .collect(Collectors.toMap(
                         CivitasRuntimeDependencyGuard.RuntimeRequirement::modId,
-                        requirement -> requirement.acceptedVersions().getFirst()));
+                        requirement -> "any-version-" + requirement.modId()));
         versions.put("modern_companions", "2.1");
 
         var violations = CivitasRuntimeDependencyGuard.findViolations(
@@ -80,8 +118,7 @@ class ImmersiveEgoCivitasTest {
         var message = CivitasRuntimeDependencyGuard.errorMessage(violations);
 
         assertTrue(message.contains("Missing required mod 'MineColonies'"));
-        assertTrue(message.contains("Unsupported version for 'Modern Companions'"));
-        assertTrue(message.contains("found 2.1"));
+        assertEquals(1, violations.size());
     }
 
     @Test
@@ -117,6 +154,18 @@ class ImmersiveEgoCivitasTest {
     }
 
     @Test
+    void residentRecordRejectsRecordsWithoutHostKeys() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
+                new ResidentRecord(
+                        UUID.fromString("39dc1d45-41c6-4cf3-b264-f80a805aa999"),
+                        100L,
+                        100L,
+                        Map.of()));
+
+        assertTrue(exception.getMessage().contains("at least one host key"));
+    }
+
+    @Test
     void residentIdentityServiceCreatesOneRecordAcrossSupportedHosts() {
         ResidentHostAdapterRegistry adapters = new ResidentHostAdapterRegistry();
         adapters.register(new FakeMcaAdapter());
@@ -132,6 +181,48 @@ class ImmersiveEgoCivitasTest {
         assertEquals(first.residentId(), second.residentId());
         assertEquals("villager:12", second.host(CivitasAuthority.MCA_REBORN).orElseThrow().hostId());
         assertEquals("citizen:44", second.host(CivitasAuthority.MINECOLONIES).orElseThrow().hostId());
+    }
+
+    @Test
+    void residentIdentityServiceFindRejectsAmbiguousHostKeys() {
+        ResidentHostAdapterRegistry adapters = new ResidentHostAdapterRegistry();
+        adapters.register(new FakeMcaAdapter());
+        adapters.register(new FakeColonyAdapter());
+        ResidentRegistry registry = new ResidentRegistry();
+        ResidentIdentityService service = new ResidentIdentityService(registry, adapters);
+        registry.getOrCreate(
+                new ResidentHostKey(CivitasAuthority.MCA_REBORN, "villager:12"),
+                100L,
+                () -> UUID.fromString("c1f9cd29-a2b5-4f03-a7d2-d3ac7ef4e8c1"));
+        registry.getOrCreate(
+                new ResidentHostKey(CivitasAuthority.MINECOLONIES, "citizen:44"),
+                101L,
+                () -> UUID.fromString("06f30b39-2fc1-4a9f-b6a5-2cc697d81cc6"));
+
+        IllegalStateException exception = assertThrows(
+                IllegalStateException.class,
+                () -> service.find(new FakeDualHost("villager:12", "citizen:44")));
+
+        assertTrue(exception.getMessage().contains("multiple CIVITAS residents"));
+    }
+
+    @Test
+    void residentIdentityServiceRejectsDuplicateAuthorityHostKeysInOneRequest() {
+        ResidentHostAdapterRegistry adapters = new ResidentHostAdapterRegistry();
+        adapters.register(new FakeRecruitmentMcaAdapter());
+        ResidentRegistry registry = new ResidentRegistry();
+        ResidentIdentityService service = new ResidentIdentityService(registry, adapters);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
+                service.getOrCreateAll(
+                        List.of(
+                                new FakeMcaHost("villager_entity:first"),
+                                new FakeMcaHost("villager_entity:second")),
+                        210L,
+                        UUID::randomUUID));
+
+        assertTrue(exception.getMessage().contains("Duplicate CIVITAS host authority"));
+        assertTrue(registry.records().isEmpty());
     }
 
     @Test

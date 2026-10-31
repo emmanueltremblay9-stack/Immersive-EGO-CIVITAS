@@ -1,6 +1,7 @@
 package com.oblixorprime.immersiveego.civitas.gametest;
 
 import com.oblixorprime.immersiveego.civitas.ImmersiveEgoCivitas;
+import com.oblixorprime.immersiveego.civitas.ego.CivitasEgoApiContract;
 import com.oblixorprime.immersiveego.civitas.resident.CivitasAuthority;
 import com.oblixorprime.immersiveego.civitas.resident.CivitasResidentSavedData;
 import com.oblixorprime.immersiveego.civitas.resident.LinkedResidentAssignmentService;
@@ -8,6 +9,7 @@ import com.oblixorprime.immersiveego.civitas.resident.ResidentHostAdapter;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentHostAdapterRegistry;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentHostKey;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentIdentityService;
+import com.oblixorprime.immersiveego.civitas.resident.ResidentLinkVerifier;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRecord;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRecruitmentResult;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRecruitmentService;
@@ -22,6 +24,7 @@ import java.util.UUID;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -74,6 +77,23 @@ public final class CivitasGameTests {
     }
 
     @GameTest(template = EMPTY, timeoutTicks = 20)
+    public static void immersiveEgoStateApiContractMatchesInstalledRuntime(GameTestHelper helper) {
+        var status = CivitasEgoApiContract.inspect(Thread.currentThread().getContextClassLoader());
+
+        helper.assertTrue(
+                status.stateSnapshotAvailable(),
+                "installed Immersive EGO state API is missing members: " + status.missingMembers());
+        helper.assertTrue(
+                !status.npcSubjectApiAvailable(),
+                "NPC subject support must remain explicit until Immersive EGO exposes a documented API");
+        helper.assertTrue(
+                status.missingRequirements().stream()
+                        .anyMatch(requirement -> requirement.contains("NPC subject")),
+                "EGO API status must report the current NPC subject gap");
+        helper.succeed();
+    }
+
+    @GameTest(template = EMPTY, timeoutTicks = 20)
     public static void residentSavedDataKeepsCanonicalHostIndex(GameTestHelper helper) {
         CivitasResidentSavedData savedData = CivitasResidentSavedData.get(helper.getLevel());
         ResidentHostKey hostKey = new ResidentHostKey(
@@ -113,6 +133,107 @@ public final class CivitasGameTests {
                 loaded.find(colonyHost).orElseThrow().residentId(),
                 created.residentId(),
                 "MineColonies host should resolve after NBT load");
+        helper.succeed();
+    }
+
+    @GameTest(template = EMPTY, timeoutTicks = 20)
+    public static void residentSavedDataRejectsDuplicateHostAuthority(GameTestHelper helper) {
+        CompoundTag root = new CompoundTag();
+        ListTag records = new ListTag();
+        CompoundTag record = new CompoundTag();
+        ListTag hosts = new ListTag();
+
+        record.putUUID("id", UUID.fromString("6413fe40-d3f0-44d8-9f17-f62195d80147"));
+        record.putLong("createdGameTime", 100L);
+        record.putLong("updatedGameTime", 100L);
+        hosts.add(hostTag("mca", "villager_entity:first"));
+        hosts.add(hostTag("mca", "villager_entity:second"));
+        record.put("hosts", hosts);
+        records.add(record);
+        root.put("records", records);
+
+        boolean rejected = false;
+        try {
+            CivitasResidentSavedData.load(root, helper.getLevel().registryAccess());
+        } catch (IllegalArgumentException exception) {
+            rejected = exception.getMessage().contains("Duplicate CIVITAS host authority");
+        }
+
+        helper.assertTrue(rejected, "duplicate host authorities must be rejected instead of overwritten");
+        helper.succeed();
+    }
+
+    @GameTest(template = EMPTY, timeoutTicks = 20)
+    public static void residentSavedDataRejectsUnsupportedFutureSchema(GameTestHelper helper) {
+        CompoundTag root = new CompoundTag();
+        root.putInt("schema", 999);
+        root.put("records", new ListTag());
+
+        boolean rejected = false;
+        try {
+            CivitasResidentSavedData.load(root, helper.getLevel().registryAccess());
+        } catch (IllegalArgumentException exception) {
+            rejected = exception.getMessage().contains("Unsupported CIVITAS resident schema");
+        }
+
+        helper.assertTrue(rejected, "future resident saved-data schemas must fail closed");
+        helper.succeed();
+    }
+
+    @GameTest(template = EMPTY, timeoutTicks = 20)
+    public static void residentSavedDataRejectsNonIntSchema(GameTestHelper helper) {
+        CompoundTag root = new CompoundTag();
+        root.putString("schema", "1");
+        root.put("records", new ListTag());
+
+        boolean rejected = false;
+        try {
+            CivitasResidentSavedData.load(root, helper.getLevel().registryAccess());
+        } catch (IllegalArgumentException exception) {
+            rejected = exception.getMessage().contains("must be an integer");
+        }
+
+        helper.assertTrue(rejected, "non-int resident schema metadata must be rejected");
+        helper.succeed();
+    }
+
+    @GameTest(template = EMPTY, timeoutTicks = 20)
+    public static void residentSavedDataRejectsNonListRecords(GameTestHelper helper) {
+        CompoundTag root = new CompoundTag();
+        root.putInt("schema", 1);
+        root.putString("records", "not-a-list");
+
+        boolean rejected = false;
+        try {
+            CivitasResidentSavedData.load(root, helper.getLevel().registryAccess());
+        } catch (IllegalArgumentException exception) {
+            rejected = exception.getMessage().contains("must be a list");
+        }
+
+        helper.assertTrue(rejected, "non-list resident records metadata must be rejected");
+        helper.succeed();
+    }
+
+    @GameTest(template = EMPTY, timeoutTicks = 20)
+    public static void residentSavedDataRejectsNonListHosts(GameTestHelper helper) {
+        CompoundTag root = new CompoundTag();
+        ListTag records = new ListTag();
+        CompoundTag record = new CompoundTag();
+        record.putUUID("id", UUID.fromString("2ea9a5e3-c0fa-4d3f-a6d6-3af4f4e0f3da"));
+        record.putLong("createdGameTime", 100L);
+        record.putLong("updatedGameTime", 100L);
+        record.putString("hosts", "not-a-list");
+        records.add(record);
+        root.put("records", records);
+
+        boolean rejected = false;
+        try {
+            CivitasResidentSavedData.load(root, helper.getLevel().registryAccess());
+        } catch (IllegalArgumentException exception) {
+            rejected = exception.getMessage().contains("host list metadata must be a list");
+        }
+
+        helper.assertTrue(rejected, "non-list resident host metadata must be rejected");
         helper.succeed();
     }
 
@@ -179,10 +300,44 @@ public final class CivitasGameTests {
         helper.succeed();
     }
 
+    @GameTest(template = EMPTY, timeoutTicks = 20)
+    public static void residentLinkVerifierProvesPersistedMcaMineColoniesPair(GameTestHelper helper) {
+        ResidentHostAdapterRegistry adapters = new ResidentHostAdapterRegistry();
+        adapters.register(new GameTestMcaAdapter());
+        adapters.register(new GameTestMineColoniesAdapter());
+        CivitasResidentSavedData savedData = new CivitasResidentSavedData();
+        ResidentRecord record = savedData.getOrCreate(
+                new ResidentHostKey(CivitasAuthority.MCA_REBORN, "villager_entity:gametest"),
+                100L);
+        savedData.linkHost(
+                record.residentId(),
+                new ResidentHostKey(CivitasAuthority.MINECOLONIES, "colony:17/citizen:42"),
+                101L);
+
+        var result = new ResidentLinkVerifier(adapters).verifyMcaMineColoniesLink(
+                savedData,
+                new GameTestMcaVillager("villager_entity:gametest"),
+                new GameTestMineColoniesCitizen("colony:17/citizen:42"));
+
+        helper.assertTrue(result.verified(), result.message());
+        helper.assertValueEqual(
+                result.residentId().orElseThrow(),
+                record.residentId(),
+                "verified link should report the persisted resident id");
+        helper.succeed();
+    }
+
     private record GameTestMcaVillager(String hostId) {
     }
 
     private record GameTestMineColoniesCitizen(String hostId) {
+    }
+
+    private static CompoundTag hostTag(String authority, String hostId) {
+        CompoundTag tag = new CompoundTag();
+        tag.putString("authority", authority);
+        tag.putString("hostId", hostId);
+        return tag;
     }
 
     private static final class GameTestMcaAdapter

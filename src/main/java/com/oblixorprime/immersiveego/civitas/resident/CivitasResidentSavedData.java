@@ -78,6 +78,24 @@ public final class CivitasResidentSavedData extends SavedData implements Residen
     }
 
     public static CivitasResidentSavedData load(CompoundTag tag, HolderLookup.Provider registries) {
+        if (tag.contains(TAG_SCHEMA)) {
+            if (!tag.contains(TAG_SCHEMA, Tag.TAG_INT)) {
+                throw new IllegalArgumentException(
+                        "Resident schema metadata must be an integer; found type for "
+                                + TAG_SCHEMA);
+            }
+
+            int schemaVersion = tag.getInt(TAG_SCHEMA);
+            if (schemaVersion != SCHEMA_VERSION) {
+                throw new IllegalArgumentException(
+                        "Unsupported CIVITAS resident schema " + schemaVersion
+                                + "; expected " + SCHEMA_VERSION);
+            }
+        }
+        if (tag.contains(TAG_RECORDS) && !tag.contains(TAG_RECORDS, Tag.TAG_LIST)) {
+            throw new IllegalArgumentException("Resident records metadata must be a list; found type for records");
+        }
+
         CivitasResidentSavedData savedData = new CivitasResidentSavedData();
         ListTag recordTags = tag.getList(TAG_RECORDS, Tag.TAG_COMPOUND);
         for (int index = 0; index < recordTags.size(); index++) {
@@ -102,19 +120,29 @@ public final class CivitasResidentSavedData extends SavedData implements Residen
     }
 
     private static ResidentRecord loadRecord(CompoundTag tag) {
+        if (tag.contains(TAG_HOSTS) && !tag.contains(TAG_HOSTS, Tag.TAG_LIST)) {
+            throw new IllegalArgumentException("Resident host list metadata must be a list");
+        }
+
         if (!tag.hasUUID(TAG_ID)) {
             throw new IllegalArgumentException("Resident record is missing id");
         }
 
+        UUID residentId = tag.getUUID(TAG_ID);
         EnumMap<CivitasAuthority, ResidentHostKey> hosts = new EnumMap<>(CivitasAuthority.class);
         ListTag hostTags = tag.getList(TAG_HOSTS, Tag.TAG_COMPOUND);
         for (int index = 0; index < hostTags.size(); index++) {
             ResidentHostKey hostKey = loadHost(hostTags.getCompound(index));
-            hosts.put(hostKey.authority(), hostKey);
+            ResidentHostKey previousHost = hosts.put(hostKey.authority(), hostKey);
+            if (previousHost != null) {
+                throw new IllegalArgumentException(
+                        "Duplicate CIVITAS host authority '" + hostKey.authority().serializedId()
+                                + "' in resident record " + residentId);
+            }
         }
 
         return new ResidentRecord(
-                tag.getUUID(TAG_ID),
+                residentId,
                 tag.getLong(TAG_CREATED_GAME_TIME),
                 tag.getLong(TAG_UPDATED_GAME_TIME),
                 hosts);

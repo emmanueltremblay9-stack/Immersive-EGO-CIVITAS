@@ -31,6 +31,9 @@ public record ResidentRecord(
                 copiedHosts.put(entry.getKey(), entry.getValue());
             }
         }
+        if (copiedHosts.isEmpty()) {
+            throw new IllegalArgumentException("resident record requires at least one host key");
+        }
         hosts = Map.copyOf(copiedHosts);
     }
 

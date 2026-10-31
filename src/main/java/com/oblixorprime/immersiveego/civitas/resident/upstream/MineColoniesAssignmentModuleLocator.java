@@ -192,6 +192,9 @@ public final class MineColoniesAssignmentModuleLocator {
         if (!assignsJobType.isInstance(workModule.get())) {
             return ModuleSelection.failed("previous MineColonies work module does not implement IAssignsJob");
         }
+        if (!hasAssignedCitizen(workModule.get(), citizenData)) {
+            return ModuleSelection.skipped();
+        }
         return ModuleSelection.selected(workModule.get());
     }
 

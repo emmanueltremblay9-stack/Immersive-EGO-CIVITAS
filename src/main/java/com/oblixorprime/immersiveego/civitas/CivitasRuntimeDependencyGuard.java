@@ -8,22 +8,19 @@ import org.slf4j.Logger;
 
 public final class CivitasRuntimeDependencyGuard {
     private static final String AUDIT_SOURCE = "docs/ARTIFACT_AUDIT.md";
+    private static final String ANY_VERSION = "*";
 
     private static final List<RuntimeRequirement> REQUIRED_MODS = List.of(
-            exact("immersive_ego", "Immersive EGO", "0.1.0-alpha.38"),
-            exact("minecolonies", "MineColonies", "1.1.1319-1.21.1"),
-            exact("structurize", "Structurize", "1.0.810-1.21.1-snapshot"),
-            exact("blockui", "BlockUI", "1.0.199-1.21.1-snapshot"),
-            new RuntimeRequirement(
-                    "domum_ornamentum",
-                    "Domum Ornamentum",
-                    List.of("${file.jarVersion}", "1.0.223-snapshot", "1.0.223-1.21.1-snapshot"),
-                    AUDIT_SOURCE),
-            exact("multipiston", "Multi-Piston", "1.2.51-1.21.1-snapshot"),
-            exact("mca", "MCA Reborn", "7.7.11+1.21.1"),
-            exact("modern_companions", "Modern Companions", "2.0"),
-            exact("waystones", "Waystones", "21.1.29"),
-            exact("balm", "Balm", "21.0.56"));
+            any("immersive_ego", "Immersive EGO"),
+            any("minecolonies", "MineColonies"),
+            any("structurize", "Structurize"),
+            any("blockui", "BlockUI"),
+            any("domum_ornamentum", "Domum Ornamentum"),
+            any("multipiston", "Multi-Piston"),
+            any("mca", "MCA Reborn"),
+            any("modern_companions", "Modern Companions"),
+            any("waystones", "Waystones"),
+            any("balm", "Balm"));
 
     private CivitasRuntimeDependencyGuard() {
     }
@@ -50,7 +47,7 @@ public final class CivitasRuntimeDependencyGuard {
             Optional<String> installedVersion = versionLookup.findVersion(requirement.modId());
             if (installedVersion.isEmpty()) {
                 violations.add("Missing required mod '" + requirement.displayName() + "' ("
-                        + requirement.modId() + "); expected audited version "
+                        + requirement.modId() + "); expected supported version "
                         + requirement.expectedVersions() + " from " + requirement.auditSource() + ".");
                 continue;
             }
@@ -58,7 +55,7 @@ public final class CivitasRuntimeDependencyGuard {
             String version = installedVersion.get();
             if (!requirement.accepts(version)) {
                 violations.add("Unsupported version for '" + requirement.displayName() + "' ("
-                        + requirement.modId() + "): found " + version + ", expected audited version "
+                        + requirement.modId() + "): found " + version + ", expected supported version "
                         + requirement.expectedVersions() + " from " + requirement.auditSource() + ".");
             }
         }
@@ -70,8 +67,8 @@ public final class CivitasRuntimeDependencyGuard {
                 + String.join("\n - ", violations);
     }
 
-    private static RuntimeRequirement exact(String modId, String displayName, String version) {
-        return new RuntimeRequirement(modId, displayName, List.of(version), AUDIT_SOURCE);
+    private static RuntimeRequirement any(String modId, String displayName) {
+        return new RuntimeRequirement(modId, displayName, List.of(ANY_VERSION), AUDIT_SOURCE);
     }
 
     private static Optional<String> installedModVersion(String modId) {
@@ -102,11 +99,48 @@ public final class CivitasRuntimeDependencyGuard {
         }
 
         boolean accepts(String version) {
-            return acceptedVersions.contains(version);
+            if (acceptedVersions.contains(ANY_VERSION)) {
+                return true;
+            }
+
+            for (String acceptedVersion : acceptedVersions) {
+                if (isPatchFamily(acceptedVersion)) {
+                    String prefix = acceptedVersion.substring(0, acceptedVersion.length() - 1);
+                    if (version.startsWith(prefix) && isNumericPatch(version.substring(prefix.length()))) {
+                        return true;
+                    }
+                    continue;
+                }
+
+                if (acceptedVersion.equals(version)) {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         String expectedVersions() {
+            if (acceptedVersions.contains(ANY_VERSION)) {
+                return "any installed version";
+            }
             return String.join(" or ", acceptedVersions);
+        }
+
+        private static boolean isPatchFamily(String acceptedVersion) {
+            return acceptedVersion.endsWith(".x");
+        }
+
+        private static boolean isNumericPatch(String patch) {
+            if (patch.isBlank()) {
+                return false;
+            }
+
+            int prefixLength = 0;
+            while (prefixLength < patch.length() && Character.isDigit(patch.charAt(prefixLength))) {
+                prefixLength++;
+            }
+            return prefixLength > 0;
         }
     }
 }

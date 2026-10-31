@@ -9,6 +9,8 @@ import com.oblixorprime.immersiveego.civitas.resident.CivitasResidentSavedData;
 import com.oblixorprime.immersiveego.civitas.resident.LinkedResidentAssignmentService;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentHostAdapterRegistry;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentIdentityService;
+import com.oblixorprime.immersiveego.civitas.resident.ResidentLinkVerificationResult;
+import com.oblixorprime.immersiveego.civitas.resident.ResidentLinkVerifier;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRecruitmentResult;
 import com.oblixorprime.immersiveego.civitas.resident.ResidentRecruitmentService;
 import com.oblixorprime.immersiveego.civitas.resident.upstream.MineColoniesAssignmentCoordinator;
@@ -34,6 +36,7 @@ public final class CivitasServerCommands {
     private final MineColoniesAssignmentTargetResolver targetResolver;
     private final LinkedResidentAssignmentService assignmentService;
     private final ResidentHostAdapterRegistry residentAdapters;
+    private final ResidentLinkVerifier linkVerifier;
 
     public CivitasServerCommands() {
         this(new MineColoniesAssignmentTargetResolver(), UpstreamResidentHostAdapters.createRegistry());
@@ -55,6 +58,7 @@ public final class CivitasServerCommands {
         this.targetResolver = targetResolver;
         this.assignmentService = assignmentService;
         this.residentAdapters = residentAdapters;
+        this.linkVerifier = new ResidentLinkVerifier(residentAdapters);
     }
 
     public static void register(RegisterCommandsEvent event) {
@@ -69,6 +73,11 @@ public final class CivitasServerCommands {
                                 .then(Commands.argument("colonyId", IntegerArgumentType.integer(1))
                                         .then(Commands.argument("citizenId", IntegerArgumentType.integer(1))
                                                 .executes(this::linkMcaMineColonies)))))
+                .then(Commands.literal("verify_mca_minecolonies_link")
+                        .then(Commands.argument("mcaVillager", EntityArgument.entity())
+                                .then(Commands.argument("colonyId", IntegerArgumentType.integer(1))
+                                        .then(Commands.argument("citizenId", IntegerArgumentType.integer(1))
+                                                .executes(this::verifyMcaMineColoniesLink)))))
                 .then(Commands.literal("assign_minecolonies_home")
                         .then(Commands.argument("colonyId", IntegerArgumentType.integer(1))
                                 .then(Commands.argument("citizenId", IntegerArgumentType.integer(1))
@@ -115,6 +124,38 @@ public final class CivitasServerCommands {
         } catch (IllegalArgumentException | IllegalStateException exception) {
             return failLink(source, exception.getMessage());
         }
+    }
+
+    private int verifyMcaMineColoniesLink(CommandContext<CommandSourceStack> context)
+            throws CommandSyntaxException {
+        CommandSourceStack source = context.getSource();
+        ServerLevel level = source.getLevel();
+        Entity mcaVillager = EntityArgument.getEntity(context, "mcaVillager");
+        MineColoniesCitizenTarget target = targetResolver.resolveCitizen(
+                level,
+                IntegerArgumentType.getInteger(context, "colonyId"),
+                IntegerArgumentType.getInteger(context, "citizenId"));
+        if (!target.resolved()) {
+            return failLinkVerification(source, target.message());
+        }
+
+        ResidentLinkVerificationResult result = linkVerifier.verifyMcaMineColoniesLink(
+                CivitasResidentSavedData.get(level),
+                mcaVillager,
+                target.citizenData());
+        if (!result.verified()) {
+            return failLinkVerification(source, result.message());
+        }
+
+        source.sendSuccess(
+                () -> Component.literal("CIVITAS resident link verified: "
+                        + result.residentId().orElseThrow()
+                        + " mca="
+                        + result.mcaHost().orElseThrow().hostId()
+                        + " minecolonies="
+                        + result.mineColoniesHost().orElseThrow().hostId()),
+                true);
+        return Command.SINGLE_SUCCESS;
     }
 
     private int assignHomeOnly(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
@@ -180,6 +221,11 @@ public final class CivitasServerCommands {
 
     private static int failLink(CommandSourceStack source, String message) {
         source.sendFailure(Component.literal("CIVITAS link failed: " + message));
+        return 0;
+    }
+
+    private static int failLinkVerification(CommandSourceStack source, String message) {
+        source.sendFailure(Component.literal("CIVITAS link verification failed: " + message));
         return 0;
     }
 }

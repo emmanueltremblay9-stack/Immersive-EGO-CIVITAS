@@ -1,6 +1,7 @@
 package com.oblixorprime.immersiveego.civitas.resident.upstream;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -51,6 +52,23 @@ class MineColoniesAssignmentModuleLocatorTest {
         assertTrue(resolution.succeeded());
         assertSame(targetWorkModule, resolution.plan().targetWorkModule());
         assertSame(previousWorkModule, resolution.plan().previousWorkModule());
+    }
+
+    @Test
+    void workPlanIgnoresStalePreviousWorkModuleThatDoesNotContainCitizen() {
+        FakeCitizenData citizen = new FakeCitizenData();
+        FakeWorkModule stalePreviousWorkModule = new FakeWorkModule();
+        FakeBuilding targetWork = new FakeBuilding();
+        FakeWorkModule targetWorkModule = new FakeWorkModule();
+        citizen.job = new FakeJob(stalePreviousWorkModule);
+        targetWork.modules.add(targetWorkModule);
+
+        MineColoniesAssignmentResolution resolution =
+                locator.homeAndWorkPlan(citizen, null, targetWork);
+
+        assertTrue(resolution.succeeded());
+        assertSame(targetWorkModule, resolution.plan().targetWorkModule());
+        assertNull(resolution.plan().previousWorkModule());
     }
 
     @Test
